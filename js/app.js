@@ -1,47 +1,74 @@
 'use strict';
 window.$ = window.jQuery = require('jquery');
-//window.Tether = require('tether');
 window.Bootstrap = require('bootstrap');
 window.Popper = require('popper.js');
-//require('bootstrap-material-design');
+
+const snackbar = require('snackbarjs');
+const bmd = require('bootstrap-material-design');
 
 const {ipcRenderer} = require('electron');
 const {is} = require('electron-util');
-const appName = "DAE";
-const appVersion = "0.1.0";
-
-function show_screen(id) {
-	$(".screen").hide();
-	$("header").removeClass("mb-auto").hide();
-	$("footer").hide();
-
-	let screen = $("#" + id + "-screen")
-	if (screen.data('header')) $("header").show();
-	if (screen.data('footer')) {
-		$("footer").show();
-		$("header").addClass("mb-auto");
-	}
 
 
-	screen.show();
-}
+const Store = require('electron-store');
+const store = new Store();
+
+const util = require('./js/util.js');
+
+const appName = store.get("name");
+const appVersion = store.get("version");
+
+window.current_file = "";
+window.is_dirty = false;
+
 
 function init() {
 	$("#app-name").html(appName);
 	$("#app-version").html(appVersion);
 
-	show_screen('splash');
+	$("body").bootstrapMaterialDesign();
+
+	util.show_screen('splash');
+}
+
+function new_case() {
+	if (window.is_dirty) {
+		//confirm
+	} else {
+		window.current_file = "untitled.dta";
+		window.is_dirty = true;
+		util.display_current_file();
+		util.show_screen('scoring');
+	}
+}
+
+function open_case() {
+	window.current_file = "";
+	window.is_dirty = false;
+
+	util.display_current_file();
+	console.log("scnacking..");
+	$.snackbar({
+		content: "This item has not yet been implemented.",
+		timeout: 2000,
+		htmlAllowed: true
+	});
+	console.log("done");
+}
+
+function save_case() {
+	window.is_dirty = false;
 }
 
 $(document).ready(function() {
 	$(".btn-new-case").on('click', function(e) {
-		console.log("new case");
+		new_case();
 	});
 	$(".btn-load-case").on('click', function(e) {
-		console.log("load case");
+		open_case();
 	});
 	$(".btn-save-case").on('click', function(e) {
-		console.log("save case");
+		save_case();
 	});
 
 

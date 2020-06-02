@@ -6,6 +6,7 @@
 
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-material-design.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/snackbar.min.css">
 		<link rel="stylesheet" type="text/css"href="./css/app.css">
 
 		<title>Dental Age Estimation</title>
@@ -48,19 +49,47 @@
 					</section>
 				</div>
 
-				<div id="scoring-screen" class="screen" style="display:none;"data-header="true" data-footer="false">
-					<section class="inner">
-						<p>1-Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>2-Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>3-Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>4-Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
-						<p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p><p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p><p>Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own. <span id="test">1234</span></p>
+				<div id="scoring-screen" class="screen" style="display:none;" data-header="true" data-footer="false">
+					<section>
+						<nav class="navbar navbar-expand-lg navbar-light bg-light d-print-none">
+							<ul id="scoring-tabs" class="nav nav-tabs mr-auto" role="tablist">
+								<li class="nav-item" role="presentation">
+									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link active">Case Info</a>
+								</li>
+								<li class="nav-item" role="presentation">
+									<a id="tab-scoring-info" data-toggle="tab" href="#tab-pane-scoring-info" role="tab" aria-controls="tab-pane-scoring-info" aria-selected="false" class="nav-link">Scoring</a>
+								</li>
+								<li class="nav-item" role="presentation">
+									<a id="tab-results-info" data-toggle="tab" href="#tab-pane-results-info" role="tab" aria-controls="tab-pane-results-info" aria-selected="false" class="nav-link">Results</a>
+								</li>
+							</ul>
+							<span class="navbar-text">
+								<strong>File: </strong><span id="current-file"></span>
+							</span>
+						</nav>
+						<div class="tab-content py-2">
+							<section id="tab-pane-case-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-case-info">
+								<div class="card">
+									<div class="card-body">
+										<form>
+											<div class="form-group">
+												<label for="case_number_input" class="bmd-label-floating">Case #</label>
+												<input type="text" id="case_number_input" class="form-control" />
+												<span class="bmd-help">A unique identifier for the data being scoring.</span>
+											</div>
+										</form>
+
+										<span data-toggle="snackbar" data-content="This item has not yet been implemented.">test</span>
+									</div>
+								</div>
+							</section>
+							<section id="tab-pane-scoring-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-scoring-info">
+								scoring
+							</section>
+							<section id="tab-pane-results-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-results-info">
+								results
+							</section>
+						</div>
 					</section>
 				</div>
 			</main>
@@ -86,10 +115,15 @@
 			</footer>
 		</div>
 
+
+
 		<!-- <script src="./js/jquery.min.js"></script>
 		<script src="./js/bootstrap.min.js"></script>
 		<script src="./js/popper.min.js"></script>
+		<script src="./js/snackbar.min.js"></script>
 		<script src="./js/bootstrap-material-design.min.js"></script> -->
 		<script src="js/app.js"></script>
+		<!-- <script src="./js/snackbar.min.js"></script>
+		<script src="./js/bootstrap-material-design.min.js"></script> -->
 	</body>
 </html>

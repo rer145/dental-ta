@@ -1,32 +1,28 @@
-const {app, BrowserWindow, Menu} = require('electron')
-const path = require('path')
+const shortid = require('shortid');
+const path = require('path');
 
-const menu = require('./menu');
+const Store = require('electron-store');
+const store = new Store();
 
-function createWindow () {
-	const mainWindow = new BrowserWindow({
-		width: 1024,
-		height: 768,
-		webPreferences: {
-			//preload: path.join(__dirname, 'preload.js'),
-			nodeIntegration: true
+function prep_settings() {
+	const pjson = require(path.join(__dirname, "package.json"));
+	let appName = pjson.productName;
+	let appVersion = pjson.version;
+	let uid = store.get("uid", shortid.generate());
+
+	store.set({
+		"name": appName,
+		"version": appVersion,
+		"uid": uid,
+		"settings": {
+			"dev_mode": true
+		},
+		"app": {
+
 		}
 	});
-
-	mainWindow.loadFile('index.html')
-	
-	mainWindow.webContents.openDevTools();
 }
 
-app.whenReady().then(() => {
-	Menu.setApplicationMenu(menu);
-	createWindow()
+prep_settings();
 
-	app.on('activate', function () {
-		if (BrowserWindow.getAllWindows().length === 0) createWindow()
-	})
-})
-
-app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') app.quit()
-})
+require('./launchpad.js');

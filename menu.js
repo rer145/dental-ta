@@ -22,13 +22,6 @@ const debugSubmenu = [
 			win.getFocusedWindow().toggleDevTools()
 		},
 		accelerator: 'CmdOrCtrl+Shift+I'
-	},
-	{ type: 'separator' },
-	{
-		label: 'Show App Data',
-		click() {
-			shell.openItem(app.getPath('userData'));
-		}
 	}
 ];
 
