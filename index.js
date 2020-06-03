@@ -15,7 +15,8 @@ function prep_settings() {
 		"version": appVersion,
 		"uid": uid,
 		"settings": {
-			"dev_mode": true
+			"dev_mode": true,
+			"numbering": store.get("settings.numbering", "universal")
 		},
 		"app": {
 

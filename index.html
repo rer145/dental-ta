@@ -74,7 +74,7 @@
 										<div class="card mb-2">
 											<div class="card-body">
 												<div class="text-center mb-2">
-													<div class="btn-group" role="group" aria-label="Tooth Chart">
+													<div id="tooth-chart-selection" class="btn-group" role="group" aria-label="Tooth Chart">
 														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="deciduous">Deciduous</button>
 														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="permanent">Permanent</button>
 													</div>
@@ -88,17 +88,19 @@
 									<div class="col-sm-4 col-md-5 col-lg-6">
 										<div class="card mb-2">
 											<div class="card-body">
+												Select a Tooth to score: <span id="selected-tooth"></span><br />
+												Name: <span id="tooth-name"></span>
 
 											</div>
 										</div>
 										<div class="card mb-2">
 											<div class="card-body">
-												scoring2
+												Help section
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<!-- <div class="row">
 									<div class="col">
 										<div class="card">
 											<div class="card-body">
@@ -106,7 +108,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</section>
 							<section id="tab-pane-case-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-case-info">
 								<div class="card">

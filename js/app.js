@@ -85,8 +85,29 @@ function select_tooth(id) {
 		$("#Tooth" + id).removeClass('active');
 	} else {
 		$("polygon").removeClass("active");
+		$("path").removeClass("active");
 		$("#Tooth" + id).addClass("active");
 	}
+
+	let type = $("#tooth-chart-selection .btn-primary").data('chart');
+	let key = $("#Tooth" + id).data('key');
+
+	let tooth = find_tooth(type, key);
+	$("#selected-tooth").html(key);
+	$("#tooth-name").html(`(${tooth.side}) ${tooth.name}`);
+}
+
+function find_tooth(type, key) {
+	let numbering = store.get("settings.numbering");
+
+	for (let i = 0; i < window.appdb.teeth.length; i++) {
+		if (window.appdb.teeth[i].numbering[type] &&
+			window.appdb.teeth[i].numbering[type][numbering] &&
+			window.appdb.teeth[i].numbering[type][numbering]== key) {
+				return window.appdb.teeth[i];
+		}
+	}
+	return {};
 }
 
 $(document).ready(function() {

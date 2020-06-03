@@ -1,4 +1,510 @@
 {
+	"teeth": [
+		{
+			"name": "Third Molar",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 18,
+					"palmer": 8,
+					"universal": 1
+				}
+			}
+		},
+		{
+			"name": "Second Molar",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 51,
+					"palmer": "E",
+					"universal": "A",
+					"universal_alternative": "1d"
+				},
+				"permanent": {
+					"fdi": 17,
+					"palmer": 7,
+					"universal": 2
+				}
+			}
+		},
+		{
+			"name": "First Molar",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 52,
+					"palmer": "D",
+					"universal": "B",
+					"universal_alternative": "2d"
+				},
+				"permanent": {
+					"fdi": 16,
+					"palmer": 6,
+					"universal": 3
+				}
+			}
+		},
+		{
+			"name": "Second Bicuspid",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 15,
+					"palmer": 5,
+					"universal": 4
+				}
+			}
+		},
+		{
+			"name": "First Bicuspid",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 14,
+					"palmer": 4,
+					"universal": 5
+				}
+			}
+		},
+		{
+			"name": "Cuspid",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 53,
+					"palmer": "C",
+					"universal": "C",
+					"universal_alternative": "3d"
+				},
+				"permanent": {
+					"fdi": 13,
+					"palmer": 3,
+					"universal": 6
+				}
+			}
+		},
+		{
+			"name": "Lateral Incisor",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 54,
+					"palmer": "B",
+					"universal": "D",
+					"universal_alternative": "4d"
+				},
+				"permanent": {
+					"fdi": 12,
+					"palmer": 2,
+					"universal": 7
+				}
+			}
+		},
+		{
+			"name": "Central Incisor",
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 55,
+					"palmer": "A",
+					"universal": "E",
+					"universal_alternative": "5d"
+				},
+				"permanent": {
+					"fdi": 11,
+					"palmer": 1,
+					"universal": 8
+				}
+			}
+		},
+		{
+			"name": "Central Incisor",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 65,
+					"palmer": "A",
+					"universal": "F",
+					"universal_alternative": "6d"
+				},
+				"permanent": {
+					"fdi": 21,
+					"palmer": 1,
+					"universal": 9
+				}
+			}
+		},
+		{
+			"name": "Lateral Incisor",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 64,
+					"palmer": "B",
+					"universal": "G",
+					"universal_alternative": "7d"
+				},
+				"permanent": {
+					"fdi": 22,
+					"palmer": 2,
+					"universal": 10
+				}
+			}
+		},
+		{
+			"name": "Cuspid",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 63,
+					"palmer": "C",
+					"universal": "H",
+					"universal_alternative": "8d"
+				},
+				"permanent": {
+					"fdi": 23,
+					"palmer": 3,
+					"universal": 11
+				}
+			}
+		},
+		{
+			"name": "First Bicuspid",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 24,
+					"palmer": 4,
+					"universal": 12
+				}
+			}
+		},
+		{
+			"name": "Second Bicuspid",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 25,
+					"palmer": 5,
+					"universal": 13
+				}
+			}
+		},
+		{
+			"name": "First Molar",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 62,
+					"palmer": "D",
+					"universal": "I",
+					"universal_alternative": "9d"
+				},
+				"permanent": {
+					"fdi": 26,
+					"palmer": 6,
+					"universal": 14
+				}
+			}
+		},
+		{
+			"name": "Second Molar",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 61,
+					"palmer": "E",
+					"universal": "J",
+					"universal_alternative": "10d"
+				},
+				"permanent": {
+					"fdi": 27,
+					"palmer": 7,
+					"universal": 15
+				}
+			}
+		},
+		{
+			"name": "Third Molar",
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 28,
+					"palmer": 8,
+					"universal": 16
+				}
+			}
+		},
+		{
+			"name": "Third Molar",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 48,
+					"palmer": 8,
+					"universal": 32
+				}
+			}
+		},
+		{
+			"name": "Second Molar",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 81,
+					"palmer": "E",
+					"universal": "T",
+					"universal_alternative": "20d"
+				},
+				"permanent": {
+					"fdi": 47,
+					"palmer": 7,
+					"universal": 31
+				}
+			}
+		},
+		{
+			"name": "First Molar",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 82,
+					"palmer": "D",
+					"universal": "S",
+					"universal_alternative": "19d"
+				},
+				"permanent": {
+					"fdi": 46,
+					"palmer": 6,
+					"universal": 30
+				}
+			}
+		},
+		{
+			"name": "Second Bicuspid",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 45,
+					"palmer": 5,
+					"universal": 29
+				}
+			}
+		},
+		{
+			"name": "First Bicuspid",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 44,
+					"palmer": 4,
+					"universal": 28
+				}
+			}
+		},
+		{
+			"name": "Cuspid",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 83,
+					"palmer": "C",
+					"universal": "R",
+					"universal_alternative": "18d"
+				},
+				"permanent": {
+					"fdi": 43,
+					"palmer": 3,
+					"universal": 27
+				}
+			}
+		},
+		{
+			"name": "Lateral Incisor",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 84,
+					"palmer": "B",
+					"universal": "Q",
+					"universal_alternative": "17d"
+				},
+				"permanent": {
+					"fdi": 42,
+					"palmer": 2,
+					"universal": 26
+				}
+			}
+		},
+		{
+			"name": "Central Incisor",
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 85,
+					"palmer": "A",
+					"universal": "P",
+					"universal_alternative": "16d"
+				},
+				"permanent": {
+					"fdi": 41,
+					"palmer": 1,
+					"universal": 25
+				}
+			}
+		},
+		{
+			"name": "Central Incisor",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 75,
+					"palmer": "A",
+					"universal": "O",
+					"universal_alternative": "15d"
+				},
+				"permanent": {
+					"fdi": 31,
+					"palmer": 1,
+					"universal": 24
+				}
+			}
+		},
+		{
+			"name": "Lateral Incisor",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 74,
+					"palmer": "B",
+					"universal": "N",
+					"universal_alternative": "14d"
+				},
+				"permanent": {
+					"fdi": 32,
+					"palmer": 2,
+					"universal": 23
+				}
+			}
+		},
+		{
+			"name": "Cuspid",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 73,
+					"palmer": "C",
+					"universal": "M",
+					"universal_alternative": "13d"
+				},
+				"permanent": {
+					"fdi": 33,
+					"palmer": 3,
+					"universal": 22
+				}
+			}
+		},
+		{
+			"name": "First Bicuspid",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 34,
+					"palmer": 4,
+					"universal": 21
+				}
+			}
+		},
+		{
+			"name": "Second Bicuspid",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 35,
+					"palmer": 5,
+					"universal": 20
+				}
+			}
+		},
+		{
+			"name": "First Molar",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 72,
+					"palmer": "D",
+					"universal": "L",
+					"universal_alternative": "12d"
+				},
+				"permanent": {
+					"fdi": 36,
+					"palmer": 6,
+					"universal": 19
+				}
+			}
+		},
+		{
+			"name": "Second Molar",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 71,
+					"palmer": "E",
+					"universal": "K",
+					"universal_alternative": "11d"
+				},
+				"permanent": {
+					"fdi": 37,
+					"palmer": 7,
+					"universal": 18
+				}
+			}
+		},
+		{
+			"name": "Third Molar",
+			"side": "L",
+			"jaw": "mandibular",
+			"numbering": {
+				"permanent": {
+					"fdi": 38,
+					"palmer": 8,
+					"universal": 17
+				}
+			}
+		}
+	],
 	"rooted": {
 		"crown": [
 			{
