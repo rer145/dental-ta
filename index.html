@@ -40,7 +40,7 @@
 			<main role="main">
 				<div id="splash-screen" class="screen" style="display:none;" data-header="true" data-footer="true">
 					<section class="inner">
-						<h1 class="display-2">Dental Age Estimation</h1>
+						<h1 class="display-2">Subadult Dental Age Estimation</h1>
 						<p class="lead">New Approaches to Juvenile Age Estimation in Forensics: Application of Transition Analysis vai the Shackelford et al. Method to a Diverse Modern Subadult Sample</p>
 						<p class="lead">
 							<a href="#" class="btn-new-case btn btn-lg btn-primary">New Case</a>
@@ -54,10 +54,10 @@
 						<nav class="navbar navbar-expand-lg navbar-light bg-light d-print-none">
 							<ul id="scoring-tabs" class="nav nav-tabs mr-auto" role="tablist">
 								<li class="nav-item" role="presentation">
-									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link active">Case Info</a>
+									<a id="tab-scoring-info" data-toggle="tab" href="#tab-pane-scoring-info" role="tab" aria-controls="tab-pane-scoring-info" aria-selected="false" class="nav-link active">Scoring</a>
 								</li>
 								<li class="nav-item" role="presentation">
-									<a id="tab-scoring-info" data-toggle="tab" href="#tab-pane-scoring-info" role="tab" aria-controls="tab-pane-scoring-info" aria-selected="false" class="nav-link">Scoring</a>
+									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link">Case Info</a>
 								</li>
 								<li class="nav-item" role="presentation">
 									<a id="tab-results-info" data-toggle="tab" href="#tab-pane-results-info" role="tab" aria-controls="tab-pane-results-info" aria-selected="false" class="nav-link">Results</a>
@@ -68,7 +68,47 @@
 							</span>
 						</nav>
 						<div class="tab-content py-2">
-							<section id="tab-pane-case-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-case-info">
+							<section id="tab-pane-scoring-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-scoring-info">
+								<div class="row mb-2">
+									<div class="col-sm-8 col-md-7 col-lg-6">
+										<div class="card mb-2">
+											<div class="card-body">
+												<div class="text-center mb-2">
+													<div class="btn-group" role="group" aria-label="Tooth Chart">
+														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="deciduous">Deciduous</button>
+														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="permanent">Permanent</button>
+													</div>
+												</div>
+												<div class="text-center">
+													<div id="tooth-chart"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4 col-md-5 col-lg-6">
+										<div class="card mb-2">
+											<div class="card-body">
+
+											</div>
+										</div>
+										<div class="card mb-2">
+											<div class="card-body">
+												scoring2
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="card">
+											<div class="card-body">
+												Help section
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+							<section id="tab-pane-case-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-case-info">
 								<div class="card">
 									<div class="card-body">
 										<form>
@@ -78,13 +118,8 @@
 												<span class="bmd-help">A unique identifier for the data being scoring.</span>
 											</div>
 										</form>
-
-										<span data-toggle="snackbar" data-content="This item has not yet been implemented.">test</span>
 									</div>
 								</div>
-							</section>
-							<section id="tab-pane-scoring-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-scoring-info">
-								scoring
 							</section>
 							<section id="tab-pane-results-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-results-info">
 								results

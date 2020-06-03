@@ -11,7 +11,25 @@ function show_screen(id) {
 		$("footer").show();
 		$("header").addClass("mb-auto");
 	}
+
+	if (id === 'scoring') {
+		show_tooth_chart($(".btn-tooth-chart").first(), $(".btn-tooth-chart").first().data('chart'));
+	}
+
 	screen.show();
+}
+
+function show_tooth_chart(obj, id) {
+	//var obj = $("#tooth-chart");
+	$(".btn-tooth-chart").removeClass("btn-primary");
+	obj.removeClass("btn-secondary").addClass("btn-primary");
+	//$("#tooth-chart img").attr("src", "images/charts/" + id + "-maxillary.png");
+	//$("#tooth-chart img").attr("src", "images/charts/" + id + ".svg");
+
+	$("#tooth-chart").load("images/charts/" + id + ".svg");
+	// $.get("images/charts/" + id + ".svg", function(data) {
+	// 	$("#tooth-chart").append(data);
+	// });
 }
 
 function display_current_file() {
@@ -24,5 +42,6 @@ function display_current_file() {
 
 module.exports = {
 	show_screen,
+	show_tooth_chart,
 	display_current_file
 };

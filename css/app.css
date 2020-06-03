@@ -30,3 +30,28 @@ input[type=number]:focus,
 [contenteditable].form-control:focus {
 	box-shadow: inset 0 -1px 0 #ddd !important;
 }
+
+g.spots polygon,
+g.spots path,
+text {
+	cursor: pointer;
+}
+
+g.spots polygon,
+g.spots path {
+	-webkit-transition: fill .25s;
+	transition: fill .25s;
+}
+
+g.spots polygon:hover,
+g.spots polygon:active,
+g.spots path:hover,
+g.spots path:active {
+	fill: #ddd !important;
+}
+
+g.spots polygon.active,
+g.spots path.active {
+	fill: var(--primary) !important;
+}
+
