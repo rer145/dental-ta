@@ -30,7 +30,7 @@ function init() {
 
 	$("body").bootstrapMaterialDesign();
 
-	window.appdb = JSON.parse(fs.readFileSync(path.join(__dirname, "db.json")).toString());
+	window.appdb = JSON.parse(fs.readFileSync(path.join(__dirname, "data/db.json")).toString());
 	reset_scores();
 
 	util.show_screen('splash');
@@ -82,19 +82,41 @@ function reset_scores() {
 
 function select_tooth(id) {
 	if ($("#Tooth" + id).hasClass('active')) {
+		// tooh has been unselected
 		$("#Tooth" + id).removeClass('active');
+
+		$("#tooth-scoring").hide();
+		$("#analysis-card .alert").show();
 	} else {
+		// tooth is currently selected
 		$("polygon").removeClass("active");
 		$("path").removeClass("active");
 		$("#Tooth" + id).addClass("active");
+
+		let type = $("#tooth-chart-selection .btn-primary").data('chart');
+		let key = $("#Tooth" + id).data('key');
+
+		let tooth = find_tooth(type, key);
+		let field = tooth.field[type];
+
+		$("#tooth-name").html(tooth.name);
+		$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side}`);
+		$("#tooth-score-id").val(field);
+
+		let analysis = find_tooth_analysis(field);
+		$("#tooth-score").empty().append(`<option value="NA"></option>`);
+		for (let i = 0; i < analysis.scores.length; i++) {
+			$("#tooth-score").append(`<option value="${analysis.scores[i]}">${analysis.scores[i]}</option>`);
+			//TODO: check if previously scored, and select value
+		}
+
+		let score = window.scores[field];
+		if (score != "NA")
+			$("#tooth-score").val(score);
+		$("#tooth-scoring").show();
+
+		$("#analysis-card .alert").hide();
 	}
-
-	let type = $("#tooth-chart-selection .btn-primary").data('chart');
-	let key = $("#Tooth" + id).data('key');
-
-	let tooth = find_tooth(type, key);
-	$("#selected-tooth").html(key);
-	$("#tooth-name").html(`(${tooth.side}) ${tooth.name}`);
 }
 
 function find_tooth(type, key) {
@@ -108,6 +130,23 @@ function find_tooth(type, key) {
 		}
 	}
 	return {};
+}
+
+function find_tooth_analysis(field) {
+	for (let i = 0; i < window.appdb.analysis.length; i++) {
+		if (window.appdb.analysis[i].field === field) {
+			return window.appdb.analysis[i];
+		}
+	}
+	return {};
+}
+
+function save_tooth_score(key, score) {
+	window.scores[key] = score;
+	window.is_dirty = true;
+	util.display_current_file();
+
+	console.log(window.scores);
 }
 
 $(document).ready(function() {
@@ -132,10 +171,22 @@ $(document).ready(function() {
 		e.preventDefault();
 		select_tooth($(this).html());
 	});
-	$("body").on('click', 'polygon', function(e) {
+	$("body").on('click', '.spots polygon', function(e) {
 		e.preventDefault();
 		select_tooth($(this).data('key'));
 	});
+	$("body").on('click', '.spots path', function(e) {
+		e.preventDefault();
+		select_tooth($(this).data('key'));
+	});
+	$("#tooth-score").on('change', function(e) {
+		e.preventDefault();
+		save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
+	});
+	// $("#log-score-btn").on('click', function(e) {
+	// 	e.preventDefault();
+	// 	save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
+	// });
 
 
 	init();

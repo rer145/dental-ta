@@ -22,7 +22,8 @@ function createWindow () {
 		y: mainWindowState.y,
 		webPreferences: {
 			//preload: path.resolve('./preload.js'),
-			nodeIntegration: true
+			nodeIntegration: true,
+			enableRemoteModule: true
 		}
 	});
 

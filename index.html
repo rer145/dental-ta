@@ -28,11 +28,11 @@
 								<a class="nav-link" href="#"></a>
 							</li>
 						</ul>
-						<form class="my-2 my-lg-0">
+						<div class="my-2 my-lg-0">
 							<a id="new-button" class="btn-new-case btn btn-dark" href="#">New</a>
 							<a id="open-button" class="btn-load-case btn btn-secondary" href="#">Open</a>
 							<a id="save-button" class="btn-save-case btn btn-secondary" href="#">Save</a>
-						</form>
+						</div>
 					</div>
 				</nav>
 			</header>
@@ -71,7 +71,7 @@
 							<section id="tab-pane-scoring-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-scoring-info">
 								<div class="row mb-2">
 									<div class="col-sm-8 col-md-7 col-lg-6">
-										<div class="card mb-2">
+										<div id="chart-card" class="card mb-2">
 											<div class="card-body">
 												<div class="text-center mb-2">
 													<div id="tooth-chart-selection" class="btn-group" role="group" aria-label="Tooth Chart">
@@ -86,14 +86,29 @@
 										</div>
 									</div>
 									<div class="col-sm-4 col-md-5 col-lg-6">
-										<div class="card mb-2">
+										<div id="analysis-card" class="card mb-2">
 											<div class="card-body">
-												Select a Tooth to score: <span id="selected-tooth"></span><br />
-												Name: <span id="tooth-name"></span>
-
+												<div class="alert alert-info show" role="alert">
+													Click on a tooth in the chart to score it and view information.
+												</div>
+												<div id="tooth-scoring" style="display:none;">
+													<div class="row">
+														<div class="col">
+															<h5 class="mb-1"><span id="tooth-name"></span></h5>
+															<p><span id="tooth-jawside"></span></p>
+														</div>
+														<div class="col text-right">
+																<input type="hidden" id="tooth-score-id" />
+																<div class="form-group">
+																	<label for="tooth-score">Score</label>
+																	<select id="tooth-score" class="form-control form-control-lg"></select>
+																</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="card mb-2">
+										<div id="help-card" class="card mb-2">
 											<div class="card-body">
 												Help section
 											</div>

@@ -1,4 +1,97 @@
 {
+	"analysis": [
+		{
+			"field": "dc",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14,15,16,17],
+			"deciduous": true,
+			"permanent": false,
+			"universal": ["C", "H", "M", "R"]
+		},
+		{
+			"field": "dm1",
+			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17],
+			"deciduous": true,
+			"permanent": false,
+			"universal": ["B", "I", "L", "S"]
+		},
+		{
+			"field": "dm2",
+			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17],
+			"deciduous": true,
+			"permanent": false,
+			"universal": ["A", "J", "K", "T"]
+		},
+		{
+			"field": "UI1",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": true,
+			"permanent": true,
+			"universal": ["E", "F", 8, 9]
+		},
+		{
+			"field": "UI2",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": true,
+			"permanent": true,
+			"universal": ["D", "G", 7, 10]
+		},
+		{
+			"field": "LI1",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": true,
+			"permanent": true,
+			"universal": ["O", "P", 31, 41]
+		},
+		{
+			"field": "LI2",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": true,
+			"permanent": true,
+			"universal": ["N", "Q", 32, 42]
+		},
+		{
+			"field": "C",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": true,
+			"permanent": true,
+			"universal": ["C", "H", 6, 11, 22, 27]
+		},
+		{
+			"field": "P3",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": false,
+			"permanent": true,
+			"universal": [5, 12, 21, 28]
+		},
+		{
+			"field": "P4",
+			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
+			"deciduous": false,
+			"permanent": true,
+			"universal": [4, 13, 20, 29]
+		},
+		{
+			"field": "M1",
+			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
+			"deciduous": false,
+			"permanent": true,
+			"universal": [3, 14, 19, 30]
+		},
+		{
+			"field": "M2",
+			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
+			"deciduous": false,
+			"permanent": true,
+			"universal": [2, 15, 18, 31]
+		},
+		{
+			"field": "M3",
+			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
+			"deciduous": false,
+			"permanent": true,
+			"universal": [1, 16, 17, 32]
+		}
+	],
 	"teeth": [
 		{
 			"name": "Third Molar",
@@ -10,6 +103,10 @@
 					"palmer": 8,
 					"universal": 1
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3"
 			}
 		},
 		{
@@ -28,6 +125,10 @@
 					"palmer": 7,
 					"universal": 2
 				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "Md"
 			}
 		},
 		{
@@ -46,6 +147,10 @@
 					"palmer": 6,
 					"universal": 3
 				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1"
 			}
 		},
 		{
@@ -58,6 +163,10 @@
 					"palmer": 5,
 					"universal": 4
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4"
 			}
 		},
 		{
@@ -70,6 +179,10 @@
 					"palmer": 4,
 					"universal": 5
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3"
 			}
 		},
 		{
@@ -88,6 +201,10 @@
 					"palmer": 3,
 					"universal": 6
 				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C"
 			}
 		},
 		{
@@ -106,6 +223,10 @@
 					"palmer": 2,
 					"universal": 7
 				}
+			},
+			"field": {
+				"deciduous": "UI2",
+				"permanent": "UI2"
 			}
 		},
 		{
@@ -124,6 +245,10 @@
 					"palmer": 1,
 					"universal": 8
 				}
+			},
+			"field": {
+				"deciduous": "UI1",
+				"permanent": "UI1"
 			}
 		},
 		{
@@ -142,6 +267,10 @@
 					"palmer": 1,
 					"universal": 9
 				}
+			},
+			"field": {
+				"deciduous": "UI1",
+				"permanent": "UI1"
 			}
 		},
 		{
@@ -160,6 +289,10 @@
 					"palmer": 2,
 					"universal": 10
 				}
+			},
+			"field": {
+				"deciduous": "UI2",
+				"permanent": "UI2"
 			}
 		},
 		{
@@ -178,6 +311,10 @@
 					"palmer": 3,
 					"universal": 11
 				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C"
 			}
 		},
 		{
@@ -190,6 +327,10 @@
 					"palmer": 4,
 					"universal": 12
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3"
 			}
 		},
 		{
@@ -202,6 +343,10 @@
 					"palmer": 5,
 					"universal": 13
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4"
 			}
 		},
 		{
@@ -220,6 +365,10 @@
 					"palmer": 6,
 					"universal": 14
 				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1"
 			}
 		},
 		{
@@ -238,6 +387,10 @@
 					"palmer": 7,
 					"universal": 15
 				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2"
 			}
 		},
 		{
@@ -250,6 +403,10 @@
 					"palmer": 8,
 					"universal": 16
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3"
 			}
 		},
 		{
@@ -262,6 +419,10 @@
 					"palmer": 8,
 					"universal": 32
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3"
 			}
 		},
 		{
@@ -280,6 +441,10 @@
 					"palmer": 7,
 					"universal": 31
 				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2"
 			}
 		},
 		{
@@ -298,6 +463,10 @@
 					"palmer": 6,
 					"universal": 30
 				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1"
 			}
 		},
 		{
@@ -310,6 +479,10 @@
 					"palmer": 5,
 					"universal": 29
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4"
 			}
 		},
 		{
@@ -322,6 +495,10 @@
 					"palmer": 4,
 					"universal": 28
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3"
 			}
 		},
 		{
@@ -340,6 +517,10 @@
 					"palmer": 3,
 					"universal": 27
 				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C"
 			}
 		},
 		{
@@ -358,6 +539,10 @@
 					"palmer": 2,
 					"universal": 26
 				}
+			},
+			"field": {
+				"deciduous": "LI2",
+				"permanent": "LI2"
 			}
 		},
 		{
@@ -376,6 +561,10 @@
 					"palmer": 1,
 					"universal": 25
 				}
+			},
+			"field": {
+				"deciduous": "LI1",
+				"permanent": "LI1"
 			}
 		},
 		{
@@ -394,6 +583,10 @@
 					"palmer": 1,
 					"universal": 24
 				}
+			},
+			"field": {
+				"deciduous": "LI1",
+				"permanent": "LI1"
 			}
 		},
 		{
@@ -412,6 +605,10 @@
 					"palmer": 2,
 					"universal": 23
 				}
+			},
+			"field": {
+				"deciduous": "LI2",
+				"permanent": "LI2"
 			}
 		},
 		{
@@ -430,6 +627,10 @@
 					"palmer": 3,
 					"universal": 22
 				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C"
 			}
 		},
 		{
@@ -442,6 +643,10 @@
 					"palmer": 4,
 					"universal": 21
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3"
 			}
 		},
 		{
@@ -454,6 +659,10 @@
 					"palmer": 5,
 					"universal": 20
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4"
 			}
 		},
 		{
@@ -472,6 +681,10 @@
 					"palmer": 6,
 					"universal": 19
 				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1"
 			}
 		},
 		{
@@ -490,6 +703,10 @@
 					"palmer": 7,
 					"universal": 18
 				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2"
 			}
 		},
 		{
@@ -502,6 +719,10 @@
 					"palmer": 8,
 					"universal": 17
 				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3"
 			}
 		}
 	],
