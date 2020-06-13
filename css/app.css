@@ -52,7 +52,7 @@ g.spots path[data-disabled="false"]:active {
 
 g.spots polygon[data-disabled="false"].active,
 g.spots path[data-disabled="false"].active {
-	fill: var(--primary) !important;
+	fill: #041E42 !important;
 }
 
 

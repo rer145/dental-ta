@@ -13,20 +13,24 @@ function show_screen(id) {
 	}
 
 	if (id === 'scoring') {
-		show_tooth_chart($(".btn-tooth-chart").first(), $(".btn-tooth-chart").first().data('chart'));
+		show_tooth_chart(
+			$(".btn-tooth-chart").first(),
+			$(".btn-tooth-chart").first().data('chart'),
+			$(".btn-tooth-chart").first().data('jaw')
+		);
 	}
 
 	screen.show();
 }
 
-function show_tooth_chart(obj, id) {
+function show_tooth_chart(obj, id, jaw) {
 	//var obj = $("#tooth-chart");
 	$(".btn-tooth-chart").removeClass("btn-primary");
 	obj.removeClass("btn-secondary").addClass("btn-primary");
 	//$("#tooth-chart img").attr("src", "images/charts/" + id + "-maxillary.png");
 	//$("#tooth-chart img").attr("src", "images/charts/" + id + ".svg");
 
-	$("#tooth-chart").load("images/charts/" + id + ".svg");
+	$("#tooth-chart").load("images/charts/" + id + "-" + jaw + ".svg");
 	// $.get("images/charts/" + id + ".svg", function(data) {
 	// 	$("#tooth-chart").append(data);
 	// });

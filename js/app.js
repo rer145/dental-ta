@@ -23,6 +23,7 @@ const appVersion = store.get("version");
 window.current_file = "";
 window.is_dirty = false;
 window.current_tooth = {};
+window.current_tooth_index = -1;
 
 
 function init() {
@@ -89,6 +90,7 @@ function select_tooth(id) {
 		$("#tooth-scoring").hide();
 		$("#analysis-card .alert").show();
 		window.current_tooth = {};
+		window.current_tooth_index - -1;
 	} else {
 		// tooth is currently selected
 		$("polygon").removeClass("active");
@@ -98,27 +100,44 @@ function select_tooth(id) {
 		let type = $("#tooth-chart-selection .btn-primary").data('chart');
 		let key = $("#Tooth" + id).data('key');
 
-		let tooth = find_tooth(type, key);
-		let field = tooth.field[type];
-		window.current_tooth = tooth;
+		window.current_tooth_index = find_tooth_index(type, key);
+		if (window.current_tooth_index > -1) {
+			//let tooth = find_tooth(type, key);
+			let tooth = window.appdb.teeth[window.current_tooth_index];
+			let field = tooth.field[type];
+			window.current_tooth = tooth;
+			set_tooth_paging();
 
-		$("#tooth-name").html(tooth.name);
-		$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side}`);
-		$("#tooth-score-id").val(field);
+			$("#tooth-name").html(tooth.name);
+			$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side}`);
+			$("#tooth-score-id").val(field);
 
-		let analysis = find_tooth_analysis(field);
-		$("#tooth-score").empty().append(`<option value="NA"></option>`);
-		for (let i = 0; i < analysis.scores.length; i++) {
-			$("#tooth-score").append(`<option value="${analysis.scores[i]}">${analysis.scores[i]}</option>`);
-			//TODO: check if previously scored, and select value
+			let analysis = find_tooth_analysis(field);
+			$("#tooth-score").empty().append(`<option value="NA"></option>`);
+			for (let i = 0; i < analysis.scores.length; i++) {
+				$("#tooth-score").append(`<option value="${analysis.scores[i]}">${analysis.scores[i]}</option>`);
+				//TODO: check if previously scored, and select value
+			}
+
+			let score = window.scores[field];
+			if (score != "NA")
+				$("#tooth-score").val(score);
+			$("#tooth-scoring").show();
+
+			$("#analysis-card .alert").hide();
 		}
+	}
+}
 
-		let score = window.scores[field];
-		if (score != "NA")
-			$("#tooth-score").val(score);
-		$("#tooth-scoring").show();
+function set_tooth_paging() {
+	$("#prev-tooth-button").removeClass("disabled").data("index", window.current_tooth_index-1);
+	$("#next-tooth-button").removeClass("disabled").data("index", window.current_tooth_index-1);
 
-		$("#analysis-card .alert").hide();
+	if (window.current_tooth_index == 0) {
+		$("#prev-tooth-button").addClass("disabled");
+	}
+	if (window.current_tooth_index == window.appdb.teeth.length-1) {
+		$("#next-tooth-button").addClass("disabled");
 	}
 }
 
@@ -133,6 +152,19 @@ function find_tooth(type, key) {
 		}
 	}
 	return {};
+}
+
+function find_tooth_index(type, key) {
+	let numbering = store.get("settings.numbering");
+
+	for (let i = 0; i < window.appdb.teeth.length; i++) {
+		if (window.appdb.teeth[i].numbering[type] &&
+			window.appdb.teeth[i].numbering[type][numbering] &&
+			window.appdb.teeth[i].numbering[type][numbering]== key) {
+				return i;
+		}
+	}
+	return -1;
 }
 
 function find_tooth_analysis(field) {
@@ -167,7 +199,7 @@ $(document).ready(function() {
 	});
 	$(".btn-tooth-chart").on('click', function(e) {
 		e.preventDefault();
-		util.show_tooth_chart($(this), $(this).data('chart'));
+		util.show_tooth_chart($(this), $(this).data('chart'), $(this).data('jaw'));
 	});
 
 	$("body").on('click', 'text[data-disabled="false"]', function(e) {
@@ -191,6 +223,14 @@ $(document).ready(function() {
 	// 	save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
 	// });
 
+	$("#prev-tooth-button").on('click', function(e) {
+		e.preventDefault();
+		select_tooth($(this).data("index"));
+	});
+	$("#next-tooth-button").on('click', function(e) {
+		e.preventDefault();
+		select_tooth($(this).data("index"));
+	});
 
 	init();
 });

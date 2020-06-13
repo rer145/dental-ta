@@ -74,9 +74,29 @@
 										<div id="chart-card" class="card mb-2">
 											<div class="card-body">
 												<div class="text-center mb-2">
-													<div id="tooth-chart-selection" class="btn-group" role="group" aria-label="Tooth Chart">
-														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="deciduous">Deciduous</button>
-														<button type="button" class="btn-tooth-chart btn btn-secondary" data-chart="permanent">Permanent</button>
+													<div id="tooth-chart-selection">
+														<ul class="nav">
+															<li class="nav-item">
+																<a class="nav-link disabled font-weight-bold" href="#">Deciduous</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="maxillary">Maxillary</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="mandibular">Mandibular</a>
+															</li>
+														</ul>
+														<ul class="nav">
+															<li class="nav-item">
+																<a class="nav-link disabled font-weight-bold" href="#">Permanent</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="permanent" data-jaw="maxillary">Maxillary</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="permanent" data-jaw="mandibular">Mandibular</a>
+															</li>
+														</ul>
 													</div>
 												</div>
 												<div class="text-center">
@@ -93,9 +113,9 @@
 												</div>
 												<div id="tooth-scoring" style="display:none;">
 													<div class="row">
-														<div class="col-1">
-															&laquo;
-														</div>
+														<!-- <div class="col-1">
+															<button id="prev-tooth-button" class="btn btn-primary" data-index="">&laquo;</button>
+														</div> -->
 														<div class="col">
 															<h5 class="mb-1"><span id="tooth-name"></span></h5>
 															<p><span id="tooth-jawside"></span></p>
@@ -107,9 +127,9 @@
 																	<select id="tooth-score" class="form-control form-control-lg"></select>
 																</div>
 														</div>
-														<div class="col-1">
-															&raquo;
-														</div>
+														<!-- <div class="col-1">
+															<button id="next-tooth-button" class="btn btn-primary" data-index="">&raquo;</button>
+														</div> -->
 													</div>
 												</div>
 											</div>
