@@ -55,3 +55,17 @@ g.spots path.active {
 	fill: var(--primary) !important;
 }
 
+
+
+/* overrides */
+.bg-primary {
+	background-color: #041E42 !important;
+}
+
+.btn-dark {
+	color: #041E42 !important;
+}
+
+.btn-primary {
+	color: #041E42 !important;
+}
