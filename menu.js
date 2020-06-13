@@ -4,6 +4,8 @@ const { app, Menu } = require('electron');
 const win = require('electron').BrowserWindow;
 const {is} = require('electron-util');
 
+const i18n = require('./i18next.config');
+
 const appName = app.getName();
 
 const debugSubmenu = [
@@ -45,13 +47,13 @@ const otherTemplate = [
 		role: 'fileMenu',
 		submenu: [
 			{
-				label: 'Splash',
+				label: i18n.t('menu-file-splash'),
 				click() {
 					win.getFocusedWindow().webContents.send('show-screen', 'splash');
 				}
 			},
 			{
-				label: 'Scoring',
+				label: i18n.t('menu-file-scoring'),
 				click() {
 					win.getFocusedWindow().webContents.send('show-screen', 'scoring');
 				}

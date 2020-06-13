@@ -31,9 +31,9 @@ input[type=number]:focus,
 	box-shadow: inset 0 -1px 0 #ddd !important;
 }
 
-g.spots polygon,
-g.spots path,
-text {
+g.spots polygon[data-disabled="false"],
+g.spots path[data-disabled="false"],
+text[data-disabled="false"] {
 	cursor: pointer;
 }
 
@@ -43,15 +43,15 @@ g.spots path {
 	transition: fill .25s;
 }
 
-g.spots polygon:hover,
-g.spots polygon:active,
-g.spots path:hover,
-g.spots path:active {
+g.spots polygon[data-disabled="false"]:hover,
+g.spots polygon[data-disabled="false"]:active,
+g.spots path[data-disabled="false"]:hover,
+g.spots path[data-disabled="false"]:active {
 	fill: #ddd !important;
 }
 
-g.spots polygon.active,
-g.spots path.active {
+g.spots polygon[data-disabled="false"].active,
+g.spots path[data-disabled="false"].active {
 	fill: var(--primary) !important;
 }
 
