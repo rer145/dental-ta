@@ -22,6 +22,7 @@ const appVersion = store.get("version");
 
 window.current_file = "";
 window.is_dirty = false;
+window.current_tooth = {};
 
 
 function init() {
@@ -87,6 +88,7 @@ function select_tooth(id) {
 
 		$("#tooth-scoring").hide();
 		$("#analysis-card .alert").show();
+		window.current_tooth = {};
 	} else {
 		// tooth is currently selected
 		$("polygon").removeClass("active");
@@ -98,6 +100,7 @@ function select_tooth(id) {
 
 		let tooth = find_tooth(type, key);
 		let field = tooth.field[type];
+		window.current_tooth = tooth;
 
 		$("#tooth-name").html(tooth.name);
 		$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side}`);
@@ -167,15 +170,15 @@ $(document).ready(function() {
 		util.show_tooth_chart($(this), $(this).data('chart'));
 	});
 
-	$("body").on('click', 'text', function(e) {
+	$("body").on('click', 'text[data-disabled="false"]', function(e) {
 		e.preventDefault();
 		select_tooth($(this).html());
 	});
-	$("body").on('click', '.spots polygon', function(e) {
+	$("body").on('click', '.spots polygon[data-disabled="false"]', function(e) {
 		e.preventDefault();
 		select_tooth($(this).data('key'));
 	});
-	$("body").on('click', '.spots path', function(e) {
+	$("body").on('click', '.spots path[data-disabled="false"]', function(e) {
 		e.preventDefault();
 		select_tooth($(this).data('key'));
 	});

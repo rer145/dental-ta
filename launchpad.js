@@ -6,6 +6,8 @@ const windowStateKeeper = require('electron-window-state');
 const Store = require('electron-store')
 const store = new Store();
 
+const i18n = require('./i18next.config');
+
 const menu = require('./menu');
 
 function createWindow () {
@@ -46,4 +48,13 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', function () {
 	if (process.platform !== 'darwin') app.quit()
+});
+
+i18n.on('loaded', (loaded) => {
+	i18n.changeLanguage(app.getLocale());
+	i18n.off('loaded');
+});
+
+i18n.on('languageChanged', (lng) => {
+
 });
