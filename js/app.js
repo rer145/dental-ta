@@ -109,19 +109,86 @@ function select_tooth(id) {
 			set_tooth_paging();
 
 			$("#tooth-name").html(tooth.name);
-			$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side}`);
+			$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side == "R" ? "right" : "left"}`);
 			$("#tooth-score-id").val(field);
 
-			let analysis = find_tooth_analysis(field);
+			let scoring = window.appdb.scoring[tooth.field.scoring];
 			$("#tooth-score").empty().append(`<option value="NA"></option>`);
-			for (let i = 0; i < analysis.scores.length; i++) {
-				$("#tooth-score").append(`<option value="${analysis.scores[i]}">${analysis.scores[i]}</option>`);
+			$("#tooth-scoring-help").empty();
+
+			for (let i = 0; i < scoring.length; i++) {
+				$("#tooth-score").append(`<option value="${scoring[i].score}">${scoring[i].score}</option>`);
 				//TODO: check if previously scored, and select value
 			}
 
+			let groups = [...new Set(scoring.map(item => item.group))];
+			for (let i = 0; i < groups.length; i++) {
+				let group_heading = $("<h5></h5>").html(util.title_case(groups[i]));
+				$("#tooth-scoring-help").append(group_heading);
+
+				let items = scoring.filter(function(item) {
+					return item.group == groups[i];
+				});
+
+				// let row = $("<ul></ul>").addClass("list-unstyled");
+				// for (let j = 0; j < items.length; j++) {
+				// 	let div = $("<li></li>").addClass("media my-4 position-relative");
+				// 	let img = $("<img></img>").addClass("align-self-start mr-3 border")
+				// 				.attr("src", items[j].svg)
+				// 				.attr("width", 125)
+				// 				.attr("height", 125);
+				// 	let body = $("<div></div>").addClass("media-body");
+				// 	let heading = $("<h5></h5>").addClass("mt-0 mb-1").html(items[j].display);
+				// 	let text = `<br />${items[j].description}<br />Score: ${items[j].score}<br />`;
+				// 	let link = $("<a></a>")
+				// 				.addClass("btn-select-score stretched-link")
+				// 				.attr("href", "#")
+				// 				.html("Select");
+
+				// 	row.append(
+				// 		//col.append(
+				// 			div.append(img).append(body.append(heading).append(text).append(link))
+				// 		//)
+				// 	)
+				// }
+
+				for (let j = 0; j < items.length; j++) {
+					let html = `
+						<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item card mb-3" data-tooth-id="${field}" data-tooth-score="${items[j].score}">
+							<div class="row no-gutters">
+								<div class="col-md-4">
+									<img src="${items[j].svg}" width="125" height="125" class="card-img" />
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h5 class="card-title">${items[j].display}</h5>
+										<p class="card-text">
+											${items[j].description}<br />
+											Score: ${items[j].score}<br />
+											<a href="#" class="btn btn-sm btn-primary btn-select-score stretched-link"data-tooth-id="${field}" data-tooth-score="${items[j].score}">Select</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					`;
+
+					$("#tooth-scoring-help").append(html);
+				}
+
+				//$("#tooth-scoring-help").append(row);
+			}
+
+			// $("#tooth-scoring-help").empty().append(
+			// 	$("#molar-scoring-help div").clone()
+			// )
+
 			let score = window.scores[field];
-			if (score != "NA")
+			if (score != "NA") {
 				$("#tooth-score").val(score);
+				$(".tooth-scoring-help-item").removeClass("bg-primary");
+				$("#tooth-scoring-help-item-" + score).addClass("bg-primary");
+			}
 			$("#tooth-scoring").show();
 
 			$("#analysis-card .alert").hide();
@@ -167,17 +234,19 @@ function find_tooth_index(type, key) {
 	return -1;
 }
 
-function find_tooth_analysis(field) {
-	for (let i = 0; i < window.appdb.analysis.length; i++) {
-		if (window.appdb.analysis[i].field === field) {
-			return window.appdb.analysis[i];
-		}
+function save_tooth_score(key, score, isddl) {
+	if (isddl) {
+		$(".tooth-scoring-help-item").removeClass("bg-primary");
+		$("#tooth-scoring-help-item-" + score).addClass("bg-primary");
+		//$("#tooth-scoring-help-item-" + score + " a").html("Unselect");
+	} else {
+		$("#tooth-score").val(score);
+		$(".tooth-scoring-help-item").removeClass("bg-primary");
+		$("#tooth-scoring-help-item-" + score).addClass("bg-primary");
 	}
-	return {};
-}
 
-function save_tooth_score(key, score) {
-	window.scores[key] = score;
+	if (window.scores[key] = "NA" || Number(score) > Number(window.scores[key]))
+		window.scores[key] = Number(score);
 	window.is_dirty = true;
 	util.display_current_file();
 
@@ -214,14 +283,41 @@ $(document).ready(function() {
 		e.preventDefault();
 		select_tooth($(this).data('key'));
 	});
+
+	$("body").on('click', '.btn-select-score', function(e) {
+		e.preventDefault();
+		save_tooth_score($(this).data("tooth-id"), $(this).data("tooth-score"), false);
+	});
+	$("body").on('click', '.tooth-scoring-help-item', function(e) {
+		e.preventDefault();
+		save_tooth_score($(this).data("tooth-id"), $(this).data("tooth-score"), false);
+	});
 	$("#tooth-score").on('change', function(e) {
 		e.preventDefault();
-		save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
+		save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val(), true);
 	});
 	// $("#log-score-btn").on('click', function(e) {
 	// 	e.preventDefault();
 	// 	save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
 	// });
+
+	// $("body").on('mouseenter', '.scoring-help-item .card', function(e) {
+	// 	$(this).addClass("bg-primary");
+	// 	console.log("in");
+	// });
+	// $("body").on('mouseleave', '.scoring-help-item .card', function(e) {
+	// 	$(this).removeClass("bg-primary");
+	// 	console.log("out");
+	// });
+
+	// $(".scoring-help-item .card").hover(
+	// 	function() {
+	// 		$(this).addClass("bg-primary");
+	// 	},
+	// 	function() {
+	// 		$(this).removeClass("bg-primary");
+	// 	}
+	// );
 
 	$("#prev-tooth-button").on('click', function(e) {
 		e.preventDefault();

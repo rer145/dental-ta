@@ -1,97 +1,4 @@
 {
-	"analysis": [
-		{
-			"field": "dc",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14,15,16,17],
-			"deciduous": true,
-			"permanent": false,
-			"universal": ["C", "H", "M", "R"]
-		},
-		{
-			"field": "dm1",
-			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17],
-			"deciduous": true,
-			"permanent": false,
-			"universal": ["B", "I", "L", "S"]
-		},
-		{
-			"field": "dm2",
-			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17],
-			"deciduous": true,
-			"permanent": false,
-			"universal": ["A", "J", "K", "T"]
-		},
-		{
-			"field": "UI1",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": true,
-			"permanent": true,
-			"universal": ["E", "F", 8, 9]
-		},
-		{
-			"field": "UI2",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": true,
-			"permanent": true,
-			"universal": ["D", "G", 7, 10]
-		},
-		{
-			"field": "LI1",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": true,
-			"permanent": true,
-			"universal": ["O", "P", 31, 41]
-		},
-		{
-			"field": "LI2",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": true,
-			"permanent": true,
-			"universal": ["N", "Q", 32, 42]
-		},
-		{
-			"field": "C",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": true,
-			"permanent": true,
-			"universal": ["C", "H", 6, 11, 22, 27]
-		},
-		{
-			"field": "P3",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": false,
-			"permanent": true,
-			"universal": [5, 12, 21, 28]
-		},
-		{
-			"field": "P4",
-			"scores": [1,2,3,4,5,7,9,10,11,12,13,14],
-			"deciduous": false,
-			"permanent": true,
-			"universal": [4, 13, 20, 29]
-		},
-		{
-			"field": "M1",
-			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
-			"deciduous": false,
-			"permanent": true,
-			"universal": [3, 14, 19, 30]
-		},
-		{
-			"field": "M2",
-			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
-			"deciduous": false,
-			"permanent": true,
-			"universal": [2, 15, 18, 31]
-		},
-		{
-			"field": "M3",
-			"scores": [1,2,3,4,5,7,8,9,10,11,12,13,14],
-			"deciduous": false,
-			"permanent": true,
-			"universal": [1, 16, 17, 32]
-		}
-	],
 	"teeth": [
 		{
 			"name": "Third Molar",
@@ -106,7 +13,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "M3"
+				"permanent": "M3",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -128,7 +36,8 @@
 			},
 			"field": {
 				"deciduous": "dm2",
-				"permanent": "M2"
+				"permanent": "M2",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -150,7 +59,8 @@
 			},
 			"field": {
 				"deciduous": "dm1",
-				"permanent": "M1"
+				"permanent": "M1",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -166,7 +76,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P4"
+				"permanent": "P4",
+				"scoring": "single"
 			}
 		},
 		{
@@ -182,7 +93,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P3"
+				"permanent": "P3",
+				"scoring": "single"
 			}
 		},
 		{
@@ -204,7 +116,8 @@
 			},
 			"field": {
 				"deciduous": "dc",
-				"permanent": "C"
+				"permanent": "C",
+				"scoring": "single"
 			}
 		},
 		{
@@ -226,7 +139,8 @@
 			},
 			"field": {
 				"deciduous": "UI2",
-				"permanent": "UI2"
+				"permanent": "UI2",
+				"scoring": "single"
 			}
 		},
 		{
@@ -248,7 +162,8 @@
 			},
 			"field": {
 				"deciduous": "UI1",
-				"permanent": "UI1"
+				"permanent": "UI1",
+				"scoring": "single"
 			}
 		},
 		{
@@ -270,7 +185,8 @@
 			},
 			"field": {
 				"deciduous": "UI1",
-				"permanent": "UI1"
+				"permanent": "UI1",
+				"scoring": "single"
 			}
 		},
 		{
@@ -292,7 +208,8 @@
 			},
 			"field": {
 				"deciduous": "UI2",
-				"permanent": "UI2"
+				"permanent": "UI2",
+				"scoring": "single"
 			}
 		},
 		{
@@ -314,7 +231,8 @@
 			},
 			"field": {
 				"deciduous": "dc",
-				"permanent": "C"
+				"permanent": "C",
+				"scoring": "single"
 			}
 		},
 		{
@@ -330,7 +248,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P3"
+				"permanent": "P3",
+				"scoring": "single"
 			}
 		},
 		{
@@ -368,7 +287,8 @@
 			},
 			"field": {
 				"deciduous": "dm1",
-				"permanent": "M1"
+				"permanent": "M1",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -390,7 +310,8 @@
 			},
 			"field": {
 				"deciduous": "dm2",
-				"permanent": "M2"
+				"permanent": "M2",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -406,7 +327,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "M3"
+				"permanent": "M3",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -422,7 +344,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "M3"
+				"permanent": "M3",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -444,7 +367,8 @@
 			},
 			"field": {
 				"deciduous": "dm2",
-				"permanent": "M2"
+				"permanent": "M2",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -466,7 +390,8 @@
 			},
 			"field": {
 				"deciduous": "dm1",
-				"permanent": "M1"
+				"permanent": "M1",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -482,7 +407,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P4"
+				"permanent": "P4",
+				"scoring": "single"
 			}
 		},
 		{
@@ -498,7 +424,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P3"
+				"permanent": "P3",
+				"scoring": "single"
 			}
 		},
 		{
@@ -520,7 +447,8 @@
 			},
 			"field": {
 				"deciduous": "dc",
-				"permanent": "C"
+				"permanent": "C",
+				"scoring": "single"
 			}
 		},
 		{
@@ -542,7 +470,8 @@
 			},
 			"field": {
 				"deciduous": "LI2",
-				"permanent": "LI2"
+				"permanent": "LI2",
+				"scoring": "single"
 			}
 		},
 		{
@@ -564,7 +493,8 @@
 			},
 			"field": {
 				"deciduous": "LI1",
-				"permanent": "LI1"
+				"permanent": "LI1",
+				"scoring": "single"
 			}
 		},
 		{
@@ -586,7 +516,8 @@
 			},
 			"field": {
 				"deciduous": "LI1",
-				"permanent": "LI1"
+				"permanent": "LI1",
+				"scoring": "single"
 			}
 		},
 		{
@@ -608,7 +539,8 @@
 			},
 			"field": {
 				"deciduous": "LI2",
-				"permanent": "LI2"
+				"permanent": "LI2",
+				"scoring": "single"
 			}
 		},
 		{
@@ -630,7 +562,8 @@
 			},
 			"field": {
 				"deciduous": "dc",
-				"permanent": "C"
+				"permanent": "C",
+				"scoring": "single"
 			}
 		},
 		{
@@ -646,7 +579,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P3"
+				"permanent": "P3",
+				"scoring": "single"
 			}
 		},
 		{
@@ -662,7 +596,8 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "P4"
+				"permanent": "P4",
+				"scoring": "single"
 			}
 		},
 		{
@@ -684,7 +619,8 @@
 			},
 			"field": {
 				"deciduous": "dm1",
-				"permanent": "M1"
+				"permanent": "M1",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -706,7 +642,8 @@
 			},
 			"field": {
 				"deciduous": "dm2",
-				"permanent": "M2"
+				"permanent": "M2",
+				"scoring": "molar"
 			}
 		},
 		{
@@ -722,12 +659,13 @@
 			},
 			"field": {
 				"deciduous": "",
-				"permanent": "M3"
+				"permanent": "M3",
+				"scoring": "molar"
 			}
 		}
 	],
-	"rooted": {
-		"crown": [
+	"scoring": {
+		"single": [
 			{
 				"id": "ci",
 				"sort_order": 1,
@@ -735,7 +673,8 @@
 				"image": "images/rooted/ci.png",
 				"display": "C<sub>i</sub>",
 				"description": "Initial Cusp Formation: Mineralization of cusp tips has begun",
-				"score": 1
+				"score": 1,
+				"group": "crown"
 			},
 			{
 				"id": "cco",
@@ -744,7 +683,8 @@
 				"image": "images/rooted/cco.png",
 				"display": "C<sub>CO</sub>",
 				"description": "Coalescense of Cusps: Mineralization centers are beginning to unite",
-				"score": 2
+				"score": 2,
+				"group": "crown"
 			},
 			{
 				"id": "coc",
@@ -753,7 +693,8 @@
 				"image": "images/rooted/coc.png",
 				"display": "C<sub>OC</sub>",
 				"description": "Mineralized cusp outline is complete",
-				"score": 3
+				"score": 3,
+				"group": "crown"
 			},
 			{
 				"id": "cr12",
@@ -762,7 +703,8 @@
 				"image": "images/rooted/cr12.png",
 				"display": "Cr 1/2",
 				"description": "1/2 of estimated crown mineralization is complete",
-				"score": 4
+				"score": 4,
+				"group": "crown"
 			},
 			{
 				"id": "cr34",
@@ -771,7 +713,8 @@
 				"image": "images/rooted/cr34.png",
 				"display": "Cr 3/4",
 				"description": "3/4 of estimated crown mineralization is complete",
-				"score": 5
+				"score": 5,
+				"group": "crown"
 			},
 			{
 				"id": "crc",
@@ -780,10 +723,9 @@
 				"image": "images/rooted/crc.png",
 				"display": "Cr<sub>C</sub>",
 				"description": "Crown Mineralization complete; but, root formation has not begun",
-				"score": 6
-			}
-		],
-		"root": [
+				"score": 6,
+				"group": "crown"
+			},
 			{
 				"id": "ri",
 				"sort_order": 1,
@@ -791,7 +733,8 @@
 				"image": "images/rooted/ri.png",
 				"display": "R<sub>i</sub>",
 				"description": "Initial root formation",
-				"score": 7
+				"score": 7,
+				"group": "root"
 			},
 			{
 				"id": "r14",
@@ -800,7 +743,8 @@
 				"image": "images/rooted/r14.png",
 				"display": "R 1/4",
 				"description": "1/4 of estimated root formation is complete",
-				"score": 9
+				"score": 9,
+				"group": "root"
 			},
 			{
 				"id": "r12",
@@ -809,7 +753,8 @@
 				"image": "images/rooted/r12.png",
 				"display": "R 1/2",
 				"description": "1/2 of estimated root formation is complete",
-				"score": 10
+				"score": 10,
+				"group": "root"
 			},
 			{
 				"id": "r34",
@@ -818,7 +763,8 @@
 				"image": "images/rooted/r34.png",
 				"display": "R 3/4",
 				"description": "3/4 of estimated root formation is complete",
-				"score": 11
+				"score": 11,
+				"group": "root"
 			},
 			{
 				"id": "rc",
@@ -827,10 +773,9 @@
 				"image": "images/rooted/rc.png",
 				"display": "R<sub>C</sub>",
 				"description": "Root length complete; Apex remains funnel shaped",
-				"score": 12
-			}
-		],
-		"apex": [
+				"score": 12,
+				"group": "root"
+			},
 			{
 				"id": "a12",
 				"sort_order": 1,
@@ -838,7 +783,8 @@
 				"image": "images/rooted/a12.png",
 				"display": "A 1/2",
 				"description": "Apex 1/2 closed; Root walls are parallel",
-				"score": 13
+				"score": 13,
+				"group": "apex"
 			},
 			{
 				"id": "ac",
@@ -847,140 +793,163 @@
 				"image": "images/rooted/ac.png",
 				"display": "A<sub>C</sub>",
 				"description": "Apical closure is complete",
-				"score": 14
+				"score": 14,
+				"group": "apex"
 			}
-		]
-	},
-	"molar": {
-		"crown": [
+		],
+		"molar": [
 			{
 				"id": "ci",
 				"sort_order": 1,
 				"xray": "images/molar/ci-xray.png",
 				"image": "images/molar/ci.png",
+				"svg": "images/molar/svg/ci.png",
 				"display": "C<sub>i</sub>",
 				"description": "Initial Cusp Formation: Mineralization of cusp tips has begun",
-				"score": 1
+				"score": 1,
+				"group": "crown"
 			},
 			{
 				"id": "cco",
 				"sort_order": 2,
 				"xray": "images/molar/cco-xray.png",
 				"image": "images/molar/cco.png",
+				"svg": "images/molar/svg/cco.png",
 				"display": "C<sub>CO</sub>",
 				"description": "Coalescense of Cusps: Mineralization centers are beginning to unite",
-				"score": 2
+				"score": 2,
+				"group": "crown"
 			},
 			{
 				"id": "coc",
 				"sort_order": 3,
 				"xray": "images/molar/coc-xray.png",
 				"image": "images/molar/coc.png",
+				"svg": "images/molar/svg/coc.png",
 				"display": "C<sub>OC</sub>",
 				"description": "Mineralized cusp outline is complete",
-				"score": 3
+				"score": 3,
+				"group": "crown"
 			},
 			{
 				"id": "cr12",
 				"sort_order": 4,
 				"xray": "images/molar/cr12-xray.png",
 				"image": "images/molar/cr12.png",
+				"svg": "images/molar/svg/cr12.png",
 				"display": "Cr 1/2",
 				"description": "1/2 of estiamted crown mineralization is complete",
-				"score": 4
+				"score": 4,
+				"group": "crown"
 			},
 			{
 				"id": "cr34",
 				"sort_order": 5,
 				"xray": "images/molar/cr34-xray.png",
 				"image": "images/molar/cr34.png",
+				"svg": "images/molar/svg/cr34.png",
 				"display": "Cr 3/4",
 				"description": "3/4 of estimated crown mineralization is complete",
-				"score": 5
+				"score": 5,
+				"group": "crown"
 			},
 			{
 				"id": "crc",
 				"sort_order": 6,
 				"xray": "images/molar/crc-xray.png",
 				"image": "images/molar/crc.png",
+				"svg": "images/molar/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
 				"description": "Crown Mineralization complete; but, root formation has not begun",
-				"score": 6
-			}
-		],
-		"root": [
+				"score": 6,
+				"group": "crown"
+			},
 			{
 				"id": "ri",
 				"sort_order": 1,
 				"xray": "images/molar/ri-xray.png",
 				"image": "images/molar/ri.png",
+				"svg": "images/molar/svg/ri.png",
 				"display": "R<sub>i</sub>",
 				"description": "Initial root formation",
-				"score": 7
+				"score": 7,
+				"group": "root"
 			},{
 				"id": "cli",
 				"sort_order": 2,
 				"xray": "images/molar/cli-xray.png",
 				"image": "images/molar/cli.png",
+				"svg": "images/molar/svg/cli.png",
 				"display": "Cl<sub>i</sub>",
 				"description": "Initial cleft formation; Mineralization visible in the inter-radicular area",
-				"score": 8
+				"score": 8,
+				"group": "root"
 			},
 			{
 				"id": "r14",
 				"sort_order": 3,
 				"xray": "images/molar/r14-xray.png",
 				"image": "images/molar/r14.png",
+				"svg": "images/molar/svg/r14.png",
 				"display": "R 1/4",
 				"description": "1/4 of estimated root formation is complete",
-				"score": 9
+				"score": 9,
+				"group": "root"
 			},
 			{
 				"id": "r12",
 				"sort_order": 4,
 				"xray": "images/molar/r12-xray.png",
 				"image": "images/molar/r12.png",
+				"svg": "images/molar/svg/r12.png",
 				"display": "R 1/2",
 				"description": "1/2 of estimated root formation is complete",
-				"score": 10
+				"score": 10,
+				"group": "root"
 			},
 			{
 				"id": "r34",
 				"sort_order": 5,
 				"xray": "images/molar/r34-xray.png",
 				"image": "images/molar/r34.png",
+				"svg": "images/molar/svg/r34.png",
 				"display": "R 3/4",
 				"description": "3/4 of estimated root formation is complete",
-				"score": 11
+				"score": 11,
+				"group": "root"
 			},
 			{
 				"id": "rc",
 				"sort_order": 6,
 				"xray": "images/molar/rc-xray.png",
 				"image": "images/molar/rc.png",
+				"svg": "images/molar/svg/rc.png",
 				"display": "R<sub>C</sub>",
 				"description": "Root length complete; Apex remains funnel shaped",
-				"score": 12
-			}
-		],
-		"apex": [
+				"score": 12,
+				"group": "root"
+			},
 			{
 				"id": "a12",
 				"sort_order": 1,
 				"xray": "images/molar/a12-xray.png",
 				"image": "images/molar/a12.png",
+				"svg": "images/molar/svg/a12.png",
 				"display": "A 1/2",
 				"description": "Apex 1/2 closed; Root walls are parallel",
-				"score": 13
+				"score": 13,
+				"group": "apex"
 			},
 			{
 				"id": "ac",
 				"sort_order": 2,
 				"xray": "images/molar/ac-xray.png",
 				"image": "images/molar/ac.png",
+				"svg": "images/molar/svg/ac.png",
 				"display": "A<sub>C</sub>",
 				"description": "Apical closure is complete",
-				"score": 14
+				"score": 14,
+				"group": "apex"
 			}
 		]
 	}

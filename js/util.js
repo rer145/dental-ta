@@ -44,8 +44,17 @@ function display_current_file() {
 // 	$("#current-file").html(file_name + (is_dirty ? "*" : ""));
 // }
 
+function title_case(text) {
+	let words = text.toLowerCase().split(" ");
+	for (let i = 0; i < words.length; i++) {
+		words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+	}
+	return words.join(" ");
+}
+
 module.exports = {
 	show_screen,
 	show_tooth_chart,
-	display_current_file
+	display_current_file,
+	title_case
 };
