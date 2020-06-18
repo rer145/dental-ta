@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"> -->
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-material-design.min.css">
 		<link rel="stylesheet" type="text/css" href="./css/snackbar.min.css">
 		<link rel="stylesheet" type="text/css"href="./css/app.css">
@@ -29,9 +29,9 @@
 							</li>
 						</ul>
 						<div class="my-2 my-lg-0">
-							<a id="new-button" class="btn-new-case btn btn-dark" href="#">New</a>
-							<a id="open-button" class="btn-load-case btn btn-secondary" href="#">Open</a>
-							<a id="save-button" class="btn-save-case btn btn-secondary" href="#">Save</a>
+							<a id="new-button" class="btn-new-case btn btn-light" href="#">New</a>
+							<a id="open-button" class="btn-load-case btn btn-light" href="#">Open</a>
+							<a id="save-button" class="btn-save-case btn btn-light" href="#">Save</a>
 						</div>
 					</div>
 				</nav>
@@ -43,8 +43,8 @@
 						<h1 class="display-2">Subadult Dental Age Estimation</h1>
 						<p class="lead">New Approaches to Juvenile Age Estimation in Forensics: Application of Transition Analysis vai the Shackelford et al. Method to a Diverse Modern Subadult Sample</p>
 						<p class="lead">
-							<a href="#" class="btn-new-case btn btn-lg btn-primary">New Case</a>
-							<a href="#" class="btn-load-case btn btn-lg btn-secondary">Load Case</a>
+							<a href="#" class="btn-new-case btn btn-lg btn-outline-primary">New Case</a>
+							<a href="#" class="btn-load-case btn btn-lg btn-outline-secondary">Load Case</a>
 						</p>
 					</section>
 				</div>
@@ -58,6 +58,9 @@
 								</li>
 								<li class="nav-item" role="presentation">
 									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link">Case Info</a>
+								</li>
+								<li class="nav-item" role="presentation">
+									<a id="tab-review-info" data-toggle="tab" href="#tab-pane-review-info" role="tab" aria-controls="tab-pane-review-info" aria-selected="false" class="nav-link">Review</a>
 								</li>
 								<li class="nav-item" role="presentation">
 									<a id="tab-results-info" data-toggle="tab" href="#tab-pane-results-info" role="tab" aria-controls="tab-pane-results-info" aria-selected="false" class="nav-link">Results</a>
@@ -104,6 +107,10 @@
 												</div>
 											</div>
 										</div>
+										<p class="text-center">
+											<button class="case-button btn btn-outline-secondary">Enter Case Info</button>
+											<button class="review-button btn btn-outline-success active">Review &amp; Analyze</button>
+										</p>
 									</div>
 									<div class="col-sm-4 col-md-5 col-lg-6">
 										<div id="analysis-card" class="card mb-2">
@@ -134,7 +141,7 @@
 												</div>
 											</div>
 										</div>
-										<div id="help-card" class="card mb-2">
+										<div id="help-card" class="card mb-2" style="display:none;">
 											<div class="card-body">
 												<div id="tooth-scoring-help"></div>
 											</div>
@@ -151,7 +158,46 @@
 												<input type="text" id="case_number_input" class="form-control" />
 												<span class="bmd-help">A unique identifier for the data being scoring.</span>
 											</div>
+											<div class="form-group">
+												<label for="observation_date_input" class="bmd-label-floating">Observation Date</label>
+												<input type="text" id="observation_date_input" class="form-control" />
+												<span class="bmd-help">The date the scoring of the teeth occurred.</span>
+											</div>
+											<div class="form-group">
+												<label for="analyst_input" class="bmd-label-floating">Analyst</label>
+												<input type="text" id="analyst_input" class="form-control" />
+												<span class="bmd-help">An identifier for the analyst performing the scoring.</span>
+											</div>
 										</form>
+									</div>
+								</div>
+							</section>
+							<section id="tab-pane-review-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-review-info">
+								<div class="row mb-2">
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<h3>Current Scores</h3>
+												<div class="table-responsive">
+													<table id="scores-table" class="table table-striped table-hover">
+														<thead class="thead-dark">
+															<tr>
+																<th scope="col">Tooth</th>
+																<th scope="col">Score</th>
+															</tr>
+														</thead>
+														<tbody></tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body text-center">
+												<button class="analyze-button btn btn-outline-success active">Calculate Results</button>
+											</div>
+										</div>
 									</div>
 								</div>
 							</section>

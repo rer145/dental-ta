@@ -1,3 +1,52 @@
+:root {
+	--primary: #041E42 !important;
+	--secondary: #6c757d !important;
+}
+
+.bg-primary {
+	background-color: var(--primary) !important;
+	color: #fff !important;
+}
+
+.btn-primary {
+	background-color: var(--primary) !important;
+	color: #fff !important;
+}
+.btn-outline-primary {
+	color: var(--primary) !important;
+	border: 1px solid var(--primary) !important;
+}
+
+.btn-secondary {
+	background-color: var(--white) !important;
+	color: var(--primary) !important;
+}
+
+.nav-link {
+	color: var(--primary) !important;
+}
+
+.nav-link.active {
+	/* border-bottom: 2px solid var(--primary) !important; */
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+[class*=" bmd-label"], [class^=bmd-label],
+.is-focused [class*=" bmd-label"], .is-focused [class^=bmd-label] {
+	color: var(--primary) !important;
+}
+
+.table .thead-dark th {
+	background-color: var(--primary) !important;
+	color: #fff !important;
+	border-color: var(--primary) !important;
+}
+
+
+
+
+
 html,
 body {
 	height: 100%;
@@ -52,39 +101,15 @@ g.spots path[data-disabled="false"]:active {
 
 g.spots polygon[data-disabled="false"].active,
 g.spots path[data-disabled="false"].active {
-	fill: #041E42 !important;
+	/* fill: #041E42 !important; */
+	fill: var(--primary) !important;
 }
-
-
-
-/* overrides */
-/* .bg-primary {
-	background-color: #041E42 !important;
-}
-
-.btn-dark {
-	color: #041E42 !important;
-}
-
-.btn-primary {
-	color: #041E42 !important;
-} */
-
-.carousel-control-prev-icon {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
-}
-
-.carousel-control-next-icon {
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
-}
-
-/* .scoring-help-item {
-	border: 1px solid #000;
-} */
 
 .tooth-scoring-help-item {
 	cursor: pointer;
+	border: 1px solid transparent;
 }
+.tooth-scoring-help-item.bg-primary,
 .tooth-scoring-help-item:hover {
 	border: 1px solid #000;
 }

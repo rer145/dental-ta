@@ -25,8 +25,8 @@ function show_screen(id) {
 
 function show_tooth_chart(obj, id, jaw) {
 	//var obj = $("#tooth-chart");
-	$(".btn-tooth-chart").removeClass("btn-primary");
-	obj.removeClass("btn-secondary").addClass("btn-primary");
+	$(".btn-tooth-chart").removeClass("active");
+	obj.removeClass("btn-secondary").addClass("active");
 	//$("#tooth-chart img").attr("src", "images/charts/" + id + "-maxillary.png");
 	//$("#tooth-chart img").attr("src", "images/charts/" + id + ".svg");
 

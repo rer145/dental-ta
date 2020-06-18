@@ -669,9 +669,11 @@
 			{
 				"id": "ci",
 				"sort_order": 1,
-				"xray": "images/rooted/ci-xray.png",
-				"image": "images/rooted/ci.png",
+				"xray": "images/single/ci-xray.png",
+				"image": "images/single/ci.png",
+				"svg": "images/single/svg/ci.png",
 				"display": "C<sub>i</sub>",
+				"text": "Ci",
 				"description": "Initial Cusp Formation: Mineralization of cusp tips has begun",
 				"score": 1,
 				"group": "crown"
@@ -679,9 +681,11 @@
 			{
 				"id": "cco",
 				"sort_order": 2,
-				"xray": "images/rooted/cco-xray.png",
-				"image": "images/rooted/cco.png",
+				"xray": "images/single/cco-xray.png",
+				"image": "images/single/cco.png",
+				"svg": "images/single/svg/cco.png",
 				"display": "C<sub>CO</sub>",
+				"text": "Cco",
 				"description": "Coalescense of Cusps: Mineralization centers are beginning to unite",
 				"score": 2,
 				"group": "crown"
@@ -689,9 +693,11 @@
 			{
 				"id": "coc",
 				"sort_order": 3,
-				"xray": "images/rooted/coc-xray.png",
-				"image": "images/rooted/coc.png",
+				"xray": "images/single/coc-xray.png",
+				"image": "images/single/coc.png",
+				"svg": "images/single/svg/coc.png",
 				"display": "C<sub>OC</sub>",
+				"text": "Coc",
 				"description": "Mineralized cusp outline is complete",
 				"score": 3,
 				"group": "crown"
@@ -699,9 +705,11 @@
 			{
 				"id": "cr12",
 				"sort_order": 4,
-				"xray": "images/rooted/cr12-xray.png",
-				"image": "images/rooted/cr12.png",
+				"xray": "images/single/cr12-xray.png",
+				"image": "images/single/cr12.png",
+				"svg": "images/single/svg/cr12.png",
 				"display": "Cr 1/2",
+				"text": "Cr 1/2",
 				"description": "1/2 of estimated crown mineralization is complete",
 				"score": 4,
 				"group": "crown"
@@ -709,9 +717,11 @@
 			{
 				"id": "cr34",
 				"sort_order": 5,
-				"xray": "images/rooted/cr34-xray.png",
-				"image": "images/rooted/cr34.png",
+				"xray": "images/single/cr34-xray.png",
+				"image": "images/single/cr34.png",
+				"svg": "images/single/svg/cr34.png",
 				"display": "Cr 3/4",
+				"text": "Cr 3/4",
 				"description": "3/4 of estimated crown mineralization is complete",
 				"score": 5,
 				"group": "crown"
@@ -719,9 +729,11 @@
 			{
 				"id": "crc",
 				"sort_order": 6,
-				"xray": "images/rooted/crc-xray.png",
-				"image": "images/rooted/crc.png",
+				"xray": "images/single/crc-xray.png",
+				"image": "images/single/crc.png",
+				"svg": "images/single/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
+				"text": "CrC",
 				"description": "Crown Mineralization complete; but, root formation has not begun",
 				"score": 6,
 				"group": "crown"
@@ -729,9 +741,11 @@
 			{
 				"id": "ri",
 				"sort_order": 1,
-				"xray": "images/rooted/ri-xray.png",
-				"image": "images/rooted/ri.png",
+				"xray": "images/single/ri-xray.png",
+				"image": "images/single/ri.png",
+				"svg": "images/single/svg/ri.png",
 				"display": "R<sub>i</sub>",
+				"text": "Ri",
 				"description": "Initial root formation",
 				"score": 7,
 				"group": "root"
@@ -739,9 +753,11 @@
 			{
 				"id": "r14",
 				"sort_order": 3,
-				"xray": "images/rooted/r14-xray.png",
-				"image": "images/rooted/r14.png",
+				"xray": "images/single/r14-xray.png",
+				"image": "images/single/r14.png",
+				"svg": "images/single/svg/r14.png",
 				"display": "R 1/4",
+				"text": "R 1/4",
 				"description": "1/4 of estimated root formation is complete",
 				"score": 9,
 				"group": "root"
@@ -749,9 +765,11 @@
 			{
 				"id": "r12",
 				"sort_order": 4,
-				"xray": "images/rooted/r12-xray.png",
-				"image": "images/rooted/r12.png",
+				"xray": "images/single/r12-xray.png",
+				"image": "images/single/r12.png",
+				"svg": "images/single/svg/r12.png",
 				"display": "R 1/2",
+				"text": "R 1/2",
 				"description": "1/2 of estimated root formation is complete",
 				"score": 10,
 				"group": "root"
@@ -759,9 +777,11 @@
 			{
 				"id": "r34",
 				"sort_order": 5,
-				"xray": "images/rooted/r34-xray.png",
-				"image": "images/rooted/r34.png",
+				"xray": "images/single/r34-xray.png",
+				"image": "images/single/r34.png",
+				"svg": "images/single/svg/r34.png",
 				"display": "R 3/4",
+				"text": "R 3/4",
 				"description": "3/4 of estimated root formation is complete",
 				"score": 11,
 				"group": "root"
@@ -769,9 +789,11 @@
 			{
 				"id": "rc",
 				"sort_order": 6,
-				"xray": "images/rooted/rc-xray.png",
-				"image": "images/rooted/rc.png",
+				"xray": "images/single/rc-xray.png",
+				"image": "images/single/rc.png",
+				"svg": "images/single/svg/rc.png",
 				"display": "R<sub>C</sub>",
+				"text": "Rc",
 				"description": "Root length complete; Apex remains funnel shaped",
 				"score": 12,
 				"group": "root"
@@ -779,9 +801,11 @@
 			{
 				"id": "a12",
 				"sort_order": 1,
-				"xray": "images/rooted/a12-xray.png",
-				"image": "images/rooted/a12.png",
+				"xray": "images/single/a12-xray.png",
+				"image": "images/single/a12.png",
+				"svg": "images/single/svg/a12.png",
 				"display": "A 1/2",
+				"text": "A 1/2",
 				"description": "Apex 1/2 closed; Root walls are parallel",
 				"score": 13,
 				"group": "apex"
@@ -789,9 +813,11 @@
 			{
 				"id": "ac",
 				"sort_order": 2,
-				"xray": "images/rooted/ac-xray.png",
-				"image": "images/rooted/ac.png",
+				"xray": "images/single/ac-xray.png",
+				"image": "images/single/ac.png",
+				"svg": "images/single/svg/ac.png",
 				"display": "A<sub>C</sub>",
+				"text": "Ac",
 				"description": "Apical closure is complete",
 				"score": 14,
 				"group": "apex"
@@ -805,6 +831,7 @@
 				"image": "images/molar/ci.png",
 				"svg": "images/molar/svg/ci.png",
 				"display": "C<sub>i</sub>",
+				"text": "Ci",
 				"description": "Initial Cusp Formation: Mineralization of cusp tips has begun",
 				"score": 1,
 				"group": "crown"
@@ -816,6 +843,7 @@
 				"image": "images/molar/cco.png",
 				"svg": "images/molar/svg/cco.png",
 				"display": "C<sub>CO</sub>",
+				"text": "Cco",
 				"description": "Coalescense of Cusps: Mineralization centers are beginning to unite",
 				"score": 2,
 				"group": "crown"
@@ -827,6 +855,7 @@
 				"image": "images/molar/coc.png",
 				"svg": "images/molar/svg/coc.png",
 				"display": "C<sub>OC</sub>",
+				"text": "Coc",
 				"description": "Mineralized cusp outline is complete",
 				"score": 3,
 				"group": "crown"
@@ -838,6 +867,7 @@
 				"image": "images/molar/cr12.png",
 				"svg": "images/molar/svg/cr12.png",
 				"display": "Cr 1/2",
+				"text": "Cr 1/2",
 				"description": "1/2 of estiamted crown mineralization is complete",
 				"score": 4,
 				"group": "crown"
@@ -849,6 +879,7 @@
 				"image": "images/molar/cr34.png",
 				"svg": "images/molar/svg/cr34.png",
 				"display": "Cr 3/4",
+				"text": "Cr 3/4",
 				"description": "3/4 of estimated crown mineralization is complete",
 				"score": 5,
 				"group": "crown"
@@ -860,6 +891,7 @@
 				"image": "images/molar/crc.png",
 				"svg": "images/molar/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
+				"text": "Cc",
 				"description": "Crown Mineralization complete; but, root formation has not begun",
 				"score": 6,
 				"group": "crown"
@@ -871,6 +903,7 @@
 				"image": "images/molar/ri.png",
 				"svg": "images/molar/svg/ri.png",
 				"display": "R<sub>i</sub>",
+				"text": "Ri",
 				"description": "Initial root formation",
 				"score": 7,
 				"group": "root"
@@ -881,6 +914,7 @@
 				"image": "images/molar/cli.png",
 				"svg": "images/molar/svg/cli.png",
 				"display": "Cl<sub>i</sub>",
+				"text": "Cli",
 				"description": "Initial cleft formation; Mineralization visible in the inter-radicular area",
 				"score": 8,
 				"group": "root"
@@ -892,6 +926,7 @@
 				"image": "images/molar/r14.png",
 				"svg": "images/molar/svg/r14.png",
 				"display": "R 1/4",
+				"text": "R 1/4",
 				"description": "1/4 of estimated root formation is complete",
 				"score": 9,
 				"group": "root"
@@ -903,6 +938,7 @@
 				"image": "images/molar/r12.png",
 				"svg": "images/molar/svg/r12.png",
 				"display": "R 1/2",
+				"text": "R 1/2",
 				"description": "1/2 of estimated root formation is complete",
 				"score": 10,
 				"group": "root"
@@ -914,6 +950,7 @@
 				"image": "images/molar/r34.png",
 				"svg": "images/molar/svg/r34.png",
 				"display": "R 3/4",
+				"text": "R 3/4",
 				"description": "3/4 of estimated root formation is complete",
 				"score": 11,
 				"group": "root"
@@ -925,6 +962,7 @@
 				"image": "images/molar/rc.png",
 				"svg": "images/molar/svg/rc.png",
 				"display": "R<sub>C</sub>",
+				"text": "Rc",
 				"description": "Root length complete; Apex remains funnel shaped",
 				"score": 12,
 				"group": "root"
@@ -936,6 +974,7 @@
 				"image": "images/molar/a12.png",
 				"svg": "images/molar/svg/a12.png",
 				"display": "A 1/2",
+				"text": "A 1/2",
 				"description": "Apex 1/2 closed; Root walls are parallel",
 				"score": 13,
 				"group": "apex"
@@ -947,6 +986,7 @@
 				"image": "images/molar/ac.png",
 				"svg": "images/molar/svg/ac.png",
 				"display": "A<sub>C</sub>",
+				"text": "Ac",
 				"description": "Apical closure is complete",
 				"score": 14,
 				"group": "apex"
