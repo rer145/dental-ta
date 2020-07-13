@@ -66,24 +66,15 @@ function save_case() {
 }
 
 function reset_scores() {
-	// window.scores = {
-	// 	"dc": "NA",
-	// 	"dm1": "NA",
-	// 	"dm2": "NA",
-	// 	"UI1": "NA",
-	// 	"UI2": "NA",
-	// 	"LI1": "NA",
-	// 	"LI2": "NA",
-	// 	"C": "NA",
-	// 	"P3": "NA",
-	// 	"P4": "NA",
-	// 	"M1": "NA",
-	// 	"M2": "NA",
-	// 	"M3": "NA"
-	// 	// , "Neander": false
-	// 	// , "Obs": 1
-	// };
 	window.scores = {};
+	populate_review();
+}
+
+function reset_score(id) {
+	if (window.scores.hasOwnProperty("Tooth" + id)) {
+		window.scores["Tooth" + id] = "NA";
+	}
+	populate_review();
 }
 
 function prep_scores_for_analysis() {
@@ -366,13 +357,15 @@ function populate_review() {
 				let cell_side = $("<td></td>").html(`${tooth.side}`);
 				let cell_tooth = $("<td></td>").html(`${tooth.name}`);
 				let cell_score = $("<td></td>").addClass("text-right").html(`${score.display} (${window.scores[k]})`);
+				let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${tooth.id}">remove</a>`)
 
 				row
 					.append(cell_set)
 					.append(cell_jaw)
 					.append(cell_side)
 					.append(cell_tooth)
-					.append(cell_score);
+					.append(cell_score)
+					.append(cell_remove);
 				$("#scores-table tbody").append(row);
 			}
 		}
@@ -482,6 +475,10 @@ $(document).ready(function() {
 	$(".reset-button").on('click', function(e) {
 		$("#tab-case-info").tab('show');
 		reset_scores();
+	});
+	$("body").on('click', '.btn-clear-score', function(e) {
+		e.preventDefault();
+		reset_score($(this).data("tooth-id"));
 	});
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

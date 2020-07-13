@@ -772,17 +772,6 @@
 				"description": "Initial root formation",
 				"score": 7,
 				"group": "root"
-			},{
-				"id": "cli",
-				"sort_order": 2,
-				"xray": "images/multi/cli-xray.png",
-				"image": "images/multi/cli.png",
-				"svg": "images/multi/svg/cli.png",
-				"display": "Cl<sub>i</sub>",
-				"text": "Cli",
-				"description": "Initial cleft formation; Mineralization visible in the inter-radicular area",
-				"score": 8,
-				"group": "root"
 			},
 			{
 				"id": "r14",
