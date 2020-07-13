@@ -105,7 +105,18 @@
 											<div class="card-body">
 												<div class="text-center mb-2">
 													<div id="tooth-chart-selection">
-														<ul class="nav">
+														<ul class="nav justify-content-center">
+															<!-- <li class="nav-item">
+																<a class="nav-link disabled font-weight-bold" href="#">Tooth Chart</a>
+															</li> -->
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="permanent">Permanent</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous">Deciduous</a>
+															</li>
+														</ul>
+														<!-- <ul class="nav">
 															<li class="nav-item">
 																<a class="nav-link disabled font-weight-bold" href="#">Permanent</a>
 															</li>
@@ -126,7 +137,7 @@
 															<li class="nav-item">
 																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="mandibular">Mandibular</a>
 															</li>
-														</ul>
+														</ul> -->
 													</div>
 												</div>
 												<div class="text-center">
@@ -159,11 +170,11 @@
 															<p><span id="tooth-jawside"></span></p>
 														</div>
 														<div class="col text-right">
-																<input type="hidden" id="tooth-score-id" />
-																<div class="form-group">
-																	<label for="tooth-score">Score</label>
-																	<select id="tooth-score" class="form-control form-control-lg"></select>
-																</div>
+															<input type="hidden" id="tooth-score-id" />
+															<div class="form-group">
+																<label for="tooth-score">Score</label>
+																<select id="tooth-score" class="form-control form-control-lg"></select>
+															</div>
 														</div>
 														<!-- <div class="col-1">
 															<button id="next-tooth-button" class="btn btn-primary" data-index="">&raquo;</button>
@@ -219,7 +230,43 @@
 								</div>
 							</section>
 							<section id="tab-pane-results-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-results-info">
-								results
+								<div class="row mb-2">
+									<div class="col-sm-4">
+										<div class="card">
+											<div class="card-body">
+												<h2>Analysis Results</h2>
+												<div class="d-none d-print-block">
+													<p>
+														<strong>Case #:</strong><span id="results-case-number"></span><br />
+														<strong>Observation Date:</strong> <span id="results-observation-date"></span><br />
+														<strong>Analyst:</strong> <span id="results-analyst"></span><br />
+													</p>
+													<hr />
+												</div>
+												<h5>Predicted: </h5><span id="results-prediction"></span>
+												<div class="form-group">
+													<label for="prediction-perc">Prediction %</label>
+													<select id="prediction-perc" class="form-control form-control-lg">
+														<option value="90">90%</option>
+														<option value="95">95%</option>
+														<option value="99">99%</option>
+													</select>
+												</div>
+												<p>
+													<strong>Lower: </strong><span id="results-lower"></span><br />
+													<strong>Upper: </strong><span id="results-upper"></span><br />
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-8">
+										<div class="card">
+											<div class="card-body">
+												<canvas id="results-plot"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
 							</section>
 						</div>
 					</section>

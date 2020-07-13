@@ -15,6 +15,8 @@ const fs = require('fs');
 const Store = require('electron-store');
 const store = new Store();
 
+const Chart = require('chart.js');
+
 const appName = store.get("name");
 const appVersion = store.get("version");
 
@@ -22,6 +24,16 @@ window.current_file = "";
 window.is_dirty = false;
 window.current_tooth = {};
 window.current_tooth_index = -1;
+
+window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)'
+};
 
 
 function init() {
@@ -68,6 +80,7 @@ function save_case() {
 function reset_scores() {
 	window.scores = {};
 	populate_review();
+	set_scored_teeth();
 }
 
 function reset_score(id) {
@@ -75,6 +88,7 @@ function reset_score(id) {
 		window.scores["Tooth" + id] = "NA";
 	}
 	populate_review();
+	set_scored_teeth();
 }
 
 function prep_scores_for_analysis() {
@@ -375,7 +389,62 @@ function populate_review() {
 }
 
 function run_analysis() {
+	$("#results-case-number").html($("#case_number_input").val());
+	$("#results-observation-date").html($("#observation_date_input").val());
+	$("#results-analyst").html($("#analyst_input").val());
 
+	let ci = calc_ci($("#prediction-perc").val(), 2.107889, 2.884916e-05, 0.01414032);
+	$("#results-lower").html(ci[0]);
+	$("#results-upper").html(ci[1]);
+
+	let chart_config = {
+		type: 'line',
+		data: {
+			labels: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+			datasets: [
+				{
+					label: 'Predicted Age',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [0,0,0,0,0,0,0,0,4,3,2,0,4,2,1,0],
+					fill: false
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: `Case: ${$("#case_number_input").val()}`
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display:true,
+						labelString: 'Age (years)'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Density'
+					}
+				}]
+			}
+		}
+	};
+
+	let chart = new Chart(document.getElementById('results-plot'), chart_config);
 }
 
 function show_screen(id) {
@@ -402,26 +471,21 @@ function show_screen(id) {
 }
 
 function show_tooth_chart(obj, id, jaw) {
-	//var obj = $("#tooth-chart");
 	$(".btn-tooth-chart").removeClass("active");
 
-	if (obj != undefined && obj != null) {
-		obj.removeClass("btn-secondary").addClass("active");
-	} else {
-		//let temp = $(".btn-tooth-chart[data-chart='" + id + "'][data-jaw='" + jaw + "']");
-		obj = $(".btn-tooth-chart[data-chart='" + id + "'][data-jaw='" + jaw + "']");
-		obj.removeClass("btn-secondary").addClass("active");
-	}
-	//$("#tooth-chart img").attr("src", "images/charts/" + id + "-maxillary.png");
-	//$("#tooth-chart img").attr("src", "images/charts/" + id + ".svg");
-
+	// if (obj != undefined && obj != null) {
+	// 	obj.removeClass("btn-secondary").addClass("active");
+	// } else {
+	// 	obj = $(".btn-tooth-chart[data-chart='" + id + "'][data-jaw='" + jaw + "']");
+	// 	obj.removeClass("btn-secondary").addClass("active");
+	// }
 	// $("#tooth-chart").load("images/charts/" + id + "-" + jaw + ".svg");
-	$(".tooth-chart").hide();
-	$("#tc-" + id + "-" + jaw).show();
 
-	// $.get("images/charts/" + id + ".svg", function(data) {
-	// 	$("#tooth-chart").append(data);
-	// });
+	$(".btn-tooth-chart[data-chart='" + id + "']").removeClass("btn-secondary").addClass("active");
+	$(".tooth-chart").hide();
+	// $("#tc-" + id + "-" + jaw).show();
+	$("#tc-" + id + "-maxillary").show();
+	$("#tc-" + id + "-mandibular").show();
 
 	set_scored_teeth();
 }
@@ -441,6 +505,28 @@ function title_case(text) {
 	}
 	return words.join(" ");
 }
+
+function calc_ci(perc, mu, w, b) {
+	let mult = 0;
+	switch(Number(perc)) {
+		case 90:
+			mult = 1.645;
+			break;
+		case 95:
+			mult = 1.960;
+			break;
+		case 99:
+			mult = 2.576;
+			break;
+	}
+	return [
+		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75),
+		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75)
+	];
+}
+
+
+
 
 $(document).ready(function() {
 	$(".btn-new-case").on('click', function(e) {
