@@ -210,7 +210,7 @@ function select_tooth(id) {
 									</div>
 								</div>
 								<div class="col-md-3 bg-white text-center">
-									<img src="${items[j].image}" width="125" height="125" />
+									<img src="${items[j].xray}" width="125" height="125" />
 								</div>
 							</div>
 						</div>
