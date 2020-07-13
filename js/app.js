@@ -15,8 +15,6 @@ const fs = require('fs');
 const Store = require('electron-store');
 const store = new Store();
 
-const util = require('./js/util.js');
-
 const appName = store.get("name");
 const appVersion = store.get("version");
 
@@ -32,10 +30,15 @@ function init() {
 
 	$("body").bootstrapMaterialDesign();
 
+	$("#tc-permanent-maxillary").load("images/charts/permanent-maxillary.svg");
+	$("#tc-permanent-mandibular").load("images/charts/permanent-mandibular.svg");
+	$("#tc-deciduous-maxillary").load("images/charts/deciduous-maxillary.svg");
+	$("#tc-deciduous-mandibular").load("images/charts/deciduous-mandibular.svg");
+
 	window.appdb = JSON.parse(fs.readFileSync(path.join(__dirname, "data/db.json")).toString());
 	reset_scores();
 
-	util.show_screen('splash');
+	show_screen('splash');
 }
 
 function new_case() {
@@ -46,8 +49,8 @@ function new_case() {
 		window.is_dirty = true;
 		reset_scores();
 
-		util.display_current_file();
-		util.show_screen('scoring');
+		display_current_file();
+		show_screen('scoring');
 	}
 }
 
@@ -55,7 +58,7 @@ function open_case() {
 	window.current_file = "";
 	window.is_dirty = false;
 
-	util.display_current_file();
+	display_current_file();
 }
 
 function save_case() {
@@ -63,7 +66,28 @@ function save_case() {
 }
 
 function reset_scores() {
-	window.scores = {
+	// window.scores = {
+	// 	"dc": "NA",
+	// 	"dm1": "NA",
+	// 	"dm2": "NA",
+	// 	"UI1": "NA",
+	// 	"UI2": "NA",
+	// 	"LI1": "NA",
+	// 	"LI2": "NA",
+	// 	"C": "NA",
+	// 	"P3": "NA",
+	// 	"P4": "NA",
+	// 	"M1": "NA",
+	// 	"M2": "NA",
+	// 	"M3": "NA"
+	// 	// , "Neander": false
+	// 	// , "Obs": 1
+	// };
+	window.scores = {};
+}
+
+function prep_scores_for_analysis() {
+	let output = {
 		"dc": "NA",
 		"dm1": "NA",
 		"dm2": "NA",
@@ -80,12 +104,49 @@ function reset_scores() {
 		// , "Neander": false
 		// , "Obs": 1
 	};
+
+	//loop through window.scores and get highest value for each
+	for (let k in window.scores) {
+		if (window.scores.hasOwnProperty(k)) {
+			let tooth_idx = find_tooth_index(k.replace("Tooth", ""));
+			if (tooth_idx > -1) {
+				let tooth = window.appdb.teeth[tooth_idx];
+				let current = output[tooth.field] == "NA" ? 0 : Number(output[tooth.field]);
+				if (window.scores[k] != "NA") {
+					if (Number(window.scores[k]) > Number(current)) {
+						output[tooth.field] = window.scores[k];
+					}
+				}
+			}
+		}
+	}
+
+	console.log(output);
+
+	return output;
+}
+
+function set_scored_teeth() {
+	$("polygon").removeClass("scored");
+	$("path").removeClass("scored");
+	for (let k in window.scores) {
+		if (window.scores.hasOwnProperty(k)) {
+			if (window.scores[k] != "NA") {
+				if (!$("#" + k).hasClass("scored")) {
+					$("#" + k).addClass("scored");
+				}
+			}
+		}
+	}
 }
 
 function select_tooth(id) {
-	if ($("#Tooth" + id).hasClass('active')) {
-		// tooh has been unselected
-		$("#Tooth" + id).removeClass('active');
+	let tooth_key = "Tooth" + id;
+	set_scored_teeth();
+
+	if ($("#" + tooth_key).hasClass('active')) {
+		// tooth has been unselected
+		$("#" + tooth_key).removeClass('active');
 
 		$("#tooth-scoring").hide();
 		$("#analysis-card .alert").show();
@@ -96,34 +157,34 @@ function select_tooth(id) {
 		// tooth is currently selected
 		$("polygon").removeClass("active");
 		$("path").removeClass("active");
-		$("#Tooth" + id).addClass("active");
+		$("#Tooth" + id).removeClass("scored").addClass("active");
 
 		let type = $("#tooth-chart-selection .active").data('chart');
-		let key = $("#Tooth" + id).data('key');
+		let key = $("#" + tooth_key).data('key');
 
-		window.current_tooth_index = find_tooth_index(type, key);
+		window.current_tooth_index = find_tooth_index(key);
 		if (window.current_tooth_index > -1) {
 			//let tooth = find_tooth(type, key);
 			let tooth = window.appdb.teeth[window.current_tooth_index];
-			let field = tooth.field[type];
+			//let field = tooth.field[type];
 			window.current_tooth = tooth;
 			set_tooth_paging();
 
 			$("#tooth-name").html(tooth.name);
 			$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side == "R" ? "right" : "left"}`);
-			$("#tooth-score-id").val(field);
+			$("#tooth-score-id").val(tooth.id);
 
-			let scoring = window.appdb.scoring[tooth.field.scoring];
+			let scoring = window.appdb.scoring[tooth.scoring];
 			$("#tooth-score").empty().append(`<option value="NA"></option>`);
 			$("#tooth-scoring-help").empty();
 
 			let groups = [...new Set(scoring.map(item => item.group))];
 
 			for (let i = 0; i < groups.length; i++) {
-				let group_heading = $("<h5></h5>").html(util.title_case(groups[i]));
+				let group_heading = $("<h5></h5>").html(title_case(groups[i]));
 				$("#tooth-scoring-help").append(group_heading);
 
-				let group_opt = $("<optgroup></optgroup").attr("label", util.title_case(groups[i]));
+				let group_opt = $("<optgroup></optgroup").attr("label", title_case(groups[i]));
 
 				let items = scoring.filter(function(item) {
 					return item.group == groups[i];
@@ -133,7 +194,7 @@ function select_tooth(id) {
 					group_opt.append(`<option value="${items[j].score}">${items[j].score} - ${items[j].text}</option>`);
 
 					let html = `
-						<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item card mb-3" data-tooth-id="${field}" data-tooth-score="${items[j].score}">
+						<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item card mb-3" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}">
 							<div class="row no-gutters">
 								<div class="col-md-4 bg-white">
 									<img src="${items[j].svg}" width="125" height="125" class="card-img" />
@@ -144,7 +205,7 @@ function select_tooth(id) {
 										<p class="card-text">
 											${items[j].description}<br />
 											Score: ${items[j].score}<br />
-											<button type="button" class="btn btn-sm btn-primary btn-select-score stretched-link"data-tooth-id="${field}" data-tooth-score="${items[j].score}">Select</button>
+											<button type="button" class="btn btn-sm btn-primary btn-select-score stretched-link" data-tooth-id="${tooth.field}" data-tooth-score="${items[j].score}">Select</button>
 										</p>
 									</div>
 								</div>
@@ -163,11 +224,19 @@ function select_tooth(id) {
 			// 	$("#molar-scoring-help div").clone()
 			// )
 
-			let score = window.scores[field];
-			if (score != "NA") {
+			let has_score = false;
+			let score = "NA";
+			if (window.scores.hasOwnProperty(tooth_key)) {
+				if (window.scores[tooth_key] != "NA") {
+					has_score = true;
+					score = window.scores[tooth_key];
+				}
+			}
+			if (has_score && score != "NA") {
 				$("#tooth-score").val(score);
 				$(".tooth-scoring-help-item").removeClass("bg-primary");
 				$("#tooth-scoring-help-item-" + score).addClass("bg-primary");
+				$("#tooth-scoring-help-item-" + score + " button").html("Unselect");
 			}
 			$("#tooth-scoring").show();
 
@@ -202,24 +271,27 @@ function find_tooth(type, key) {
 	return {};
 }
 
-function find_tooth_index(type, key) {
+function find_tooth_index(key) {
 	let numbering = store.get("settings.numbering");
 
 	for (let i = 0; i < window.appdb.teeth.length; i++) {
-		if (window.appdb.teeth[i].numbering[type] &&
-			window.appdb.teeth[i].numbering[type][numbering] &&
-			window.appdb.teeth[i].numbering[type][numbering]== key) {
-				return i;
+		// if (window.appdb.teeth[i].numbering[type] &&
+		// 	window.appdb.teeth[i].numbering[type][numbering] &&
+		// 	window.appdb.teeth[i].numbering[type][numbering]== key) {
+		// 		return i;
+		// }
+		if (window.appdb.teeth[i].id == key) {
+			return i;
 		}
 	}
 	return -1;
 }
 
 function save_tooth_score(key, score, isddl) {
+	if (String(key).indexOf("Tooth") < 0)
+		key = "Tooth" + key;
 	// only update score if higher than another tooth (per Kelly K.)
-	if (window.scores[key] = "NA" || Number(score) > Number(window.scores[key])) {
-		window.scores[key] = (score == "NA") ? "NA" : Number(score);
-
+	//if (window.scores[key] = "NA" || Number(score) > Number(window.scores[key])) {
 		if (isddl) {
 			$(".tooth-scoring-help-item").removeClass("bg-primary");
 			$(".tooth-scoring-help-item button").text("Select");
@@ -240,12 +312,26 @@ function save_tooth_score(key, score, isddl) {
 				$("#tooth-scoring-help-item-" + score + " button").text("Unselect");
 			}
 		}
-	}
 
+		window.scores[key] = (score == "NA") ? "NA" : Number(score);
+		set_scored_teeth();
+	//}
+
+	window.scrollTo(0, 0);
 	window.is_dirty = true;
-	util.display_current_file();
+	display_current_file();
 
 	console.log(window.scores);
+
+	let auto_page = store.get("settings.auto_page_teeth", false);
+	if (auto_page) {
+		let total_teeth = window.appdb.teeth.length;
+		if (window.current_tooth_index+1 < total_teeth) {
+			let tooth = window.appdb.teeth[window.current_tooth_index+1];
+			show_tooth_chart(null, tooth.set, tooth.jaw);
+			select_tooth(tooth.id);
+		}
+	}
 }
 
 function lookup_score(type, value) {
@@ -260,29 +346,104 @@ function lookup_score(type, value) {
 function populate_review() {
 	$("#scores-table tbody").empty();
 	for (let k in window.scores) {
+		let id = k.replace("Tooth", "");
+
 		if (window.scores.hasOwnProperty(k)) {
+			let tooth = window.appdb.teeth.filter(function(item) {
+				return item.id == id;
+			});
+			if (tooth && tooth.length > 0)
+				tooth = tooth[0];
+
+			let score = lookup_score(tooth.scoring, window.scores[k]);
 			if (window.scores[k] != "NA") {
-				let tooth = window.appdb.teeth.filter(function(item) {
-					return item.field.deciduous == k || item.field.permanent == k;
-				});
-				if (tooth && tooth.length > 0)
-					tooth = tooth[0];
-
-				let score = lookup_score(tooth.field.scoring, window.scores[k]);
-
 				let row = $("<tr></tr>");
-				let cell_tooth = $("<td></td>").html(`${k} - ${tooth.name}`);
-				let cell_score = $("<td></td>").addClass("text-right").html(`${window.scores[k]} - ${score.display}`);
+				let cell_set = $("<td></td>").html(`${tooth.set}`);
+				let cell_jaw = $("<td></td>").html(`${tooth.jaw}`);
+				let cell_side = $("<td></td>").html(`${tooth.side}`);
+				let cell_tooth = $("<td></td>").html(`${tooth.name}`);
+				let cell_score = $("<td></td>").addClass("text-right").html(`${score.display} (${window.scores[k]})`);
 
-				row.append(cell_tooth).append(cell_score);
+				row
+					.append(cell_set)
+					.append(cell_jaw)
+					.append(cell_side)
+					.append(cell_tooth)
+					.append(cell_score);
 				$("#scores-table tbody").append(row);
 			}
 		}
 	}
+
+	prep_scores_for_analysis();
 }
 
 function run_analysis() {
 
+}
+
+function show_screen(id) {
+	$(".screen").hide();
+	$("header").removeClass("mb-auto").hide();
+	$("footer").hide();
+
+	let screen = $("#" + id + "-screen")
+	if (screen.data('header')) $("header").show();
+	if (screen.data('footer')) {
+		$("footer").show();
+		$("header").addClass("mb-auto");
+	}
+
+	if (id === 'scoring') {
+		show_tooth_chart(
+			$(".btn-tooth-chart").first(),
+			$(".btn-tooth-chart").first().data('chart'),
+			$(".btn-tooth-chart").first().data('jaw')
+		);
+	}
+
+	screen.show();
+}
+
+function show_tooth_chart(obj, id, jaw) {
+	//var obj = $("#tooth-chart");
+	$(".btn-tooth-chart").removeClass("active");
+
+	if (obj != undefined && obj != null) {
+		obj.removeClass("btn-secondary").addClass("active");
+	} else {
+		//let temp = $(".btn-tooth-chart[data-chart='" + id + "'][data-jaw='" + jaw + "']");
+		obj = $(".btn-tooth-chart[data-chart='" + id + "'][data-jaw='" + jaw + "']");
+		obj.removeClass("btn-secondary").addClass("active");
+	}
+	//$("#tooth-chart img").attr("src", "images/charts/" + id + "-maxillary.png");
+	//$("#tooth-chart img").attr("src", "images/charts/" + id + ".svg");
+
+	// $("#tooth-chart").load("images/charts/" + id + "-" + jaw + ".svg");
+	$(".tooth-chart").hide();
+	$("#tc-" + id + "-" + jaw).show();
+
+	// $.get("images/charts/" + id + ".svg", function(data) {
+	// 	$("#tooth-chart").append(data);
+	// });
+
+	set_scored_teeth();
+}
+
+function display_current_file() {
+	$("#current-file").html(window.current_file + (window.is_dirty ? "*" : ""));
+}
+
+// function display_current_file(file_name, is_dirty) {
+// 	$("#current-file").html(file_name + (is_dirty ? "*" : ""));
+// }
+
+function title_case(text) {
+	let words = text.toLowerCase().split(" ");
+	for (let i = 0; i < words.length; i++) {
+		words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+	}
+	return words.join(" ");
 }
 
 $(document).ready(function() {
@@ -300,10 +461,13 @@ $(document).ready(function() {
 	});
 	$(".btn-tooth-chart").on('click', function(e) {
 		e.preventDefault();
-		util.show_tooth_chart($(this), $(this).data('chart'), $(this).data('jaw'));
+		show_tooth_chart($(this), $(this).data('chart'), $(this).data('jaw'));
 	});
 	$(".case-button").on('click', function(e) {
 		$("#tab-case-info").tab('show');
+	});
+	$(".scoring-button").on('click', function(e) {
+		$("#tab-scoring-info").tab('show');
 	});
 	$(".review-button").on('click', function(e) {
 		$("#tab-review-info").tab('show');
@@ -356,6 +520,11 @@ $(document).ready(function() {
 		e.preventDefault();
 		save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val(), true);
 	});
+
+	// $("body").on('load', '#tooth-chart', function(e) {
+	// 	set_scored_teeth();
+	// });
+
 	// $("#log-score-btn").on('click', function(e) {
 	// 	e.preventDefault();
 	// 	save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());

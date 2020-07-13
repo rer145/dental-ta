@@ -101,8 +101,12 @@ g.spots path[data-disabled="false"]:active {
 
 g.spots polygon[data-disabled="false"].active,
 g.spots path[data-disabled="false"].active {
-	/* fill: #041E42 !important; */
 	fill: var(--primary) !important;
+}
+
+g.spots polygon[data-disabled="false"].scored,
+g.spots path[data-disabled="false"].scored {
+	fill: var(--secondary) !important;
 }
 
 .tooth-scoring-help-item {

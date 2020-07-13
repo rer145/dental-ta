@@ -8,7 +8,7 @@
 		"start": "electron .",
 		"start-es": "electron . --lang=es",
 		"pack": "electron-builder --dir",
-		"dist": "electron-buidler --windows"
+		"dist": "electron-builder --windows"
 	},
 	"repository": {
 		"type": "git",
@@ -59,7 +59,8 @@
 			}
 		],
 		"win": {
-			"verifyUpdateCodeSignature": false
+			"verifyUpdateCodeSignature": false,
+			"targets": ["nsis", "portable"]
 		}
 	}
 }

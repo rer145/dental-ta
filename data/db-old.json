@@ -1,532 +1,667 @@
 {
 	"teeth": [
 		{
-			"id": 1,
-			"side": "R",
-			"jaw": "maxillary",
-			"set": "permanent",
 			"name": "Third Molar",
-			"field": "M3",
-			"scoring": "molar",
-			"fdi": 18,
-			"palmer": 8,
-			"alternative": ""
-		},
-		{
-			"id": 2,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 18,
+					"palmer": 8,
+					"universal": 1
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Molar",
-			"field": "M2",
-			"scoring": "molar",
-			"fdi": 17,
-			"palmer": 7,
-			"alternative": ""
-		},
-		{
-			"id": 3,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 51,
+					"palmer": "E",
+					"universal": "A",
+					"universal_alternative": "1d"
+				},
+				"permanent": {
+					"fdi": 17,
+					"palmer": 7,
+					"universal": 2
+				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "First Molar",
-			"field": "M1",
-			"scoring": "molar",
-			"fdi": 16,
-			"palmer": 6,
-			"alternative": ""
-		},
-		{
-			"id": 4,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 52,
+					"palmer": "D",
+					"universal": "B",
+					"universal_alternative": "2d"
+				},
+				"permanent": {
+					"fdi": 16,
+					"palmer": 6,
+					"universal": 3
+				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Bicuspid",
-			"field": "P4",
-			"scoring": "molar",
-			"fdi": 15,
-			"palmer": 5,
-			"alternative": ""
-		},
-		{
-			"id": 5,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 15,
+					"palmer": 5,
+					"universal": 4
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "First Bicuspid",
-			"field": "P3",
-			"scoring": "single",
-			"fdi": 14,
-			"palmer": 4,
-			"alternative": ""
-		},
-		{
-			"id": 6,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 14,
+					"palmer": 4,
+					"universal": 5
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Cuspid",
-			"field": "C",
-			"scoring": "single",
-			"fdi": 13,
-			"palmer": 3,
-			"alternative": ""
-		},
-		{
-			"id": 7,
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
-			"name": "Lateral Incisor",
-			"field": "UI2",
-			"scoring": "single",
-			"fdi": 12,
-			"palmer": 2,
-			"alternative": ""
+			"numbering": {
+				"deciduous": {
+					"fdi": 53,
+					"palmer": "C",
+					"universal": "C",
+					"universal_alternative": "3d"
+				},
+				"permanent": {
+					"fdi": 13,
+					"palmer": 3,
+					"universal": 6
+				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 8,
+			"name": "Lateral Incisor",
 			"side": "R",
 			"jaw": "maxillary",
-			"set": "permanent",
-			"name": "Central Incisor",
-			"field": "UI1",
-			"scoring": "single",
-			"fdi": 11,
-			"palmer": 1,
-			"alternative": ""
+			"numbering": {
+				"deciduous": {
+					"fdi": 54,
+					"palmer": "B",
+					"universal": "D",
+					"universal_alternative": "4d"
+				},
+				"permanent": {
+					"fdi": 12,
+					"palmer": 2,
+					"universal": 7
+				}
+			},
+			"field": {
+				"deciduous": "UI2",
+				"permanent": "UI2",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 9,
-			"side": "L",
-			"jaw": "maxillary",
-			"set": "permanent",
 			"name": "Central Incisor",
-			"field": "UI1",
-			"scoring": "single",
-			"fdi": 21,
-			"palmer": 1,
-			"alternative": ""
+			"side": "R",
+			"jaw": "maxillary",
+			"numbering": {
+				"deciduous": {
+					"fdi": 55,
+					"palmer": "A",
+					"universal": "E",
+					"universal_alternative": "5d"
+				},
+				"permanent": {
+					"fdi": 11,
+					"palmer": 1,
+					"universal": 8
+				}
+			},
+			"field": {
+				"deciduous": "UI1",
+				"permanent": "UI1",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 10,
+			"name": "Central Incisor",
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 65,
+					"palmer": "A",
+					"universal": "F",
+					"universal_alternative": "6d"
+				},
+				"permanent": {
+					"fdi": 21,
+					"palmer": 1,
+					"universal": 9
+				}
+			},
+			"field": {
+				"deciduous": "UI1",
+				"permanent": "UI1",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Lateral Incisor",
-			"field": "UI2",
-			"scoring": "single",
-			"fdi": 22,
-			"palmer": 2,
-			"alternative": ""
-		},
-		{
-			"id": 11,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 64,
+					"palmer": "B",
+					"universal": "G",
+					"universal_alternative": "7d"
+				},
+				"permanent": {
+					"fdi": 22,
+					"palmer": 2,
+					"universal": 10
+				}
+			},
+			"field": {
+				"deciduous": "UI2",
+				"permanent": "UI2",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Cuspid",
-			"field": "C",
-			"scoring": "single",
-			"fdi": 23,
-			"palmer": 3,
-			"alternative": ""
-		},
-		{
-			"id": 12,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 63,
+					"palmer": "C",
+					"universal": "H",
+					"universal_alternative": "8d"
+				},
+				"permanent": {
+					"fdi": 23,
+					"palmer": 3,
+					"universal": 11
+				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "First Bicuspid",
-			"field": "P3",
-			"scoring": "single",
-			"fdi": 24,
-			"palmer": 4,
-			"alternative": ""
-		},
-		{
-			"id": 13,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 24,
+					"palmer": 4,
+					"universal": 12
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Second Bicuspid",
-			"field": "P4",
-			"scoring": "molar",
-			"fdi": 25,
-			"palmer": 5,
-			"alternative": ""
-		},
-		{
-			"id": 14,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 25,
+					"palmer": 5,
+					"universal": 13
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4"
+			}
+		},
+		{
 			"name": "First Molar",
-			"field": "M1",
-			"scoring": "molar",
-			"fdi": 26,
-			"palmer": 6,
-			"alternative": ""
-		},
-		{
-			"id": 15,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 62,
+					"palmer": "D",
+					"universal": "I",
+					"universal_alternative": "9d"
+				},
+				"permanent": {
+					"fdi": 26,
+					"palmer": 6,
+					"universal": 14
+				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Molar",
-			"field": "M2",
-			"scoring": "molar",
-			"fdi": 27,
-			"palmer": 7,
-			"alternative": ""
-		},
-		{
-			"id": 16,
 			"side": "L",
 			"jaw": "maxillary",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 61,
+					"palmer": "E",
+					"universal": "J",
+					"universal_alternative": "10d"
+				},
+				"permanent": {
+					"fdi": 27,
+					"palmer": 7,
+					"universal": 15
+				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Third Molar",
-			"field": "M3",
-			"scoring": "molar",
-			"fdi": 28,
-			"palmer": 8,
-			"alternative": ""
+			"side": "L",
+			"jaw": "maxillary",
+			"numbering": {
+				"permanent": {
+					"fdi": 28,
+					"palmer": 8,
+					"universal": 16
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3",
+				"scoring": "molar"
+			}
 		},
 		{
-			"id": 32,
-			"side": "R",
-			"jaw": "mandibular",
-			"set": "permanent",
 			"name": "Third Molar",
-			"field": "M3",
-			"scoring": "molar",
-			"fdi": 48,
-			"palmer": 8,
-			"alternative": ""
-		},
-		{
-			"id": 31,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 48,
+					"palmer": 8,
+					"universal": 32
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Molar",
-			"field": "M2",
-			"scoring": "molar",
-			"fdi": 47,
-			"palmer": 7,
-			"alternative": ""
-		},
-		{
-			"id": 30,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 81,
+					"palmer": "E",
+					"universal": "T",
+					"universal_alternative": "20d"
+				},
+				"permanent": {
+					"fdi": 47,
+					"palmer": 7,
+					"universal": 31
+				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "First Molar",
-			"field": "M1",
-			"scoring": "molar",
-			"fdi": 46,
-			"palmer": 6,
-			"alternative": ""
-		},
-		{
-			"id": 29,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 82,
+					"palmer": "D",
+					"universal": "S",
+					"universal_alternative": "19d"
+				},
+				"permanent": {
+					"fdi": 46,
+					"palmer": 6,
+					"universal": 30
+				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Bicuspid",
-			"field": "P4",
-			"scoring": "single",
-			"fdi": 45,
-			"palmer": 5,
-			"alternative": ""
-		},
-		{
-			"id": 28,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 45,
+					"palmer": 5,
+					"universal": 29
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "First Bicuspid",
-			"field": "P3",
-			"scoring": "single",
-			"fdi": 44,
-			"palmer": 4,
-			"alternative": ""
-		},
-		{
-			"id": 27,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 44,
+					"palmer": 4,
+					"universal": 28
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Cuspid",
-			"field": "C",
-			"scoring": "single",
-			"fdi": 43,
-			"palmer": 3,
-			"alternative": ""
-		},
-		{
-			"id": 26,
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
-			"name": "Lateral Incisor",
-			"field": "UI2",
-			"scoring": "single",
-			"fdi": 42,
-			"palmer": 2,
-			"alternative": ""
+			"numbering": {
+				"deciduous": {
+					"fdi": 83,
+					"palmer": "C",
+					"universal": "R",
+					"universal_alternative": "18d"
+				},
+				"permanent": {
+					"fdi": 43,
+					"palmer": 3,
+					"universal": 27
+				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 25,
+			"name": "Lateral Incisor",
 			"side": "R",
 			"jaw": "mandibular",
-			"set": "permanent",
-			"name": "Central Incisor",
-			"field": "UI1",
-			"scoring": "single",
-			"fdi": 41,
-			"palmer": 1,
-			"alternative": ""
+			"numbering": {
+				"deciduous": {
+					"fdi": 84,
+					"palmer": "B",
+					"universal": "Q",
+					"universal_alternative": "17d"
+				},
+				"permanent": {
+					"fdi": 42,
+					"palmer": 2,
+					"universal": 26
+				}
+			},
+			"field": {
+				"deciduous": "LI2",
+				"permanent": "LI2",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 24,
-			"side": "L",
-			"jaw": "mandibular",
-			"set": "permanent",
 			"name": "Central Incisor",
-			"field": "UI1",
-			"scoring": "single",
-			"fdi": 31,
-			"palmer": 1,
-			"alternative": ""
+			"side": "R",
+			"jaw": "mandibular",
+			"numbering": {
+				"deciduous": {
+					"fdi": 85,
+					"palmer": "A",
+					"universal": "P",
+					"universal_alternative": "16d"
+				},
+				"permanent": {
+					"fdi": 41,
+					"palmer": 1,
+					"universal": 25
+				}
+			},
+			"field": {
+				"deciduous": "LI1",
+				"permanent": "LI1",
+				"scoring": "single"
+			}
 		},
 		{
-			"id": 23,
+			"name": "Central Incisor",
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 75,
+					"palmer": "A",
+					"universal": "O",
+					"universal_alternative": "15d"
+				},
+				"permanent": {
+					"fdi": 31,
+					"palmer": 1,
+					"universal": 24
+				}
+			},
+			"field": {
+				"deciduous": "LI1",
+				"permanent": "LI1",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Lateral Incisor",
-			"field": "UI2",
-			"scoring": "single",
-			"fdi": 32,
-			"palmer": 2,
-			"alternative": ""
-		},
-		{
-			"id": 22,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 74,
+					"palmer": "B",
+					"universal": "N",
+					"universal_alternative": "14d"
+				},
+				"permanent": {
+					"fdi": 32,
+					"palmer": 2,
+					"universal": 23
+				}
+			},
+			"field": {
+				"deciduous": "LI2",
+				"permanent": "LI2",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Cuspid",
-			"field": "C",
-			"scoring": "single",
-			"fdi": 33,
-			"palmer": 3,
-			"alternative": ""
-		},
-		{
-			"id": 21,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 73,
+					"palmer": "C",
+					"universal": "M",
+					"universal_alternative": "13d"
+				},
+				"permanent": {
+					"fdi": 33,
+					"palmer": 3,
+					"universal": 22
+				}
+			},
+			"field": {
+				"deciduous": "dc",
+				"permanent": "C",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "First Bicuspid",
-			"field": "P3",
-			"scoring": "single",
-			"fdi": 34,
-			"palmer": 4,
-			"alternative": ""
-		},
-		{
-			"id": 20,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 34,
+					"palmer": 4,
+					"universal": 21
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P3",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "Second Bicuspid",
-			"field": "P4",
-			"scoring": "molar",
-			"fdi": 35,
-			"palmer": 5,
-			"alternative": ""
-		},
-		{
-			"id": 19,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"permanent": {
+					"fdi": 35,
+					"palmer": 5,
+					"universal": 20
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "P4",
+				"scoring": "single"
+			}
+		},
+		{
 			"name": "First Molar",
-			"field": "M1",
-			"scoring": "molar",
-			"fdi": 36,
-			"palmer": 6,
-			"alternative": ""
-		},
-		{
-			"id": 18,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 72,
+					"palmer": "D",
+					"universal": "L",
+					"universal_alternative": "12d"
+				},
+				"permanent": {
+					"fdi": 36,
+					"palmer": 6,
+					"universal": 19
+				}
+			},
+			"field": {
+				"deciduous": "dm1",
+				"permanent": "M1",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Second Molar",
-			"field": "M2",
-			"scoring": "molar",
-			"fdi": 37,
-			"palmer": 7,
-			"alternative": ""
-		},
-		{
-			"id": 17,
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "permanent",
+			"numbering": {
+				"deciduous": {
+					"fdi": 71,
+					"palmer": "E",
+					"universal": "K",
+					"universal_alternative": "11d"
+				},
+				"permanent": {
+					"fdi": 37,
+					"palmer": 7,
+					"universal": 18
+				}
+			},
+			"field": {
+				"deciduous": "dm2",
+				"permanent": "M2",
+				"scoring": "molar"
+			}
+		},
+		{
 			"name": "Third Molar",
-			"field": "M3",
-			"scoring": "molar",
-			"fdi": 38,
-			"palmer": 8,
-			"alternative": ""
-		},
-		{
-			"id": "A",
-			"side": "L",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "Second Molar",
-			"field": "dm2",
-			"scoring": "molar",
-			"fdi": 51,
-			"palmer": "E",
-			"alternative": "1d"
-		},
-		{
-			"id": "B",
-			"side": "L",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "First Molar",
-			"field": "dm1",
-			"scoring": "molar",
-			"fdi": 52,
-			"palmer": "D",
-			"alternative": "2d"
-		},
-		{
-			"id": "C",
-			"side": "L",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "Cuspid",
-			"field": "dc",
-			"scoring": "single",
-			"fdi": 53,
-			"palmer": "C",
-			"alternative": "3d"
-		},
-		{
-			"id": "H",
-			"side": "R",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "Cuspid",
-			"field": "dc",
-			"scoring": "single",
-			"fdi": 63,
-			"palmer": "C",
-			"alternative": "8d"
-		},
-		{
-			"id": "I",
-			"side": "R",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "First Molar",
-			"field": "dm1",
-			"scoring": "molar",
-			"fdi": 62,
-			"palmer": "D",
-			"alternative": "9d"
-		},
-		{
-			"id": "J",
-			"side": "R",
-			"jaw": "maxillary",
-			"set": "deciduous",
-			"name": "Second Molar",
-			"field": "dm2",
-			"scoring": "molar",
-			"fdi": 61,
-			"palmer": "E",
-			"alternative": "10d"
-		},
-		{
-			"id": "T",
-			"side": "R",
-			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "Second Molar",
-			"field": "dm2",
-			"scoring": "molar",
-			"fdi": 81,
-			"palmer": "E",
-			"alternative": "20d"
-		},
-		{
-			"id": "S",
-			"side": "R",
-			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "First Molar",
-			"field": "dm1",
-			"scoring": "molar",
-			"fdi": 82,
-			"palmer": "D",
-			"alternative": "19d"
-		},
-		{
-			"id": "R",
-			"side": "R",
-			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "Cuspid",
-			"field": "dc",
-			"scoring": "single",
-			"fdi": 83,
-			"palmer": "C",
-			"alternative": "18d"
-		},
-		{
-			"id": "M",
 			"side": "L",
 			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "Cuspid",
-			"field": "dc",
-			"scoring": "single",
-			"fdi": 73,
-			"palmer": "C",
-			"alternative": "13d"
-		},
-		{
-			"id": "L",
-			"side": "L",
-			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "First Molar",
-			"field": "dm1",
-			"scoring": "molar",
-			"fdi": 72,
-			"palmer": "D",
-			"alternative": "12d"
-		},
-		{
-			"id": "K",
-			"side": "L",
-			"jaw": "mandibular",
-			"set": "deciduous",
-			"name": "Second Molar",
-			"field": "dm2",
-			"scoring": "molar",
-			"fdi": 71,
-			"palmer": "E",
-			"alternative": "11d"
+			"numbering": {
+				"permanent": {
+					"fdi": 38,
+					"palmer": 8,
+					"universal": 17
+				}
+			},
+			"field": {
+				"deciduous": "",
+				"permanent": "M3",
+				"scoring": "molar"
+			}
 		}
 	],
 	"scoring": {

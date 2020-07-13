@@ -16,7 +16,8 @@ function prep_settings() {
 		"uid": uid,
 		"settings": {
 			"dev_mode": true,
-			"numbering": store.get("settings.numbering", "universal")
+			"numbering": store.get("settings.numbering", "universal"),
+			"auto_page_teeth": true
 		},
 		"app": {
 

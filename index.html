@@ -13,6 +13,7 @@
 	</head>
 
 	<body>
+		<a name="top">&nbsp;</a>
 
 		<div class="container-fluid d-flex h-100 p-3 mx-auto flex-column">
 			<header class="mb-auto">
@@ -54,10 +55,10 @@
 						<nav class="navbar navbar-expand-lg navbar-light bg-light d-print-none">
 							<ul id="scoring-tabs" class="nav nav-tabs mr-auto" role="tablist">
 								<li class="nav-item" role="presentation">
-									<a id="tab-scoring-info" data-toggle="tab" href="#tab-pane-scoring-info" role="tab" aria-controls="tab-pane-scoring-info" aria-selected="false" class="nav-link active">Scoring</a>
+									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link active">Case Info</a>
 								</li>
 								<li class="nav-item" role="presentation">
-									<a id="tab-case-info" data-toggle="tab" href="#tab-pane-case-info" role="tab" aria-controls="tab-pane-case-info" aria-selected="true" class="nav-link">Case Info</a>
+									<a id="tab-scoring-info" data-toggle="tab" href="#tab-pane-scoring-info" role="tab" aria-controls="tab-pane-scoring-info" aria-selected="false" class="nav-link">Scoring</a>
 								</li>
 								<li class="nav-item" role="presentation">
 									<a id="tab-review-info" data-toggle="tab" href="#tab-pane-review-info" role="tab" aria-controls="tab-pane-review-info" aria-selected="false" class="nav-link">Review</a>
@@ -71,24 +72,39 @@
 							</span>
 						</nav>
 						<div class="tab-content py-2">
-							<section id="tab-pane-scoring-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-scoring-info">
+							<section id="tab-pane-case-info" class="tab-pane active" role="tabpanel" aria-labelledby="tab-case-info">
+								<div class="card mb-2">
+									<div class="card-body">
+										<form>
+											<div class="form-group">
+												<label for="case_number_input" class="bmd-label-floating">Case #</label>
+												<input type="text" id="case_number_input" class="form-control" />
+												<span class="bmd-help">A unique identifier for the data being scoring.</span>
+											</div>
+											<div class="form-group">
+												<label for="observation_date_input" class="bmd-label-floating">Observation Date</label>
+												<input type="text" id="observation_date_input" class="form-control" />
+												<span class="bmd-help">The date the scoring of the teeth occurred.</span>
+											</div>
+											<div class="form-group">
+												<label for="analyst_input" class="bmd-label-floating">Analyst</label>
+												<input type="text" id="analyst_input" class="form-control" />
+												<span class="bmd-help">An identifier for the analyst performing the scoring.</span>
+											</div>
+										</form>
+									</div>
+								</div>
+								<p class="text-center">
+									<button class="scoring-button btn btn-outline-success active">Enter Trait Scoring &raquo;</button>
+								</p>
+							</section>
+							<section id="tab-pane-scoring-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-scoring-info">
 								<div class="row mb-2">
 									<div class="col-sm-8 col-md-7 col-lg-6">
 										<div id="chart-card" class="card mb-2">
 											<div class="card-body">
 												<div class="text-center mb-2">
 													<div id="tooth-chart-selection">
-														<ul class="nav">
-															<li class="nav-item">
-																<a class="nav-link disabled font-weight-bold" href="#">Deciduous</a>
-															</li>
-															<li class="nav-item">
-																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="maxillary">Maxillary</a>
-															</li>
-															<li class="nav-item">
-																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="mandibular">Mandibular</a>
-															</li>
-														</ul>
 														<ul class="nav">
 															<li class="nav-item">
 																<a class="nav-link disabled font-weight-bold" href="#">Permanent</a>
@@ -100,16 +116,31 @@
 																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="permanent" data-jaw="mandibular">Mandibular</a>
 															</li>
 														</ul>
+														<ul class="nav">
+															<li class="nav-item">
+																<a class="nav-link disabled font-weight-bold" href="#">Deciduous</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="maxillary">Maxillary</a>
+															</li>
+															<li class="nav-item">
+																<a href="#" role="button" class="btn-tooth-chart nav-link" data-chart="deciduous" data-jaw="mandibular">Mandibular</a>
+															</li>
+														</ul>
 													</div>
 												</div>
 												<div class="text-center">
-													<div id="tooth-chart"></div>
+													<div id="tc-permanent-maxillary" class="tooth-chart" style="display:none;"></div>
+													<div id="tc-permanent-mandibular" class="tooth-chart" style="display:none;"></div>
+													<div id="tc-deciduous-maxillary" class="tooth-chart" style="display:none;"></div>
+													<div id="tc-deciduous-mandibular" class="tooth-chart" style="display:none;"></div>
+													<!-- <div id="tooth-chart"></div> -->
 												</div>
 											</div>
 										</div>
 										<p class="text-center">
-											<button class="case-button btn btn-outline-secondary">Enter Case Info</button>
-											<button class="review-button btn btn-outline-success active">Review &amp; Analyze</button>
+											<button class="case-button btn btn-outline-secondary">&laquo; Enter Case Info</button>
+											<button class="review-button btn btn-outline-success active">Review &amp; Analyze &raquo;</button>
 										</p>
 									</div>
 									<div class="col-sm-4 col-md-5 col-lg-6">
@@ -149,32 +180,9 @@
 									</div>
 								</div>
 							</section>
-							<section id="tab-pane-case-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-case-info">
-								<div class="card">
-									<div class="card-body">
-										<form>
-											<div class="form-group">
-												<label for="case_number_input" class="bmd-label-floating">Case #</label>
-												<input type="text" id="case_number_input" class="form-control" />
-												<span class="bmd-help">A unique identifier for the data being scoring.</span>
-											</div>
-											<div class="form-group">
-												<label for="observation_date_input" class="bmd-label-floating">Observation Date</label>
-												<input type="text" id="observation_date_input" class="form-control" />
-												<span class="bmd-help">The date the scoring of the teeth occurred.</span>
-											</div>
-											<div class="form-group">
-												<label for="analyst_input" class="bmd-label-floating">Analyst</label>
-												<input type="text" id="analyst_input" class="form-control" />
-												<span class="bmd-help">An identifier for the analyst performing the scoring.</span>
-											</div>
-										</form>
-									</div>
-								</div>
-							</section>
 							<section id="tab-pane-review-info" class="tab-pane" role="tabpanel" aria-labelledby="tab-review-info">
 								<div class="row mb-2">
-									<div class="col-sm-6">
+									<div class="col-sm-8">
 										<div class="card">
 											<div class="card-body">
 												<h3>Current Scores</h3>
@@ -182,6 +190,9 @@
 													<table id="scores-table" class="table table-striped table-hover">
 														<thead class="thead-dark">
 															<tr>
+																<th scope="col">Set</th>
+																<th scope="col">Jaw</th>
+																<th scope="col">Side</th>
 																<th scope="col">Tooth</th>
 																<th scope="col">Score</th>
 															</tr>
@@ -192,7 +203,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6">
+									<div class="col-sm-4">
 										<div class="card">
 											<div class="card-body text-center">
 												<button class="analyze-button btn btn-outline-success active">Calculate Results</button>
@@ -212,14 +223,19 @@
 			<footer class="mt-auto">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 					<div class="navbar-text">
-						<h5>Kelly R. Kamnikar</h5>
+						<h5>Nicholas P. Herrmann</h5>
+						<small>Dept. of Anthropology<br />
+						Texas State University</small>
+					</div>
+					<div class="navbar-text">
+						<h5>Joseph T. Hefner</h5>
 						<small>Dept. of Anthropology<br />
 						Michigan State University</small>
 					</div>
 					<div class="navbar-text">
-						<h5>Nicholas P. Herrmann</h5>
+						<h5>Kelly R. Kamnikar</h5>
 						<small>Dept. of Anthropology<br />
-						Texas State University</small>
+						Michigan State University</small>
 					</div>
 					<div class="navbar-text">
 						<h5>Amber M. Plemons</h5>
