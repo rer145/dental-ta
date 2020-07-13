@@ -22,6 +22,7 @@ function createWindow () {
 		height: mainWindowState.height,
 		x: mainWindowState.x,
 		y: mainWindowState.y,
+		icon: path.join(__dirname, "build/icon.png"),
 		webPreferences: {
 			//preload: path.resolve('./preload.js'),
 			nodeIntegration: true,

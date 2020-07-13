@@ -1,6 +1,10 @@
 :root {
 	--primary: #041E42 !important;
-	--secondary: #6c757d !important;
+	/* --secondary: #6c757d !important; */
+	--secondary: #5386e4 !important;
+	--success: #4a5240 !important;
+	--light: #f1fffa !important;
+	--dark: #d5c7bc !important;
 }
 
 .bg-primary {
@@ -21,6 +25,7 @@
 	background-color: var(--white) !important;
 	color: var(--primary) !important;
 }
+
 
 .nav-link {
 	color: var(--primary) !important;
@@ -59,6 +64,8 @@ body {
 	-ms-flex-pack: center;
 	-webkit-box-pack: center;
 	justify-content: center;
+	background-color: #dddddd;
+	background-image: url("../images/bg.png");
 }
 
 header {
@@ -96,12 +103,12 @@ g.spots polygon[data-disabled="false"]:hover,
 g.spots polygon[data-disabled="false"]:active,
 g.spots path[data-disabled="false"]:hover,
 g.spots path[data-disabled="false"]:active {
-	fill: #ddd !important;
+	fill: var(--dark) !important;
 }
 
 g.spots polygon[data-disabled="false"].active,
 g.spots path[data-disabled="false"].active {
-	fill: var(--primary) !important;
+	fill: var(--dark) !important;
 }
 
 g.spots polygon[data-disabled="false"].scored,
@@ -116,4 +123,16 @@ g.spots path[data-disabled="false"].scored {
 .tooth-scoring-help-item.bg-primary,
 .tooth-scoring-help-item:hover {
 	border: 1px solid #000;
+}
+
+
+
+.btn-splash-new {
+	background-color: var(--secondary) !important;
+	color: var(--light);
+}
+
+.btn-splash-load {
+	background-color: var(--light) !important;
+	color: #000 !important;
 }

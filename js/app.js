@@ -196,10 +196,10 @@ function select_tooth(id) {
 					let html = `
 						<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item card mb-3" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}">
 							<div class="row no-gutters">
-								<div class="col-md-4 bg-white">
-									<img src="${items[j].svg}" width="125" height="125" class="card-img" />
+								<div class="col-md-3 bg-white text-center">
+									<img src="${items[j].image}" width="125" height="125" />
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-6">
 									<div class="card-body">
 										<h5 class="card-title">${items[j].display}</h5>
 										<p class="card-text">
@@ -208,6 +208,9 @@ function select_tooth(id) {
 											<button type="button" class="btn btn-sm btn-primary btn-select-score stretched-link" data-tooth-id="${tooth.field}" data-tooth-score="${items[j].score}">Select</button>
 										</p>
 									</div>
+								</div>
+								<div class="col-md-3 bg-white text-center">
+									<img src="${items[j].image}" width="125" height="125" />
 								</div>
 							</div>
 						</div>
@@ -475,6 +478,10 @@ $(document).ready(function() {
 	$(".analyze-button").on('click', function(e) {
 		$("#tab-results-info").tab('show');
 		run_analysis();
+	});
+	$(".reset-button").on('click', function(e) {
+		$("#tab-case-info").tab('show');
+		reset_scores();
 	});
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

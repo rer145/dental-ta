@@ -7,7 +7,7 @@
 			"set": "permanent",
 			"name": "Third Molar",
 			"field": "M3",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 18,
 			"palmer": 8,
 			"alternative": ""
@@ -19,7 +19,7 @@
 			"set": "permanent",
 			"name": "Second Molar",
 			"field": "M2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 17,
 			"palmer": 7,
 			"alternative": ""
@@ -31,7 +31,7 @@
 			"set": "permanent",
 			"name": "First Molar",
 			"field": "M1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 16,
 			"palmer": 6,
 			"alternative": ""
@@ -43,7 +43,7 @@
 			"set": "permanent",
 			"name": "Second Bicuspid",
 			"field": "P4",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 15,
 			"palmer": 5,
 			"alternative": ""
@@ -151,7 +151,7 @@
 			"set": "permanent",
 			"name": "Second Bicuspid",
 			"field": "P4",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 25,
 			"palmer": 5,
 			"alternative": ""
@@ -163,7 +163,7 @@
 			"set": "permanent",
 			"name": "First Molar",
 			"field": "M1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 26,
 			"palmer": 6,
 			"alternative": ""
@@ -175,7 +175,7 @@
 			"set": "permanent",
 			"name": "Second Molar",
 			"field": "M2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 27,
 			"palmer": 7,
 			"alternative": ""
@@ -187,7 +187,7 @@
 			"set": "permanent",
 			"name": "Third Molar",
 			"field": "M3",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 28,
 			"palmer": 8,
 			"alternative": ""
@@ -199,7 +199,7 @@
 			"set": "permanent",
 			"name": "Third Molar",
 			"field": "M3",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 48,
 			"palmer": 8,
 			"alternative": ""
@@ -211,7 +211,7 @@
 			"set": "permanent",
 			"name": "Second Molar",
 			"field": "M2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 47,
 			"palmer": 7,
 			"alternative": ""
@@ -223,7 +223,7 @@
 			"set": "permanent",
 			"name": "First Molar",
 			"field": "M1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 46,
 			"palmer": 6,
 			"alternative": ""
@@ -343,7 +343,7 @@
 			"set": "permanent",
 			"name": "Second Bicuspid",
 			"field": "P4",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 35,
 			"palmer": 5,
 			"alternative": ""
@@ -355,7 +355,7 @@
 			"set": "permanent",
 			"name": "First Molar",
 			"field": "M1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 36,
 			"palmer": 6,
 			"alternative": ""
@@ -367,7 +367,7 @@
 			"set": "permanent",
 			"name": "Second Molar",
 			"field": "M2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 37,
 			"palmer": 7,
 			"alternative": ""
@@ -379,7 +379,7 @@
 			"set": "permanent",
 			"name": "Third Molar",
 			"field": "M3",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 38,
 			"palmer": 8,
 			"alternative": ""
@@ -391,7 +391,7 @@
 			"set": "deciduous",
 			"name": "Second Molar",
 			"field": "dm2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 51,
 			"palmer": "E",
 			"alternative": "1d"
@@ -403,7 +403,7 @@
 			"set": "deciduous",
 			"name": "First Molar",
 			"field": "dm1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 52,
 			"palmer": "D",
 			"alternative": "2d"
@@ -439,7 +439,7 @@
 			"set": "deciduous",
 			"name": "First Molar",
 			"field": "dm1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 62,
 			"palmer": "D",
 			"alternative": "9d"
@@ -451,7 +451,7 @@
 			"set": "deciduous",
 			"name": "Second Molar",
 			"field": "dm2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 61,
 			"palmer": "E",
 			"alternative": "10d"
@@ -463,7 +463,7 @@
 			"set": "deciduous",
 			"name": "Second Molar",
 			"field": "dm2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 81,
 			"palmer": "E",
 			"alternative": "20d"
@@ -475,7 +475,7 @@
 			"set": "deciduous",
 			"name": "First Molar",
 			"field": "dm1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 82,
 			"palmer": "D",
 			"alternative": "19d"
@@ -511,7 +511,7 @@
 			"set": "deciduous",
 			"name": "First Molar",
 			"field": "dm1",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 72,
 			"palmer": "D",
 			"alternative": "12d"
@@ -523,7 +523,7 @@
 			"set": "deciduous",
 			"name": "Second Molar",
 			"field": "dm2",
-			"scoring": "molar",
+			"scoring": "multi",
 			"fdi": 71,
 			"palmer": "E",
 			"alternative": "11d"
@@ -688,13 +688,13 @@
 				"group": "apex"
 			}
 		],
-		"molar": [
+		"multi": [
 			{
 				"id": "ci",
 				"sort_order": 1,
-				"xray": "images/molar/ci-xray.png",
-				"image": "images/molar/ci.png",
-				"svg": "images/molar/svg/ci.png",
+				"xray": "images/multi/ci-xray.png",
+				"image": "images/multi/ci.png",
+				"svg": "images/multi/svg/ci.png",
 				"display": "C<sub>i</sub>",
 				"text": "Ci",
 				"description": "Initial Cusp Formation: Mineralization of cusp tips has begun",
@@ -704,9 +704,9 @@
 			{
 				"id": "cco",
 				"sort_order": 2,
-				"xray": "images/molar/cco-xray.png",
-				"image": "images/molar/cco.png",
-				"svg": "images/molar/svg/cco.png",
+				"xray": "images/multi/cco-xray.png",
+				"image": "images/multi/cco.png",
+				"svg": "images/multi/svg/cco.png",
 				"display": "C<sub>CO</sub>",
 				"text": "Cco",
 				"description": "Coalescense of Cusps: Mineralization centers are beginning to unite",
@@ -716,9 +716,9 @@
 			{
 				"id": "coc",
 				"sort_order": 3,
-				"xray": "images/molar/coc-xray.png",
-				"image": "images/molar/coc.png",
-				"svg": "images/molar/svg/coc.png",
+				"xray": "images/multi/coc-xray.png",
+				"image": "images/multi/coc.png",
+				"svg": "images/multi/svg/coc.png",
 				"display": "C<sub>OC</sub>",
 				"text": "Coc",
 				"description": "Mineralized cusp outline is complete",
@@ -728,9 +728,9 @@
 			{
 				"id": "cr12",
 				"sort_order": 4,
-				"xray": "images/molar/cr12-xray.png",
-				"image": "images/molar/cr12.png",
-				"svg": "images/molar/svg/cr12.png",
+				"xray": "images/multi/cr12-xray.png",
+				"image": "images/multi/cr12.png",
+				"svg": "images/multi/svg/cr12.png",
 				"display": "Cr 1/2",
 				"text": "Cr 1/2",
 				"description": "1/2 of estiamted crown mineralization is complete",
@@ -740,9 +740,9 @@
 			{
 				"id": "cr34",
 				"sort_order": 5,
-				"xray": "images/molar/cr34-xray.png",
-				"image": "images/molar/cr34.png",
-				"svg": "images/molar/svg/cr34.png",
+				"xray": "images/multi/cr34-xray.png",
+				"image": "images/multi/cr34.png",
+				"svg": "images/multi/svg/cr34.png",
 				"display": "Cr 3/4",
 				"text": "Cr 3/4",
 				"description": "3/4 of estimated crown mineralization is complete",
@@ -752,9 +752,9 @@
 			{
 				"id": "crc",
 				"sort_order": 6,
-				"xray": "images/molar/crc-xray.png",
-				"image": "images/molar/crc.png",
-				"svg": "images/molar/svg/crc.png",
+				"xray": "images/multi/crc-xray.png",
+				"image": "images/multi/crc.png",
+				"svg": "images/multi/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
 				"text": "Cc",
 				"description": "Crown Mineralization complete; but, root formation has not begun",
@@ -764,9 +764,9 @@
 			{
 				"id": "ri",
 				"sort_order": 1,
-				"xray": "images/molar/ri-xray.png",
-				"image": "images/molar/ri.png",
-				"svg": "images/molar/svg/ri.png",
+				"xray": "images/multi/ri-xray.png",
+				"image": "images/multi/ri.png",
+				"svg": "images/multi/svg/ri.png",
 				"display": "R<sub>i</sub>",
 				"text": "Ri",
 				"description": "Initial root formation",
@@ -775,9 +775,9 @@
 			},{
 				"id": "cli",
 				"sort_order": 2,
-				"xray": "images/molar/cli-xray.png",
-				"image": "images/molar/cli.png",
-				"svg": "images/molar/svg/cli.png",
+				"xray": "images/multi/cli-xray.png",
+				"image": "images/multi/cli.png",
+				"svg": "images/multi/svg/cli.png",
 				"display": "Cl<sub>i</sub>",
 				"text": "Cli",
 				"description": "Initial cleft formation; Mineralization visible in the inter-radicular area",
@@ -787,9 +787,9 @@
 			{
 				"id": "r14",
 				"sort_order": 3,
-				"xray": "images/molar/r14-xray.png",
-				"image": "images/molar/r14.png",
-				"svg": "images/molar/svg/r14.png",
+				"xray": "images/multi/r14-xray.png",
+				"image": "images/multi/r14.png",
+				"svg": "images/multi/svg/r14.png",
 				"display": "R 1/4",
 				"text": "R 1/4",
 				"description": "1/4 of estimated root formation is complete",
@@ -799,9 +799,9 @@
 			{
 				"id": "r12",
 				"sort_order": 4,
-				"xray": "images/molar/r12-xray.png",
-				"image": "images/molar/r12.png",
-				"svg": "images/molar/svg/r12.png",
+				"xray": "images/multi/r12-xray.png",
+				"image": "images/multi/r12.png",
+				"svg": "images/multi/svg/r12.png",
 				"display": "R 1/2",
 				"text": "R 1/2",
 				"description": "1/2 of estimated root formation is complete",
@@ -811,9 +811,9 @@
 			{
 				"id": "r34",
 				"sort_order": 5,
-				"xray": "images/molar/r34-xray.png",
-				"image": "images/molar/r34.png",
-				"svg": "images/molar/svg/r34.png",
+				"xray": "images/multi/r34-xray.png",
+				"image": "images/multi/r34.png",
+				"svg": "images/multi/svg/r34.png",
 				"display": "R 3/4",
 				"text": "R 3/4",
 				"description": "3/4 of estimated root formation is complete",
@@ -823,9 +823,9 @@
 			{
 				"id": "rc",
 				"sort_order": 6,
-				"xray": "images/molar/rc-xray.png",
-				"image": "images/molar/rc.png",
-				"svg": "images/molar/svg/rc.png",
+				"xray": "images/multi/rc-xray.png",
+				"image": "images/multi/rc.png",
+				"svg": "images/multi/svg/rc.png",
 				"display": "R<sub>C</sub>",
 				"text": "Rc",
 				"description": "Root length complete; Apex remains funnel shaped",
@@ -835,9 +835,9 @@
 			{
 				"id": "a12",
 				"sort_order": 1,
-				"xray": "images/molar/a12-xray.png",
-				"image": "images/molar/a12.png",
-				"svg": "images/molar/svg/a12.png",
+				"xray": "images/multi/a12-xray.png",
+				"image": "images/multi/a12.png",
+				"svg": "images/multi/svg/a12.png",
 				"display": "A 1/2",
 				"text": "A 1/2",
 				"description": "Apex 1/2 closed; Root walls are parallel",
@@ -847,9 +847,9 @@
 			{
 				"id": "ac",
 				"sort_order": 2,
-				"xray": "images/molar/ac-xray.png",
-				"image": "images/molar/ac.png",
-				"svg": "images/molar/svg/ac.png",
+				"xray": "images/multi/ac-xray.png",
+				"image": "images/multi/ac.png",
+				"svg": "images/multi/svg/ac.png",
 				"display": "A<sub>C</sub>",
 				"text": "Ac",
 				"description": "Apical closure is complete",
