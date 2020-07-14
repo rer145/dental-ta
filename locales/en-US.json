@@ -27,5 +27,17 @@
 		"review": "Review",
 		"results": "Results"
 	},
-	"default-file-name": "untitled"
+	"dialog": {
+		"open": {
+			"title": "Open Dental TA File",
+			"button": "Open DTA File",
+			"filter": "Dental TA"
+		},
+		"save": {
+			"title": "Save Dental TA File",
+			"button": "Save DTA File",
+			"filter": "Dental TA"
+		}
+	},
+	"default-file-name": "untitled.dta"
 }

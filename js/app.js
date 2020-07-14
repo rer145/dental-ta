@@ -7,7 +7,7 @@ const Snackbar = require('node-snackbar');
 const bmd = require('bootstrap-material-design');
 
 const {ipcRenderer} = require('electron');
-const remote = require('electron').remote;
+const {dialog, getGlobal} = require('electron').remote;
 const {is} = require('electron-util');
 const path = require('path');
 const fs = require('fs');
@@ -19,6 +19,7 @@ const store = new Store();
 const Chart = require('chart.js');
 
 const locI18next = require('loc-i18next');
+let i18n = getGlobal('i18n');
 
 const appName = store.get("name");
 const appVersion = store.get("version");
@@ -59,25 +60,94 @@ function init() {
 function new_case() {
 	if (window.is_dirty) {
 		//confirm
-	} else {
-		window.current_file = `${i18n.t('default-file-name')}.dta`;
-		window.is_dirty = true;
-		reset_scores();
-
-		display_current_file();
-		show_screen('scoring');
 	}
+
+	window.current_file = "";
+	window.is_dirty = true;
+	reset_case_info();
+	reset_scores();
+	clear_tooth_selection();
+
+	display_current_file();
+	show_screen('scoring');
 }
 
 function open_case() {
-	window.current_file = "";
-	window.is_dirty = false;
+	let files = dialog.showOpenDialogSync({
+		properties: ['openfile'],
+		title: i18n.t('dialog.open.title'),
+		buttonLabel: i18n.t('dialog.open.button'),
+		filters: [
+			{ name: i18n.t('dialog.open.filter'), extensions: ['dta'] }
+		]
+	});
 
-	display_current_file();
+	if (files != undefined) {
+		if (files.length == 1) {
+			new_case();
+			let filePath = files[0];
+			fs.readFile(filePath, 'utf8', (err, data) => {
+				if (err) {
+					console.error(err);
+				}
+				let json = JSON.parse(data);
+
+				// populate case info
+				$("#case_number_input").val(json['properties']['case_number']);
+				$("#observation_date_input").val(json['properties']['observation_date']);
+				$("#analyst_input").val(json['properties']['analyst']);
+				$("input").trigger('change');
+
+				// populate window.scores
+				window.scores = json['scores'];
+				set_scored_teeth();
+
+				// populate results (if applicable)
+
+				window.current_file = filePath;
+				window.is_dirty = false;
+				display_current_file();
+				show_screen('scoring');
+			});
+		}
+	}
 }
 
 function save_case() {
+	let output = '{"scores":' + JSON.stringify(window.scores) + ',';
+	output += '"properties":{"case_number":"' + $("#case_number_input").val() + '",';
+	output += '"analyst":"' + $("#analyst_input").val() + '",';
+	output += '"observation_date":"' + $("#observation_date_input").val() + '"}';
+	output += '}';
+	console.log(output);
+
+	console.log("file", window.current_file);
+
+	if (window.current_file == "") {
+		window.current_file = dialog.showSaveDialogSync(null, {
+			title: i18n.t('dialog.save.title'),
+			buttonLabel: i18n.t('dialog.save.button'),
+			filters: [
+				{ name: i18n.t('dialog.save.filter'), extensions: ['dta'] }
+			]
+		});
+	}
+
+	fs.writeFile(window.current_file, output, function(err) {
+		if (err) {
+			console.error(err);
+		}
+		console.log('file saved');
+	});
+
 	window.is_dirty = false;
+	display_current_file();
+}
+
+function reset_case_info() {
+	$("#case_number_input").val("");
+	$("#observation_date_input").val("");
+	$("#analyst_input").val("");
 }
 
 function reset_scores() {
@@ -148,19 +218,23 @@ function set_scored_teeth() {
 	}
 }
 
+function clear_tooth_selection() {
+	$("g.spots path").removeClass('active');
+	$("g.spots polygon").removeClass('active');
+	$("#tooth-scoring").hide();
+	$("#analysis-card .alert").show();
+	$("#help-card").hide();
+	window.current_tooth = {};
+	window.current_tooth_index - -1;
+}
+
 function select_tooth(id) {
 	let tooth_key = "Tooth" + id;
 	set_scored_teeth();
 
 	if ($("#" + tooth_key).hasClass('active')) {
 		// tooth has been unselected
-		$("#" + tooth_key).removeClass('active');
-
-		$("#tooth-scoring").hide();
-		$("#analysis-card .alert").show();
-		$("#help-card").hide();
-		window.current_tooth = {};
-		window.current_tooth_index - -1;
+		clear_tooth_selection();
 	} else {
 		// tooth is currently selected
 		$("polygon").removeClass("active");
@@ -468,6 +542,7 @@ function show_screen(id) {
 			$(".btn-tooth-chart").first().data('chart'),
 			$(".btn-tooth-chart").first().data('jaw')
 		);
+		$("#tab-case-info").tab('show');
 	}
 
 	screen.show();
@@ -494,7 +569,8 @@ function show_tooth_chart(obj, id, jaw) {
 }
 
 function display_current_file() {
-	$("#current-file").html(window.current_file + (window.is_dirty ? "*" : ""));
+	let f = window.current_file == "" ? `${i18n.t('default-file-name')}` : path.basename(window.current_file);
+	$("#current-file").html(f + (window.is_dirty ? "*" : ""));
 }
 
 // function display_current_file(file_name, is_dirty) {
@@ -650,18 +726,20 @@ $(document).ready(function() {
 	// 	select_tooth($(this).data("index"));
 	// });
 
-	const localize = locI18next.init(remote.getGlobal('i18n'));
-	localize('body');
-
+	relocalize();
 	init();
 });
 
+function relocalize() {
+	i18n = getGlobal('i18n');
+	const localize = locI18next.init(i18n);
+	localize('body');
+}
 
 ipcRenderer.on('show-screen', (event, arg) => {
 	show_screen(arg);
 });
 
 ipcRenderer.on('language-changed', (event, arg) => {
-	const localize = locI18next.init(remote.getGlobal('i18n'));
-	localize('body');
+	relocalize();
 });
