@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu} = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 
 const {is} = require('electron-util');
@@ -7,8 +7,9 @@ const Store = require('electron-store')
 const store = new Store();
 
 const i18n = require('./i18next.config');
-
 const menu = require('./menu');
+
+let win;
 
 function createWindow () {
 	let mainWindowState = windowStateKeeper({
@@ -16,7 +17,7 @@ function createWindow () {
 		defaultHeight: 768
 	});
 
-	const mainWindow = new BrowserWindow({
+	win = new BrowserWindow({
 		title: app.getName(),
 		width: mainWindowState.width,
 		height: mainWindowState.height,
@@ -30,16 +31,15 @@ function createWindow () {
 		}
 	});
 
-	mainWindowState.manage(mainWindow);
+	mainWindowState.manage(win);
 
-	mainWindow.loadFile('index.html');
+	win.loadFile('index.html');
 
 	if (store.get("settings.dev_mode"))
-		mainWindow.webContents.openDevTools();
+		win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
-	Menu.setApplicationMenu(menu);
 	createWindow();
 
 	app.on('activate', function () {
@@ -57,5 +57,7 @@ i18n.on('loaded', (loaded) => {
 });
 
 i18n.on('languageChanged', (lng) => {
-
+	global.i18n = i18n;
+	menu.buildMenu(app, win, i18n);
+	win.webContents.send('language-changed', lng);
 });

@@ -1,4 +1,31 @@
 {
-	"title": "Hola Amiga",
-	"menu-file-splash": "KERRRSPLASH"
+	"menu": {
+		"mac-quit": "Dejar",
+		"file": "Expediente",
+		"file-new": "Nuevo",
+		"file-language": "Idioma",
+		"help": "Ayuda",
+		"help-website": "Sitio Web",
+		"help-source": "Código Fuente",
+		"help-issue": "Reportar un Problema",
+		"help-issue-text": "<!-- Describe tu problema y los pasos para reproducirlo. -->",
+		"help-updates": "Buscar Actualizaciones",
+		"debug": "Depurar",
+		"debug-reload": "Fuerza de Recarga",
+		"debug-devtools": "Herramientas de Desarrollo",
+		"debug-appdata": "Mostrar Datos de la Aplicación",
+		"debug-delappdata": "Eliminar Datos de la Aplicación",
+		"debug-delsettings": "Eliminar Configuraciones"
+	},
+	"splash": {
+		"title": "TADA",
+		"subtitle": "Nuevos Enfoques para la Estimación de la edad Juvenil en Medicina Forense: Aplicación de Análisis de Transición a través de Shackelford et al. Método para una Muestra Subadulta Moderna Diversa"
+	},
+	"tabs": {
+		"case": "Información del Caso",
+		"scoring": "Puntuación",
+		"review": "Revisión",
+		"results": "Resultados"
+	},
+	"default-file-name": "intitulado"
 }

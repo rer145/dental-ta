@@ -1,73 +1,26 @@
 'use strict';
 
-const { app, Menu } = require('electron');
-const win = require('electron').BrowserWindow;
+const Menu = require('electron').Menu;
 const {is} = require('electron-util');
 
-const i18n = require('./i18next.config');
+const macMenu = require('./menus/macMenu');
+const winMenu = require('./menus/windowsMenu');
 
-const appName = app.getName();
+const menu = null;
 
-const debugSubmenu = [
-	//{ role: 'reload' },
-	{
-		label: 'Force Reload',
-		click() {
-			app.relaunch();
-			app.quit();
-		},
-		accelerator: 'CmdOrCtrl+Shift+R'
-	},
-	{
-		label: 'Developer Tools',
-		click() {
-			win.getFocusedWindow().toggleDevTools()
-		},
-		accelerator: 'CmdOrCtrl+Shift+I'
-	}
-];
-
-const macosTemplate = [
-	{
-		label: appName,
-		submenu: [
-			{ role: 'services', submenu: [] },
-			{ role: 'separator' },
-			{ role: 'hide' },
-			{ role: 'hideothers' },
-			{ role: 'unhide' },
-			{ role: 'separator' },
-			{ role: 'quit' }
-		]
-	}
-];
-
-const otherTemplate = [
-	{
-		role: 'fileMenu',
-		submenu: [
-			{
-				label: i18n.t('menu-file-splash'),
-				click() {
-					win.getFocusedWindow().webContents.send('show-screen', 'splash');
-				}
-			},
-			{
-				label: i18n.t('menu-file-scoring'),
-				click() {
-					win.getFocusedWindow().webContents.send('show-screen', 'scoring');
-				}
-			}
-		]
-	}
-];
-
-const template = process.platform === 'darwin' ? macosTemplate : otherTemplate;
-if (is.development) {
-	template.push({
-		label: 'Debug',
-		submenu: debugSubmenu
-	});
+function MenuFactory(menu) {
+	this.menu = menu;
+	this.buildMenu = buildMenu;
 }
 
-module.exports = Menu.buildFromTemplate(template);
+function buildMenu(app, mainWindow, i18n) {
+	if (is.macos) {
+		this.menu = Menu.buildFromTemplate(macMenu(app, mainWindow, i18n));
+		Menu.setApplicationMenu(this.menu);
+	} else {
+		this.menu = Menu.buildFromTemplate(winMenu(app, mainWindow, i18n));
+		mainWindow.setMenu(this.menu);
+	}
+}
+
+module.exports = new MenuFactory(menu);

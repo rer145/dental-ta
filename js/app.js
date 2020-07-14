@@ -7,6 +7,7 @@ const Snackbar = require('node-snackbar');
 const bmd = require('bootstrap-material-design');
 
 const {ipcRenderer} = require('electron');
+const remote = require('electron').remote;
 const {is} = require('electron-util');
 const path = require('path');
 const fs = require('fs');
@@ -16,6 +17,8 @@ const Store = require('electron-store');
 const store = new Store();
 
 const Chart = require('chart.js');
+
+const locI18next = require('loc-i18next');
 
 const appName = store.get("name");
 const appVersion = store.get("version");
@@ -57,7 +60,7 @@ function new_case() {
 	if (window.is_dirty) {
 		//confirm
 	} else {
-		window.current_file = "untitled.dta";
+		window.current_file = `${i18n.t('default-file-name')}.dta`;
 		window.is_dirty = true;
 		reset_scores();
 
@@ -647,12 +650,18 @@ $(document).ready(function() {
 	// 	select_tooth($(this).data("index"));
 	// });
 
+	const localize = locI18next.init(remote.getGlobal('i18n'));
+	localize('body');
+
 	init();
 });
 
 
-
-
 ipcRenderer.on('show-screen', (event, arg) => {
 	show_screen(arg);
+});
+
+ipcRenderer.on('language-changed', (event, arg) => {
+	const localize = locI18next.init(remote.getGlobal('i18n'));
+	localize('body');
 });

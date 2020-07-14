@@ -1,4 +1,31 @@
 {
-	"title": "Subadult Age Estimation",
-	"menu-file-splash": "Splash"
+	"menu": {
+		"mac-quit": "Quit",
+		"file": "File",
+		"file-new": "New",
+		"file-language": "Language",
+		"help": "Help",
+		"help-website": "Website",
+		"help-source": "Source Code",
+		"help-issue": "Report an Issue",
+		"help-issue-text": "<!-- Please describe your issue and steps to reproduce it. -->",
+		"help-updates": "Check for Updates",
+		"debug": "Debug",
+		"debug-reload": "Force Reload",
+		"debug-devtools": "Developer Tools",
+		"debug-appdata": "Show App Data",
+		"debug-delappdata": "Delete App Data",
+		"debug-delsettings": "Delete Settings"
+	},
+	"splash": {
+		"title": "TADA",
+		"subtitle": "New Approaches to Juvenile Age Estimation in Forensics: Application of Transition Analysis via the Shackelford et al. Method to a Diverse Modern Subadult Sample"
+	},
+	"tabs": {
+		"case": "Case Info",
+		"scoring": "Scoring",
+		"review": "Review",
+		"results": "Results"
+	},
+	"default-file-name": "untitled"
 }
