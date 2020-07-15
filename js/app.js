@@ -448,7 +448,7 @@ function populate_review() {
 				let cell_side = $("<td></td>").html(`${tooth.side}`);
 				let cell_tooth = $("<td></td>").html(`${tooth.name}`);
 				let cell_score = $("<td></td>").addClass("text-right").html(`${score.display} (${window.scores[k]})`);
-				let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${tooth.id}">remove</a>`)
+				let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${tooth.id}">${i18n.t("review.remove")}</a>`)
 
 				row
 					.append(cell_set)

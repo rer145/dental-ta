@@ -62,7 +62,7 @@
 		],
 		"win": {
 			"verifyUpdateCodeSignature": false,
-			"targets": [
+			"target": [
 				"nsis",
 				"portable"
 			]

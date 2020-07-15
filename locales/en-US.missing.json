@@ -1,9 +1,0 @@
-{
-  "dialog": {
-    "save": {
-      "title": "dialog.save.title",
-      "button": "dialog.save.button",
-      "filter": "dialog.save.filter"
-    }
-  }
-}

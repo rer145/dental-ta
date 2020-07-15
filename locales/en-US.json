@@ -17,15 +17,61 @@
 		"debug-delappdata": "Delete App Data",
 		"debug-delsettings": "Delete Settings"
 	},
+	"header": {
+		"new": "New",
+		"open": "Open",
+		"save": "Save"
+	},
 	"splash": {
-		"title": "TADA",
-		"subtitle": "New Approaches to Juvenile Age Estimation in Forensics: Application of Transition Analysis via the Shackelford et al. Method to a Diverse Modern Subadult Sample"
+		"title": "Subadult Dental Age Estimation",
+		"subtitle": "New Approaches to Juvenile Age Estimation in Forensics: Application of Transition Analysis via the Shackelford et al. Method to a Diverse Modern Subadult Sample",
+		"new": "New Case",
+		"open": "Open Case"
 	},
 	"tabs": {
 		"case": "Case Info",
 		"scoring": "Scoring",
 		"review": "Review",
-		"results": "Results"
+		"results": "Results",
+		"file": "File: "
+	},
+	"caseinfo": {
+		"number-label": "Case #",
+		"number-text": "A unique identifier for the data being scored.",
+		"date-label": "Observation Date",
+		"date-text": "The date the scoring of the teeth occurred.",
+		"analyst-label": "Analyst",
+		"analyst-text": "An identifier for the analyst performing the scoring.",
+		"scoring-button": "Enter Trait Scoring &raquo;"
+	},
+	"scoring": {
+		"permanent": "Permanent",
+		"deciduous": "Deciduous",
+		"case-button": "&laquo; Enter Case Info",
+		"review-button": "Review &amp; Analyze &raquo;",
+		"select-tooth": "Click on a tooth in the chart to score it and view information",
+		"score": "Score"
+	},
+	"review": {
+		"title": "Current Scores",
+		"set": "Set",
+		"jaw": "Jaw",
+		"side": "Side",
+		"tooth": "Tooth",
+		"score": "Score",
+		"remove": "remove",
+		"results-button": "Calculate Results",
+		"clear-button": "Clear Results"
+	},
+	"results": {
+		"title": "Analysis Results",
+		"case": "Case #",
+		"date": "Observation Date",
+		"analyst": "Analyst",
+		"predicted": "Predicted: ",
+		"percentage": "Prediction %",
+		"lower": "Lower: ",
+		"upper": "Upper: "
 	},
 	"dialog": {
 		"open": {
