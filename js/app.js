@@ -121,8 +121,6 @@ function save_case() {
 	output += '}';
 	console.log(output);
 
-	console.log("file", window.current_file);
-
 	if (window.current_file == "") {
 		window.current_file = dialog.showSaveDialogSync(null, {
 			title: i18n.t('dialog.save.title'),
@@ -133,15 +131,18 @@ function save_case() {
 		});
 	}
 
-	fs.writeFile(window.current_file, output, function(err) {
-		if (err) {
-			console.error(err);
-		}
-		console.log('file saved');
-	});
+	if (window.current_file != undefined) {
+		fs.writeFile(window.current_file, output, function(err) {
+			if (err) {
+				console.error(err);
+			}
+		});
 
-	window.is_dirty = false;
-	display_current_file();
+		window.is_dirty = false;
+		display_current_file();
+	} else {
+		window.current_file = "";
+	}
 }
 
 function reset_case_info() {
@@ -470,7 +471,11 @@ function run_analysis() {
 	$("#results-observation-date").html($("#observation_date_input").val());
 	$("#results-analyst").html($("#analyst_input").val());
 
-	let ci = calc_ci($("#prediction-perc").val(), 2.107889, 2.884916e-05, 0.01414032);
+	$("#results-mu").val(2.107889);
+	$("#results-w").val(2.884916e-05);
+	$("#results-b").val(0.01414032);
+
+	let ci = calc_ci($("#prediction-perc").val(), $("#results-mu").val(), $("#results-w").val(), $("#results-b").val());
 	$("#results-lower").html(ci[0]);
 	$("#results-upper").html(ci[1]);
 
@@ -690,6 +695,13 @@ $(document).ready(function() {
 		save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val(), true);
 	});
 
+	$("#prediction-perc").on('change', function(e) {
+		e.preventDefault();
+		let ci = calc_ci($("#prediction-perc").val(), $("#results-mu").val(), $("#results-w").val(), $("#results-b").val());
+		$("#results-lower").html(ci[0]);
+		$("#results-upper").html(ci[1]);
+	});
+
 	// $("body").on('load', '#tooth-chart', function(e) {
 	// 	set_scored_teeth();
 	// });
@@ -742,4 +754,14 @@ ipcRenderer.on('show-screen', (event, arg) => {
 
 ipcRenderer.on('language-changed', (event, arg) => {
 	relocalize();
+});
+
+ipcRenderer.on('new-case', (event, arg) => {
+	new_case();
+});
+ipcRenderer.on('open-case', (event, arg) => {
+	open_case();
+});
+ipcRenderer.on('save-case', (event, arg) => {
+	save_case();
 });

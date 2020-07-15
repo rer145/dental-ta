@@ -7,7 +7,21 @@ module.exports = (app, mainWindow, i18n) => {
 			{
 				label: i18n.t('menu.file-new'),
 				click() {
-					console.log('new case');
+					mainWindow.webContents.send('new-case');
+				},
+				accelerator: 'CmdOrCtrl+N'
+			},
+			{
+				label: i18n.t('menu.file-open'),
+				click() {
+					mainWindow.webContents.send('open-case');
+				},
+				accelerator: 'CmdOrCtrl+O'
+			},
+			{
+				label: i18n.t('menu.file-save'),
+				click() {
+					mainWindow.webContents.send('save-case');
 				},
 				accelerator: 'CmdOrCtrl+N'
 			},
@@ -32,6 +46,18 @@ module.exports = (app, mainWindow, i18n) => {
 						}
 					}
 				]
+			},
+			{
+				label: i18n.t('menu.file-settings'),
+				click() {
+					mainWindow.webContents.send('settings');
+				},
+				accelerator: 'CmdOrCtrl+P'
+			},
+			{ type: 'separator' },
+			{
+				label: i18n.t('menu.file-quit'),
+				role: 'quit'
 			}
 		]
 	};
