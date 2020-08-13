@@ -1,10 +1,11 @@
+const path = require('path');
 const i18n = require('i18next');
 const i18nextBackend = require('i18next-fs-backend');
 
 const i18nextOptions = {
 	backend: {
-		loadPath: './locales/{{lng}}.json',
-		addPath: './locales/{{lng}}.missing.json',
+		loadPath: path.join(__dirname, 'locales/{{lng}}.json'),
+		addPath: path.join(__dirname, 'locales/{{lng}}.missing.json'),
 		jsonIndent: 2
 	},
 	interpolation: {

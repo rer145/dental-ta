@@ -5,10 +5,10 @@
 	"description": "Subadult Dental age estimation",
 	"main": "index.js",
 	"scripts": {
-		"start": "electron .",
-		"start-es": "electron . --lang=es",
-		"pack": "electron-builder --dir",
-		"dist": "electron-builder --windows"
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make",
+		"publish": "electron-forge publish"
 	},
 	"repository": {
 		"type": "git",
@@ -24,10 +24,14 @@
 	},
 	"homepage": "https://github.com/rer145/dental-ta#readme",
 	"devDependencies": {
-		"electron": "^9.0.0",
-		"electron-builder": "^22.7.0"
+		"@electron-forge/cli": "^6.0.0-beta.52",
+		"@electron-forge/maker-squirrel": "^6.0.0-beta.52",
+		"@electron-forge/maker-zip": "^6.0.0-beta.52",
+		"electron": "^9.0.0"
 	},
 	"dependencies": {
+		"@electron-forge/publisher-github": "^6.0.0-beta.52",
+		"adm-zip": "^0.4.16",
 		"bootstrap": "^4.5.0",
 		"bootstrap-material-design": "^4.1.3",
 		"chart.js": "^2.9.3",
@@ -37,6 +41,7 @@
 		"electron-util": "^0.14.1",
 		"electron-window-state": "^5.0.3",
 		"fs": "0.0.1-security",
+		"fs-extra": "^9.0.1",
 		"i18next": "^19.4.5",
 		"i18next-fs-backend": "^1.0.7",
 		"jquery": "^3.5.1",
@@ -44,28 +49,5 @@
 		"node-snackbar": "^0.1.16",
 		"popper.js": "^1.16.1",
 		"shortid": "^2.2.15"
-	},
-	"build": {
-		"appId": "edu.msu.DentalTA",
-		"productName": "Dental Age Estimation",
-		"copyright": "Copyright ${author}",
-		"directories": {
-			"buildResources": "build",
-			"output": "dist"
-		},
-		"publish": [
-			{
-				"provider": "github",
-				"owner": "rer145",
-				"repo": "dental-ta"
-			}
-		],
-		"win": {
-			"verifyUpdateCodeSignature": false,
-			"target": [
-				"nsis",
-				"portable"
-			]
-		}
 	}
 }
