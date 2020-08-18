@@ -48,7 +48,14 @@
 	border-color: var(--primary) !important;
 }
 
+.tooltip > .tooltip-inner {
+	background-color: var(--primary) !important;
+	color: var(--white) !important;
+}
 
+.tooltip > .arrow {
+	border-bottom-color: var(--primary) !important;
+}
 
 
 

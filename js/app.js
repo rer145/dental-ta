@@ -145,6 +145,29 @@ function save_case() {
 	}
 }
 
+function open_settings() {
+	let settings = store.get("settings");
+	$("#settings_numbering_" + settings['numbering']).attr('checked', 'checked');
+	$("#settings_imgpref_" + settings['image_preference']).attr('checked', 'checked');
+
+	if (settings['auto_page_teeth'])
+		$("#settings_autopage").attr('checked', 'checked');
+	else
+		$("#settings_autopage").removeAttr('checked');
+
+	$("#settings-modal").modal('show');
+}
+
+function save_settings() {
+	let settings = store.get("settings");
+	settings['numbering'] = $("input[name='settings_numbering']:checked"). val();
+	settings['image_preference'] = $("input[name='settings_imgpref']:checked"). val();
+	store.set("settings", settings);
+
+	console.log(store.get("settings"));
+	$("#settings-modal").modal('hide');
+}
+
 function reset_case_info() {
 	$("#case_number_input").val("");
 	$("#observation_date_input").val("");
@@ -248,6 +271,7 @@ function select_tooth(id) {
 		window.current_tooth_index = find_tooth_index(key);
 		if (window.current_tooth_index > -1) {
 			//let tooth = find_tooth(type, key);
+			let img_preference = store.get("settings.image_preference");
 			let tooth = window.appdb.teeth[window.current_tooth_index];
 			//let field = tooth.field[type];
 			window.current_tooth = tooth;
@@ -264,7 +288,9 @@ function select_tooth(id) {
 			let groups = [...new Set(scoring.map(item => item.group))];
 
 			for (let i = 0; i < groups.length; i++) {
-				let group_heading = $("<h5></h5>").html(title_case(groups[i]));
+				let group_heading = $("<div></div>").addClass("col-12").append(
+					$("<h5></h5>").addClass("pb-4").html(title_case(groups[i]))
+				);
 				$("#tooth-scoring-help").append(group_heading);
 
 				let group_opt = $("<optgroup></optgroup").attr("label", title_case(groups[i]));
@@ -295,6 +321,19 @@ function select_tooth(id) {
 								<div class="col-md-3 bg-white text-center">
 									<img src="${items[j].xray}" width="125" height="125" />
 								</div>
+							</div>
+						</div>
+					`;
+
+					let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
+					let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
+					let img = img_preference == "mfh" ? items[j].image : items[j].xray;
+
+					html = `
+						<div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+							<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
+								<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
+								<img class="mx-auto d-block" src="${img}" width="75" height="75" />
 							</div>
 						</div>
 					`;
@@ -332,6 +371,20 @@ function select_tooth(id) {
 	}
 }
 
+function show_tooth_score_details(tooth_id, tooth_score) {
+	let tooth = find_tooth(tooth_id);
+	let score = find_tooth_score_by_score(tooth.scoring, tooth_score);
+
+	if (tooth != undefined && score != undefined) {
+		let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
+		$("#tooth-score-text").html(text);
+	}
+}
+
+function hide_tooth_score_details() {
+	$("#tooth-score-text").empty();
+}
+
 function set_tooth_paging() {
 	$("#prev-tooth-button").removeClass("disabled").data("index", window.current_tooth_index-1);
 	$("#next-tooth-button").removeClass("disabled").data("index", window.current_tooth_index-1);
@@ -344,14 +397,17 @@ function set_tooth_paging() {
 	}
 }
 
-function find_tooth(type, key) {
+function find_tooth(key) {
 	let numbering = store.get("settings.numbering");
 
 	for (let i = 0; i < window.appdb.teeth.length; i++) {
-		if (window.appdb.teeth[i].numbering[type] &&
-			window.appdb.teeth[i].numbering[type][numbering] &&
-			window.appdb.teeth[i].numbering[type][numbering]== key) {
-				return window.appdb.teeth[i];
+		// if (window.appdb.teeth[i].numbering[type] &&
+		// 	window.appdb.teeth[i].numbering[type][numbering] &&
+		// 	window.appdb.teeth[i].numbering[type][numbering]== key) {
+		// 		return window.appdb.teeth[i];
+		// }
+		if (window.appdb.teeth[i].id == key) {
+			return window.appdb.teeth[i];
 		}
 	}
 	return {};
@@ -367,6 +423,24 @@ function find_tooth_index(key) {
 		// 		return i;
 		// }
 		if (window.appdb.teeth[i].id == key) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+function find_tooth_score_by_score(mode, score) {
+	for (let i = 0; i < window.appdb.scoring[mode].length; i++) {
+		if (window.appdb.scoring[mode][i].score == score) {
+			return window.appdb.scoring[mode][i];
+		}
+	}
+	return -1;
+}
+
+function find_tooth_score_index_by_score(mode, score) {
+	for (let i = 0; i < window.appdb.scoring[mode].length; i++) {
+		if (window.appdb.scoring[mode][i].score == score) {
 			return i;
 		}
 	}
@@ -613,6 +687,8 @@ function calc_ci(perc, mu, w, b) {
 
 
 $(document).ready(function() {
+	//$('[data-toggle="tooltip"]').tooltip();
+
 	$(".btn-new-case").on('click', function(e) {
 		e.preventDefault();
 		new_case();
@@ -649,6 +725,11 @@ $(document).ready(function() {
 	$("body").on('click', '.btn-clear-score', function(e) {
 		e.preventDefault();
 		reset_score($(this).data("tooth-id"));
+	});
+
+	$("#btn-save-settings").on('click', function(e) {
+		e.preventDefault();
+		save_settings();
 	});
 
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -689,6 +770,11 @@ $(document).ready(function() {
 	$("body").on('click', '.tooth-scoring-help-item', function(e) {
 		e.preventDefault();
 		save_tooth_score($(this).data("tooth-id"), $(this).data("tooth-score"), false);
+	});
+	$("body").on('mouseenter', '.tooth-scoring-help-item', function(e) {
+		e.preventDefault();
+		//show_tooth_score_details($(this).data("tooth-id"), $(this).data("tooth-score"));
+		$(this).tooltip('show');
 	});
 	$("#tooth-score").on('change', function(e) {
 		e.preventDefault();
@@ -764,4 +850,7 @@ ipcRenderer.on('open-case', (event, arg) => {
 });
 ipcRenderer.on('save-case', (event, arg) => {
 	save_case();
+});
+ipcRenderer.on('settings', (event, arg) => {
+	open_settings();
 });

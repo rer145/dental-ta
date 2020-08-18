@@ -6,7 +6,7 @@
 		"file-open": "Open",
 		"file-save": "Save",
 		"file-language": "Language",
-		"file-settings": "Preferences",
+		"file-settings": "Settings",
 		"file-quit": "Quit",
 		"help": "Help",
 		"help-website": "Website",
@@ -46,6 +46,8 @@
 		"date-text": "The date the scoring of the teeth occurred.",
 		"analyst-label": "Analyst",
 		"analyst-text": "An identifier for the analyst performing the scoring.",
+		"memo-label": "Memo",
+		"memo-text": "Additional notes and information regarding the case.",
 		"scoring-button": "Enter Trait Scoring &raquo;"
 	},
 	"scoring": {
@@ -89,5 +91,16 @@
 			"filter": "Dental TA"
 		}
 	},
-	"default-file-name": "untitled.dta"
+	"default-file-name": "untitled.dta",
+	"settings": {
+		"numbering": {
+			"universal": "Universal",
+			"fdi": "FDI",
+			"palmer": "Palmer"
+		},
+		"imgpref": {
+			"mfh": "Moorrees, Fanning and Hunt (MFH)",
+			"xray": "X-Ray"
+		}
+	}
 }

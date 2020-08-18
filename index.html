@@ -96,6 +96,11 @@
 												<input type="text" id="analyst_input" class="form-control" />
 												<span class="bmd-help" data-i18n="caseinfo.analyst-text"></span>
 											</div>
+											<div class="form-group">
+												<label for="memo_input" class="bmd-label-floating" data-i18n="caseinfo.memo-label"></label>
+												<textarea id="memo_input" class="form-control" rows="10"></textarea>
+												<span class="bmd-help" data-i18n="caseinfo.memo-text"></span>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -144,28 +149,30 @@
 															<button id="prev-tooth-button" class="btn btn-primary" data-index="">&laquo;</button>
 														</div> -->
 														<div class="col">
-															<h5 class="mb-1"><span id="tooth-name"></span></h5>
+															<h4 class="mb-1"><span id="tooth-name"></span></h4>
 															<p><span id="tooth-jawside"></span></p>
 														</div>
 														<div class="col text-right">
 															<input type="hidden" id="tooth-score-id" />
-															<div class="form-group">
+															<!-- <div class="form-group">
 																<label for="tooth-score" data-i18n="scoring.score"></label>
 																<select id="tooth-score" class="form-control form-control-lg"></select>
-															</div>
+															</div> -->
+															<span id="tooth-score-text"></span>
 														</div>
 														<!-- <div class="col-1">
 															<button id="next-tooth-button" class="btn btn-primary" data-index="">&raquo;</button>
 														</div> -->
 													</div>
+													<div id="tooth-scoring-help" class="row"></div>
 												</div>
 											</div>
 										</div>
-										<div id="help-card" class="card mb-2" style="display:none;">
+										<!-- <div id="help-card" class="card mb-2" style="display:none;">
 											<div class="card-body">
 												<div id="tooth-scoring-help"></div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</section>
@@ -283,6 +290,50 @@
 					</div>
 				</nav>
 			</footer>
+		</div>
+
+		<div id="settings-modal" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Settings</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<h5>Tooth Numbering System</h5>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_numbering" id="settings_numbering_universal" value="universal" />
+								<label class="form-check-label" for="settings_numbering_universal" data-i18n="settings.numbering.universal"></label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_numbering" id="settings_numbering_fdi" value="fdi" />
+								<label class="form-check-label" for="settings_numbering_fdi" data-i18n="settings.numbering.fdi"></label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_numbering" id="settings_numbering_palmer" value="palmer" />
+								<label class="form-check-label" for="settings_numbering_palmer" data-i18n="settings.numbering.palmer"></label>
+							</div>
+
+							<h5>Scoring Images</h5>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_imgpref" id="settings_imgpref_mfh" value="mfh" />
+								<label class="form-check-label" for="settings_imgpref_mfh" data-i18n="settings.imgpref.mfh"></label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_imgpref" id="settings_imgpref_xray" value="xray" />
+								<label class="form-check-label" for="settings_imgpref_xray" data-i18n="settings.imgpref.xray"></label>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="btn-save-settings">Save Settings</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<script src="js/app.js"></script>

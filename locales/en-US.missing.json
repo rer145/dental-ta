@@ -1,0 +1,78 @@
+{
+  "menu": {
+    "file": "menu.file",
+    "file-new": "menu.file-new",
+    "file-open": "menu.file-open",
+    "file-save": "menu.file-save",
+    "file-language": "menu.file-language",
+    "file-settings": "menu.file-settings",
+    "file-quit": "menu.file-quit",
+    "help": "menu.help",
+    "help-website": "menu.help-website",
+    "help-source": "menu.help-source",
+    "help-issue": "menu.help-issue",
+    "help-updates": "menu.help-updates",
+    "debug": "menu.debug",
+    "debug-reload": "menu.debug-reload",
+    "debug-devtools": "menu.debug-devtools",
+    "debug-appdata": "menu.debug-appdata",
+    "debug-delappdata": "menu.debug-delappdata",
+    "debug-delsettings": "menu.debug-delsettings"
+  },
+  "results": {
+    "upper": "",
+    "lower": "",
+    "percentage": "",
+    "predicted": "",
+    "analyst": "",
+    "date": "",
+    "case": "",
+    "title": ""
+  },
+  "review": {
+    "clear-button": "",
+    "results-button": "",
+    "score": "",
+    "tooth": "",
+    "side": "",
+    "jaw": "",
+    "set": "",
+    "title": ""
+  },
+  "scoring": {
+    "select-tooth": "",
+    "review-button": "",
+    "case-button": "",
+    "deciduous": "",
+    "permanent": ""
+  },
+  "caseinfo": {
+    "scoring-button": "",
+    "memo-text": "",
+    "memo-label": "",
+    "analyst-text": "",
+    "analyst-label": "",
+    "date-text": "",
+    "date-label": "",
+    "number-text": "",
+    "number-label": ""
+  },
+  "tabs": {
+    "file": "",
+    "results": "",
+    "review": "",
+    "scoring": "",
+    "case": ""
+  },
+  "splash": {
+    "open": "",
+    "new": "",
+    "subtitle": "",
+    "title": ""
+  },
+  "header": {
+    "save": "",
+    "open": "",
+    "new": ""
+  }
+}
