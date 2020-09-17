@@ -710,8 +710,8 @@ function calc_ci(perc, mu, w, b) {
 			break;
 	}
 	return [
-		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75),
-		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75)
+		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(2),
+		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(2)
 	];
 }
 
