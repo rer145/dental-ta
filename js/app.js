@@ -225,7 +225,7 @@ function prep_scores_for_analysis() {
 		}
 	}
 
-	console.log(output);
+	//console.log(output);
 
 	return output;
 }
@@ -535,38 +535,51 @@ function populate_review() {
 		numbering = 'id';
 
 	$("#scores-table tbody").empty();
-	for (let k in window.scores) {
-		let id = k.replace("Tooth", "");
 
-		if (window.scores.hasOwnProperty(k)) {
-			let tooth = window.appdb.teeth.filter(function(item) {
-				return item.id == id;
-			});
-			if (tooth && tooth.length > 0)
-				tooth = tooth[0];
+	let review_scores = [];
+	Object.keys(window.scores).forEach(function(key) {
+		let id = key.replace("Tooth", "");
+		if (window.scores.hasOwnProperty(key)) {
+			if (window.scores[key] != "NA") {
+				let tooth = window.appdb.teeth.filter(function(item) {
+					return item.id == id;
+				});
+				if (tooth && tooth.length > 0)
+					tooth = tooth[0];
 
-			let score = lookup_score(tooth.scoring, window.scores[k]);
-			if (window.scores[k] != "NA") {
-				let row = $("<tr></tr>");
-				let cell_numbering = $("<td></td>").html(`${tooth[numbering]}`);
-				let cell_set = $("<td></td>").html(`${tooth.set}`);
-				let cell_jaw = $("<td></td>").html(`${tooth.jaw}`);
-				let cell_side = $("<td></td>").html(`${tooth.side}`);
-				let cell_tooth = $("<td></td>").html(`${tooth.name}`);
-				let cell_score = $("<td></td>").addClass("text-right").html(`${score.display} (${window.scores[k]})`);
-				let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${tooth.id}">${i18n.t("review.remove")}</a>`)
+				let score = lookup_score(tooth.scoring, window.scores[key]);
 
-				row
-					.append(cell_numbering)
-					.append(cell_set)
-					.append(cell_jaw)
-					.append(cell_side)
-					.append(cell_tooth)
-					.append(cell_score)
-					.append(cell_remove);
-				$("#scores-table tbody").append(row);
+				review_scores.push({
+					id: tooth.id,
+					tooth: tooth,
+					score: score,
+					display: window.scores[key]
+				});
 			}
 		}
+	});
+
+	review_scores.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0));
+
+	for (let i = 0; i < review_scores.length; i++) {
+		let row = $("<tr></tr>");
+		let cell_numbering = $("<td></td>").html(`${review_scores[i].tooth[numbering]}`);
+		let cell_set = $("<td></td>").html(`${review_scores[i].tooth.set}`);
+		let cell_jaw = $("<td></td>").html(`${review_scores[i].tooth.jaw}`);
+		let cell_side = $("<td></td>").html(`${review_scores[i].tooth.side}`);
+		let cell_tooth = $("<td></td>").html(`${review_scores[i].tooth.name}`);
+		let cell_score = $("<td></td>").addClass("text-right").html(`${review_scores[i].score.display} (${review_scores[i].display})`);
+		let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${review_scores[i].tooth.id}">${i18n.t("review.remove")}</a>`)
+
+		row
+			.append(cell_numbering)
+			.append(cell_set)
+			.append(cell_jaw)
+			.append(cell_side)
+			.append(cell_tooth)
+			.append(cell_score)
+			.append(cell_remove);
+		$("#scores-table tbody").append(row);
 	}
 
 	prep_scores_for_analysis();
