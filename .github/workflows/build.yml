@@ -1,0 +1,33 @@
+name: Buil
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build-windows:
+    name: Build Windows binary (exe)
+    runs-on: windows-latest
+    timeout-minutes: 60
+
+  steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1.2.0
+      with:
+        node-version: '12.x'
+    - name: Get version from package.json
+      run: |
+        $PACKAGE_VERSION=$(node -p -e "require('./package.json').version")
+        echo $PACKAGE_VERSION
+        echo "::set-env name=PACKAGE_VERSION::$PACKAGE_VERSION"
+      shell: pwsh
+    - name: Package application
+      run: |
+        npm run package
+      shell: pwsh
+    - name: Upload Windows exe
+      uses: actions/upload-artifact@v1
+      with:
+        name: exe
+        path: ./packages/dental-ta-${{env.PACKAGE_VERSION}}-setup-win32.exe
