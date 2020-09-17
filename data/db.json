@@ -774,6 +774,18 @@
 				"group": "root"
 			},
 			{
+				"id": "cli",
+				"sort_order": 2,
+				"xray": "images/multi/cli-xray.jpg",
+				"image": "images/multi/cli.png",
+				"svg": "images/multi/svg/cli.png",
+				"display": "Cl<sub>i</sub>",
+				"text": "Cli",
+				"description": "Initial cleft formation: Mineralization visible in the inter-radicular area",
+				"score": 8,
+				"group": "root"
+			},
+			{
 				"id": "r14",
 				"sort_order": 3,
 				"xray": "images/multi/r14-xray.jpg",
