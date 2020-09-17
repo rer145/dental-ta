@@ -60,6 +60,7 @@
 	},
 	"review": {
 		"title": "Current Scores",
+		"numbering": "#",
 		"set": "Set",
 		"jaw": "Jaw",
 		"side": "Side",

@@ -530,6 +530,10 @@ function lookup_score(type, value) {
 }
 
 function populate_review() {
+	let numbering = store.get('settings.numbering');
+	if (numbering === 'universal')
+		numbering = 'id';
+
 	$("#scores-table tbody").empty();
 	for (let k in window.scores) {
 		let id = k.replace("Tooth", "");
@@ -544,6 +548,7 @@ function populate_review() {
 			let score = lookup_score(tooth.scoring, window.scores[k]);
 			if (window.scores[k] != "NA") {
 				let row = $("<tr></tr>");
+				let cell_numbering = $("<td></td>").html(`${tooth[numbering]}`);
 				let cell_set = $("<td></td>").html(`${tooth.set}`);
 				let cell_jaw = $("<td></td>").html(`${tooth.jaw}`);
 				let cell_side = $("<td></td>").html(`${tooth.side}`);
@@ -552,6 +557,7 @@ function populate_review() {
 				let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${tooth.id}">${i18n.t("review.remove")}</a>`)
 
 				row
+					.append(cell_numbering)
 					.append(cell_set)
 					.append(cell_jaw)
 					.append(cell_side)
