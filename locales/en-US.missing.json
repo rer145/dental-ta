@@ -74,5 +74,12 @@
     "save": "",
     "open": "",
     "new": ""
+  },
+  "settings": {
+    "autopage": {
+      "disable": "",
+      "enable": "",
+      "text": "Enabling this option will automatically advance to the next tooth once a score is set."
+    }
   }
 }

@@ -303,7 +303,7 @@
 					</div>
 					<div class="modal-body">
 						<form>
-							<h5>Tooth Numbering System</h5>
+							<h5 data-i18n="settings.numbering.title"></h5>
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="settings_numbering" id="settings_numbering_universal" value="universal" />
 								<label class="form-check-label" for="settings_numbering_universal" data-i18n="settings.numbering.universal"></label>
@@ -316,8 +316,8 @@
 								<input class="form-check-input" type="radio" name="settings_numbering" id="settings_numbering_palmer" value="palmer" />
 								<label class="form-check-label" for="settings_numbering_palmer" data-i18n="settings.numbering.palmer"></label>
 							</div>
-
-							<h5>Scoring Images</h5>
+							<hr />
+							<h5 data-i18n="settings.imgpref.title"></h5>
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="settings_imgpref" id="settings_imgpref_mfh" value="mfh" />
 								<label class="form-check-label" for="settings_imgpref_mfh" data-i18n="settings.imgpref.mfh"></label>
@@ -325,6 +325,17 @@
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="settings_imgpref" id="settings_imgpref_xray" value="xray" />
 								<label class="form-check-label" for="settings_imgpref_xray" data-i18n="settings.imgpref.xray"></label>
+							</div>
+							<hr />
+							<h5 data-i18n="settings.autopage.title"></h5>
+							<p class="small" data-i18n="settings.autopage.text"></p>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_autopage" id="settings_autopage_true" value="true" />
+								<label class="form-check-label" for="settings_autopage_true" data-i18n="settings.autopage.enable"></label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="settings_autopage" id="settings_autopage_false" value="false" />
+								<label class="form-check-label" for="settings_autopage_false" data-i18n="settings.autopage.disable"></label>
 							</div>
 						</form>
 					</div>

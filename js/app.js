@@ -149,19 +149,19 @@ function open_settings() {
 	let settings = store.get("settings");
 	$("#settings_numbering_" + settings['numbering']).attr('checked', 'checked');
 	$("#settings_imgpref_" + settings['image_preference']).attr('checked', 'checked');
-
-	if (settings['auto_page_teeth'])
-		$("#settings_autopage").attr('checked', 'checked');
-	else
-		$("#settings_autopage").removeAttr('checked');
-
+	$("#settings_autopage_" + String(settings['auto_page_teeth'])).attr('checked', 'checked');
 	$("#settings-modal").modal('show');
 }
 
 function save_settings() {
+	let autopage = true;
+	if ($("input[name='settings_autopage']:checked").val() == "false")
+		autopage = false;
+
 	let settings = store.get("settings");
-	settings['numbering'] = $("input[name='settings_numbering']:checked"). val();
-	settings['image_preference'] = $("input[name='settings_imgpref']:checked"). val();
+	settings['numbering'] = $("input[name='settings_numbering']:checked").val();
+	settings['image_preference'] = $("input[name='settings_imgpref']:checked").val();
+	settings['auto_page_teeth'] = autopage;
 	store.set("settings", settings);
 
 	console.log(store.get("settings"));
@@ -769,6 +769,7 @@ $(document).ready(function() {
 	// });
 	$("body").on('click', '.tooth-scoring-help-item', function(e) {
 		e.preventDefault();
+		$(this).tooltip('hide');
 		save_tooth_score($(this).data("tooth-id"), $(this).data("tooth-score"), false);
 	});
 	$("body").on('mouseenter', '.tooth-scoring-help-item', function(e) {

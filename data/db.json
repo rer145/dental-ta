@@ -534,7 +534,7 @@
 			{
 				"id": "ci",
 				"sort_order": 1,
-				"xray": "images/single/ci-xray.png",
+				"xray": "images/single/ci-xray.jpg",
 				"image": "images/single/ci.png",
 				"svg": "images/single/svg/ci.png",
 				"display": "C<sub>i</sub>",
@@ -546,7 +546,7 @@
 			{
 				"id": "cco",
 				"sort_order": 2,
-				"xray": "images/single/cco-xray.png",
+				"xray": "images/single/cco-xray.jpg",
 				"image": "images/single/cco.png",
 				"svg": "images/single/svg/cco.png",
 				"display": "C<sub>CO</sub>",
@@ -558,7 +558,7 @@
 			{
 				"id": "coc",
 				"sort_order": 3,
-				"xray": "images/single/coc-xray.png",
+				"xray": "images/single/coc-xray.jpg",
 				"image": "images/single/coc.png",
 				"svg": "images/single/svg/coc.png",
 				"display": "C<sub>OC</sub>",
@@ -570,7 +570,7 @@
 			{
 				"id": "cr12",
 				"sort_order": 4,
-				"xray": "images/single/cr12-xray.png",
+				"xray": "images/single/cr12-xray.jpg",
 				"image": "images/single/cr12.png",
 				"svg": "images/single/svg/cr12.png",
 				"display": "Cr 1/2",
@@ -582,7 +582,7 @@
 			{
 				"id": "cr34",
 				"sort_order": 5,
-				"xray": "images/single/cr34-xray.png",
+				"xray": "images/single/cr34-xray.jpg",
 				"image": "images/single/cr34.png",
 				"svg": "images/single/svg/cr34.png",
 				"display": "Cr 3/4",
@@ -594,7 +594,7 @@
 			{
 				"id": "crc",
 				"sort_order": 6,
-				"xray": "images/single/crc-xray.png",
+				"xray": "images/single/crc-xray.jpg",
 				"image": "images/single/crc.png",
 				"svg": "images/single/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
@@ -606,7 +606,7 @@
 			{
 				"id": "ri",
 				"sort_order": 1,
-				"xray": "images/single/ri-xray.png",
+				"xray": "images/single/ri-xray.jpg",
 				"image": "images/single/ri.png",
 				"svg": "images/single/svg/ri.png",
 				"display": "R<sub>i</sub>",
@@ -618,7 +618,7 @@
 			{
 				"id": "r14",
 				"sort_order": 3,
-				"xray": "images/single/r14-xray.png",
+				"xray": "images/single/r14-xray.jpg",
 				"image": "images/single/r14.png",
 				"svg": "images/single/svg/r14.png",
 				"display": "R 1/4",
@@ -630,7 +630,7 @@
 			{
 				"id": "r12",
 				"sort_order": 4,
-				"xray": "images/single/r12-xray.png",
+				"xray": "images/single/r12-xray.jpg",
 				"image": "images/single/r12.png",
 				"svg": "images/single/svg/r12.png",
 				"display": "R 1/2",
@@ -642,7 +642,7 @@
 			{
 				"id": "r34",
 				"sort_order": 5,
-				"xray": "images/single/r34-xray.png",
+				"xray": "images/single/r34-xray.jpg",
 				"image": "images/single/r34.png",
 				"svg": "images/single/svg/r34.png",
 				"display": "R 3/4",
@@ -654,7 +654,7 @@
 			{
 				"id": "rc",
 				"sort_order": 6,
-				"xray": "images/single/rc-xray.png",
+				"xray": "images/single/rc-xray.jpg",
 				"image": "images/single/rc.png",
 				"svg": "images/single/svg/rc.png",
 				"display": "R<sub>C</sub>",
@@ -666,7 +666,7 @@
 			{
 				"id": "a12",
 				"sort_order": 1,
-				"xray": "images/single/a12-xray.png",
+				"xray": "images/single/a12-xray.jpg",
 				"image": "images/single/a12.png",
 				"svg": "images/single/svg/a12.png",
 				"display": "A 1/2",
@@ -678,7 +678,7 @@
 			{
 				"id": "ac",
 				"sort_order": 2,
-				"xray": "images/single/ac-xray.png",
+				"xray": "images/single/ac-xray.jpg",
 				"image": "images/single/ac.png",
 				"svg": "images/single/svg/ac.png",
 				"display": "A<sub>C</sub>",

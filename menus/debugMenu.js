@@ -25,7 +25,7 @@ module.exports = (app, mainWindow, i18n) => {
 			{
 				label: i18n.t('menu.debug-appdata'),
 				click() {
-					shell.openItem(app.getPath('userData'));
+					shell.openPath(app.getPath('userData'));
 				}
 			},
 			{

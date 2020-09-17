@@ -94,13 +94,21 @@
 	"default-file-name": "untitled.dta",
 	"settings": {
 		"numbering": {
+			"title": "Tooth Numbering System",
 			"universal": "Universal",
 			"fdi": "FDI",
 			"palmer": "Palmer"
 		},
 		"imgpref": {
+			"title": "Scoring Images",
 			"mfh": "Moorrees, Fanning and Hunt (MFH)",
 			"xray": "X-Ray"
+		},
+		"autopage": {
+			"title": "Auto-advance Scoring",
+			"disable": "Disable",
+			"enable": "Enable",
+			"text": "Enabling this option will automatically advance to the next tooth once a score is set."
 		}
 	}
 }
