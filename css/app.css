@@ -109,10 +109,7 @@ g.spots path {
 g.spots polygon[data-disabled="false"]:hover,
 g.spots polygon[data-disabled="false"]:active,
 g.spots path[data-disabled="false"]:hover,
-g.spots path[data-disabled="false"]:active {
-	fill: var(--dark) !important;
-}
-
+g.spots path[data-disabled="false"]:active,
 g.spots polygon[data-disabled="false"].active,
 g.spots path[data-disabled="false"].active {
 	fill: var(--dark) !important;
@@ -125,7 +122,7 @@ g.spots path[data-disabled="false"].scored {
 
 .tooth-scoring-help-item {
 	cursor: pointer;
-	border: 1px solid transparent;
+	border: 1px solid #6c757d;
 }
 .tooth-scoring-help-item.bg-primary,
 .tooth-scoring-help-item:hover {
@@ -142,4 +139,32 @@ g.spots path[data-disabled="false"].scored {
 .btn-splash-load {
 	background-color: var(--light) !important;
 	color: #000 !important;
+}
+
+
+
+.dtp-header {
+	background: var(--primary) !important;
+	margin-bottom: 0 !important;
+}
+
+.dtp-date,
+.dtp table.dtp-picker-days tr > td > a.selected {
+	background-color: var(--primary) !important;
+}
+
+.dtp .p10 > a {
+	color: #fff !important;
+	font-weight: bold;
+}
+
+.dtp div.dtp-actual-year {
+	color: #fff !important;
+}
+
+.year-picker-item.active {
+	color: var(--primary) !important;
+}
+.year-picker-item:hover {
+	color: var(--secondary) !important;
 }

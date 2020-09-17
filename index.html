@@ -5,7 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="./css/material-icons.css">
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-material-design.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-material-datetimepicker.css">
 		<link rel="stylesheet" type="text/css" href="./css/snackbar.min.css">
 		<link rel="stylesheet" type="text/css"href="./css/app.css">
 
@@ -348,5 +350,12 @@
 		</div>
 
 		<script src="js/app.js"></script>
+		<script src="js/moment-with-locales.min.js"></script>
+		<script src="js/bootstrap-material-datetimepicker.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#observation_date_input").bootstrapMaterialDatePicker({weekStart: 0, time: false});
+			});
+		</script>
 	</body>
 </html>

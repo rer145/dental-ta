@@ -3,8 +3,10 @@ window.$ = window.jQuery = require('jquery');
 window.Bootstrap = require('bootstrap');
 window.Popper = require('popper.js');
 
+//const moment = require('moment');
 const Snackbar = require('node-snackbar');
 const bmd = require('bootstrap-material-design');
+//const bmdtp = require('bootstrap-material-datetimepicker');
 
 const {ipcRenderer} = require('electron');
 const {dialog, getGlobal} = require('electron').remote;
@@ -485,11 +487,35 @@ function save_tooth_score(key, score, isddl) {
 
 	let auto_page = store.get("settings.auto_page_teeth", false);
 	if (auto_page) {
-		let total_teeth = window.appdb.teeth.length;
-		if (window.current_tooth_index+1 < total_teeth) {
-			let tooth = window.appdb.teeth[window.current_tooth_index+1];
-			show_tooth_chart(null, tooth.set, tooth.jaw);
-			select_tooth(tooth.id);
+		if (window.current_tooth.set === "permanent") {
+			if (window.current_tooth.id+1 < 33) {
+				// advance to next tooth
+				let tooth = find_tooth(window.current_tooth.id+1);
+				show_tooth_chart(null, tooth.set, tooth.jaw);
+				select_tooth(tooth.id);
+			} else {
+				// back to permanent tooth 1 (or loop to deciduous?)
+				show_tooth_chart(null, "permanent", "maxillary");
+				select_tooth(1);
+			}
+		} else {
+			let max_char = "T".charCodeAt(0);
+			let next_char = window.current_tooth.id.charCodeAt(0)+1;
+			if (window.current_tooth.id == 'C')
+				next_char = 'H'.charCodeAt(0);
+			if (window.current_tooth.id == 'M')
+				next_char = 'R'.charCodeAt(0);
+
+			if (next_char < max_char+1) {
+				// advance to next tooth
+				let tooth = find_tooth(String.fromCharCode(next_char));
+				show_tooth_chart(null, tooth.set, tooth.jaw);
+				select_tooth(tooth.id);
+			} else {
+				// back to deciduous tooth A (or loop to permanent?)
+				show_tooth_chart(null, "deciduous", "maxillary");
+				select_tooth("A");
+			}
 		}
 	}
 }
