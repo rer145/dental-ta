@@ -23,7 +23,7 @@ module.exports = (app, mainWindow, i18n) => {
 				click() {
 					mainWindow.webContents.send('save-case');
 				},
-				accelerator: 'CmdOrCtrl+N'
+				accelerator: 'CmdOrCtrl+S'
 			},
 			{ type: 'separator' },
 			{
@@ -53,6 +53,13 @@ module.exports = (app, mainWindow, i18n) => {
 					mainWindow.webContents.send('settings');
 				},
 				accelerator: 'CmdOrCtrl+P'
+			},
+			{
+				label: i18n.t('menu.file-setup'),
+				click() {
+					mainWindow.webContents.send('setup');
+				},
+				accelerator: 'CmdOrCtrl+X'
 			},
 			{ type: 'separator' },
 			{

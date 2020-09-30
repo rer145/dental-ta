@@ -1,4 +1,5 @@
 {
+	"title": "Subadult Dental Age Estimation",
 	"menu": {
 		"mac-quit": "Quit",
 		"file": "File",
@@ -7,6 +8,7 @@
 		"file-save": "Save",
 		"file-language": "Language",
 		"file-settings": "Settings",
+		"file-setup": "Re-run Setup",
 		"file-quit": "Quit",
 		"help": "Help",
 		"help-website": "Website",
@@ -25,6 +27,13 @@
 		"new": "New",
 		"open": "Open",
 		"save": "Save"
+	},
+	"setup": {
+		"alert": "To begin using this program for analysis, the following must be setup.",
+		"choose-text": "Click the button below to choose a folder on your machine for the application runtime and analysis files to be stored.",
+		"choose-button": "Choose a Folder",
+		"current-path": "Current Location: ",
+		"setup-button": "Setup Application Runtime &raquo;"
 	},
 	"splash": {
 		"title": "Subadult Dental Age Estimation",
@@ -90,6 +99,10 @@
 			"title": "Save Dental TA File",
 			"button": "Save DTA File",
 			"filter": "Dental TA"
+		},
+		"folder": {
+			"title": "Open Folder",
+			"button": "Choose Folder"
 		}
 	},
 	"default-file-name": "untitled.dta",
@@ -111,5 +124,11 @@
 			"enable": "Enable",
 			"text": "Enabling this option will automatically advance to the next tooth once a score is set."
 		}
+	},
+	"alerts": {
+		"setup-no-folder": "Please select a folder to continue.",
+		"setup-choose-folder": "Choose",
+		"setup-complete": "Setup is Complete!",
+		"analysis-no-input-file": "There was an error generating the input file."
 	}
 }

@@ -29,13 +29,14 @@ function prep_settings() {
 		"version": appVersion,
 		"uid": uid,
 		"settings": {
+			"first_run": store.get("settings.first_run", true),
 			"dev_mode": true,
 			"numbering": store.get("settings.numbering", "universal"),
 			"image_preference": store.get("settings.image_preference", "mfh"),
 			"auto_page_teeth": store.get("settings.auto_page_teeth", true)
 		},
 		"app": {
-
+			"runtime_path": store.get("app.runtime_path")
 		}
 	});
 }

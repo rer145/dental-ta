@@ -19,6 +19,7 @@ module.exports = {
 		icon: path.resolve(__dirname, "build", "icon"),
 		appBundleId: 'edu.txstate.edu',
 		appCategoryType: 'public.app-category.education',
+		electronVersion: '9.0.0',
 		win32metadata: {
 			CompanyName: 'R-Squared Solutions LLC',
 			OriginalFilename: 'dental-ta'
@@ -30,7 +31,8 @@ module.exports = {
 			/\.gitattributes/,
 			/\.gitignore/,
 			/\.npmrc/,
-			/readme\.md/
+			/readme\.md/,
+			/\/build\/(.*)\.zip/
 		]
 	},
 	makers: [
@@ -70,7 +72,7 @@ module.exports = {
 	],
 	hooks: {
 		generateAssets: async() => {
-			//copy over files?
+
 		}
 	}
 };

@@ -43,7 +43,19 @@
 			<main role="main">
 
 				<div id="setup-screen" class="screen" style="display:none;" data-header="true" data-footer="false">
-					Setup!
+					<section>
+						<div class="card mb-2">
+							<div class="card-body">
+								<div class="alert alert-info" role="alert" data-i18n="setup.alert"></div>
+								<p data-i18n="setup.choose-text"></p>
+								<p><button id="btn-setup-choose" class="btn btn-lg btn-primary" data-i18n="setup.choose-button"></button></p>
+								<p><strong data-i18n="setup.current-path"></strong> <span id="setup-current-path"></span></p>
+							</div>
+						</div>
+						<p class="text-center">
+							<button id="btn-setup-runtime" class="btn btn-outline-success active" data-i18n="[html]setup.setup-button"></button>
+						</p>
+					</section>
 				</div>
 
 				<div id="splash-screen" class="screen" style="display:none;" data-header="true" data-footer="true">
@@ -264,7 +276,10 @@
 									<div class="col-sm-8">
 										<div class="card">
 											<div class="card-body">
-												<canvas id="results-plot"></canvas>
+												<!-- <canvas id="results-plot"></canvas> -->
+												<pre id="debug-output" style="padding: 5px; border:2px solid #000; background-color: #ddd;"></pre>
+												<hr />
+												<div id="debug-images"></div>
 											</div>
 										</div>
 									</div>

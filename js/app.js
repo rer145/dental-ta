@@ -13,14 +13,18 @@ const {dialog, getGlobal} = require('electron').remote;
 const {is} = require('electron-util');
 const path = require('path');
 const fs = require('fs');
-
+const AdmZip = require('adm-zip');
 
 const Store = require('electron-store');
 const store = new Store();
 
-const Chart = require('chart.js');
+//const Chart = require('chart.js');
 
 const locI18next = require('loc-i18next');
+const { generate } = require('shortid');
+//const { exec } = require('child_process');
+const execa = require('execa');
+const { param } = require('jquery');
 let i18n = getGlobal('i18n');
 
 const appName = store.get("name");
@@ -31,15 +35,15 @@ window.is_dirty = false;
 window.current_tooth = {};
 window.current_tooth_index = -1;
 
-window.chartColors = {
-	red: 'rgb(255, 99, 132)',
-	orange: 'rgb(255, 159, 64)',
-	yellow: 'rgb(255, 205, 86)',
-	green: 'rgb(75, 192, 192)',
-	blue: 'rgb(54, 162, 235)',
-	purple: 'rgb(153, 102, 255)',
-	grey: 'rgb(201, 203, 207)'
-};
+// window.chartColors = {
+// 	red: 'rgb(255, 99, 132)',
+// 	orange: 'rgb(255, 159, 64)',
+// 	yellow: 'rgb(255, 205, 86)',
+// 	green: 'rgb(75, 192, 192)',
+// 	blue: 'rgb(54, 162, 235)',
+// 	purple: 'rgb(153, 102, 255)',
+// 	grey: 'rgb(201, 203, 207)'
+// };
 
 
 function init() {
@@ -59,58 +63,143 @@ function init() {
 	show_screen('splash');
 }
 
-function new_case() {
-	if (window.is_dirty) {
-		//confirm
+function run_setup() {
+	let folder = store.get("app.runtime_path", "");
+	$("#setup-current-path").html(folder.length > 0 ? folder : "Not Set");
+	if (folder.length > 0)
+		enable_button("btn-setup-runtime");
+	else
+		disable_button("btn-setup-runtime");
+
+	show_screen('setup');
+}
+
+function choose_runtime_path() {
+	let folder = dialog.showOpenDialogSync({
+		properties: ['openDirectory', 'createDirectory', 'promptToCreate'],
+		title: i18n.t('dialog.folder.title'),
+		buttonLabel : i18n.t('dialog.folder.title'),
+	});
+
+	if (folder && folder.length == 1) {
+		store.set("app.runtime_path", folder[0]);
+		$("#setup-current-path").html(folder[0]);
+		enable_button("btn-setup-runtime");
+	} else {
+		Snackbar.show({
+			text: i18n.t('alerts.setup-no-folder'),
+			pos: 'bottom-center',
+			actionText: i18n.t('alerts.setup-choose-folder'),
+			actionTextColor: '#ff0000',
+			onActionClick: function(el) {
+				$(el).css('opactity', 0);
+				choose_runtime_path();
+			}
+		});
 	}
+}
 
-	window.current_file = "";
-	window.is_dirty = true;
-	reset_case_info();
-	reset_scores();
-	clear_tooth_selection();
+function setup_runtime() {
+	let src_root = path.join(__dirname, "build");
+	let dest_root = store.get("app.runtime_path", "");
 
-	display_current_file();
-	show_screen('scoring');
+	if (dest_root.length === 0) {
+		Snackbar.show({
+			text: i18n.t('alerts.setup-no-folder'),
+			pos: 'bottom-center',
+			actionText: i18n.t('alerts.setup-choose-folder'),
+			actionTextColor: '#ff0000',
+			onActionClick: function(el) {
+				$(el).css('opactity', 0);
+				choose_runtime_path();
+			}
+		});
+	} else {
+		make_directory(path.join(dest_root, "r"));
+		make_directory(path.join(dest_root, "packages"));
+		make_directory(path.join(dest_root, "analysis"));
+		make_directory(path.join(dest_root, "temp"));
+
+		let r_portable = src_root;
+		if (process.platform === "win32")
+			r_portable = path.join(r_portable, "R-Portable-Win.zip");
+		else
+			r_portable = path.join(r_portable, "R-Portable-Mac.zip");
+
+		unzip_file(r_portable, path.join(dest_root, "r"));
+		// unzip_file(path.join(src_root, "packages.zip"), path.join(dest_root, "packages"));
+		unzip_file(path.join(src_root, "analysis.zip"), path.join(dest_root, "analysis"));
+
+		Snackbar.show({
+			text: i18n.t('alerts.setup-complete'),
+			pos: 'bottom-center',
+			showAction: false,
+		});
+		store.set("settings.first_run", false);
+		show_screen("splash");
+	}
+}
+
+function new_case() {
+	if (store.get("settings.first_run", true)) {
+		run_setup();
+	} else {
+		if (window.is_dirty) {
+			//confirm
+		}
+
+		window.current_file = "";
+		window.is_dirty = true;
+		reset_case_info();
+		reset_scores();
+		clear_tooth_selection();
+
+		display_current_file();
+		show_screen('scoring');
+	}
 }
 
 function open_case() {
-	let files = dialog.showOpenDialogSync({
-		properties: ['openfile'],
-		title: i18n.t('dialog.open.title'),
-		buttonLabel: i18n.t('dialog.open.button'),
-		filters: [
-			{ name: i18n.t('dialog.open.filter'), extensions: ['dta'] }
-		]
-	});
+	if (store.get("settings.first_run", true)) {
+		run_setup();
+	} else {
+		let files = dialog.showOpenDialogSync({
+			properties: ['openfile'],
+			title: i18n.t('dialog.open.title'),
+			buttonLabel: i18n.t('dialog.open.button'),
+			filters: [
+				{ name: i18n.t('dialog.open.filter'), extensions: ['dta'] }
+			]
+		});
 
-	if (files != undefined) {
-		if (files.length == 1) {
-			new_case();
-			let filePath = files[0];
-			fs.readFile(filePath, 'utf8', (err, data) => {
-				if (err) {
-					console.error(err);
-				}
-				let json = JSON.parse(data);
+		if (files != undefined) {
+			if (files.length == 1) {
+				new_case();
+				let filePath = files[0];
+				fs.readFile(filePath, 'utf8', (err, data) => {
+					if (err) {
+						console.error(err);
+					}
+					let json = JSON.parse(data);
 
-				// populate case info
-				$("#case_number_input").val(json['properties']['case_number']);
-				$("#observation_date_input").val(json['properties']['observation_date']);
-				$("#analyst_input").val(json['properties']['analyst']);
-				$("input").trigger('change');
+					// populate case info
+					$("#case_number_input").val(json['properties']['case_number']);
+					$("#observation_date_input").val(json['properties']['observation_date']);
+					$("#analyst_input").val(json['properties']['analyst']);
+					$("input").trigger('change');
 
-				// populate window.scores
-				window.scores = json['scores'];
-				set_scored_teeth();
+					// populate window.scores
+					window.scores = json['scores'];
+					set_scored_teeth();
 
-				// populate results (if applicable)
+					// populate results (if applicable)
 
-				window.current_file = filePath;
-				window.is_dirty = false;
-				display_current_file();
-				show_screen('scoring');
-			});
+					window.current_file = filePath;
+					window.is_dirty = false;
+					display_current_file();
+					show_screen('scoring');
+				});
+			}
 		}
 	}
 }
@@ -585,67 +674,99 @@ function populate_review() {
 	prep_scores_for_analysis();
 }
 
-function run_analysis() {
-	$("#results-case-number").html($("#case_number_input").val());
-	$("#results-observation-date").html($("#observation_date_input").val());
-	$("#results-analyst").html($("#analyst_input").val());
+function generate_input_file(scores) {
+	let cols = ['ID', 'dc', 'dm1', 'dm2', 'UI1', 'UI2', 'LI1', 'LI2', 'C', 'P3', 'P4', 'M1', 'M2', 'M3', 'Neander', 'Obs'];
+	let primer = ['primer', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 'FALSE', 1]
+	let vals = [];
 
-	$("#results-mu").val(2.107889);
-	$("#results-w").val(2.884916e-05);
-	$("#results-b").val(0.01414032);
-
-	let ci = calc_ci($("#prediction-perc").val(), $("#results-mu").val(), $("#results-w").val(), $("#results-b").val());
-	$("#results-lower").html(ci[0]);
-	$("#results-upper").html(ci[1]);
-
-	let chart_config = {
-		type: 'line',
-		data: {
-			labels: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
-			datasets: [
-				{
-					label: 'Predicted Age',
-					backgroundColor: window.chartColors.red,
-					borderColor: window.chartColors.red,
-					data: [0,0,0,0,0,0,0,0,4,3,2,0,4,2,1,0],
-					fill: false
-				}
-			]
-		},
-		options: {
-			responsive: true,
-			title: {
-				display: true,
-				text: `Case: ${$("#case_number_input").val()}`
-			},
-			tooltips: {
-				mode: 'index',
-				intersect: false
-			},
-			hover: {
-				mode: 'nearest',
-				intersect: true
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-					scaleLabel: {
-						display:true,
-						labelString: 'Age (years)'
-					}
-				}],
-				yAxes: [{
-					display: true,
-					scaleLabel: {
-						display: true,
-						labelString: 'Density'
-					}
-				}]
-			}
+	for (let i = 0; i < cols.length; i++) {
+		if (scores.hasOwnProperty(cols[i])) {
+			vals.push(scores[cols[i]]);
+		} else {
+			if (cols[i] == 'ID')
+				vals.push('CASE');
+			if (cols[i] == 'Neander')
+				vals.push('FALSE');
+			if (cols[i] == 'OBS')
+				vals.push(1)
 		}
-	};
+	}
 
-	let chart = new Chart(document.getElementById('results-plot'), chart_config);
+	let header = cols.join(",");
+	let row = primer.join(",");
+	let data = vals.join(",");
+
+	data = "UTHSCA_Case_29,15,15,15,10,NA,12,11,9,7,6,13,6,NA,FALSE,1";
+
+	try {
+		let filepath = path.join(store.get("app.runtime_path"), "temp", new Date().valueOf().toString() + "-input.csv");
+		console.log(filepath);
+		//fs.writeFileSync(filepath, header + '\n' + row + '\n' + data + '\n');
+		fs.writeFileSync(filepath, header + '\n' + data + '\n');
+		return filepath;
+	} catch (err) {
+		console.error(err);
+		return "";
+	}
+}
+
+function generate_output_file(input_file) {
+	let ts = input_file.replace("-input.csv", "").replace(path.join(store.get("app.runtime_path"), "temp"), "");
+	let filepath = path.join(store.get("app.runtime_path"), "temp", ts + "-output.txt");
+	return filepath;
+}
+
+function run_analysis() {
+	let scores = prep_scores_for_analysis();
+	console.log(scores);
+
+	let input_file = generate_input_file(scores);
+	let output_file = generate_output_file(input_file);
+	if (input_file.length > 0) {
+		let options = {
+			name: i18n.t("title")
+		};
+
+		let runtime_path = store.get("app.runtime_path");
+		let r_path = path.join(runtime_path, "r", "bin", "Rscript.exe");
+		let cmd = '"' + r_path + '"';
+		let parameters = [
+			path.join(runtime_path, "analysis", "analysis.R"),
+			runtime_path,
+			input_file,
+			output_file
+		];
+		$.each(parameters, function(i,v) {
+			//cmd = cmd + ' "' + v + '"';
+			v = '"' + v + '"';
+		});
+		console.log(cmd);
+		console.log(parameters);
+
+		try {
+			execa.sync(cmd, parameters);
+			let results = fs.readFileSync(output_file).toString();
+			$("#debug-output").html(results);
+			show_output_image(path.join(runtime_path, "temp", "plot1.png"), $("#debug-images"));
+		} catch (err) {
+			console.error(err);
+		}
+	} else {
+		Snackbar.show({
+			text: i18n.t('alerts.analysis-no-input-file'),
+			pos: 'bottom-center',
+			showAction: false
+		});
+	}
+}
+
+function show_output_image(filename, parent) {
+	if (fs.existsSync(filename)) {
+		var img = $("<img></img>");
+		img.attr("src", "file://" + filename + "?rand=" + (Math.random() * 99999999))
+			.addClass("img-responsive");
+		parent.append(img);
+	}
 }
 
 function show_screen(id) {
@@ -733,6 +854,16 @@ function calc_ci(perc, mu, w, b) {
 
 $(document).ready(function() {
 	//$('[data-toggle="tooltip"]').tooltip();
+
+	$("#btn-setup-choose").on('click', function(e) {
+		e.preventDefault();
+		choose_runtime_path();
+	});
+
+	$("#btn-setup-runtime").on('click', function(e) {
+		e.preventDefault();
+		setup_runtime();
+	});
 
 	$(".btn-new-case").on('click', function(e) {
 		e.preventDefault();
@@ -900,3 +1031,82 @@ ipcRenderer.on('save-case', (event, arg) => {
 ipcRenderer.on('settings', (event, arg) => {
 	open_settings();
 });
+ipcRenderer.on('setup', (event, arg) => {
+	run_setup();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+function make_directory(dir) {
+	if (!fs.existsSync(dir)){
+		try {
+			fs.mkdirSync(dir);
+		} catch (err) {
+			console.error("Unable to create directory: " + err);
+		}
+	}
+}
+
+function empty_directory(dir) {
+	if (!fs.existsSync(dir)){
+		try {
+			let files = fs.readdirSync(dir);
+			for (var file in files) {
+				fs.unlinkSync(path.join(dir, file));
+			}
+		} catch (err) {
+			console.error("Unable to empty directory: " + err);
+		}
+	}
+}
+
+function copy_file(src, dest, replace) {
+	var do_replace = replace;
+	if (!replace) {
+		do_replace = !fs.existsSync(dest);
+	}
+
+	if (do_replace) {
+		fs.copyFile(src, dest, (err) => {
+			if (err) {
+                console.error("Unable to copy " + src + " to " + dest);
+				console.error(err);
+			}
+		});
+	}
+}
+
+function save_file(file_path, file_contents) {
+	fs.writeFile(file_path, file_contents, function(err) {
+		if (err) {
+			console.error(err);
+		}
+		console.log("File saved");
+	});
+}
+
+function unzip_file(zip_file, dest) {
+	try {
+		let z = new AdmZip(zip_file);
+		z.extractAllTo(dest);
+	} catch (err) {
+		console.error("Unable to unzip file: " + err);
+	}
+}
+
+function enable_button(id) {
+	$("#" + id).removeAttr("disabled").removeClass("disabled");
+}
+
+function disable_button(id) {
+	$("#" + id).attr("disabled", "disabled").addClass("disabled");
+}
