@@ -684,8 +684,12 @@ function generate_input_file(scores) {
 		if (scores.hasOwnProperty(cols[i])) {
 			vals.push(scores[cols[i]]);
 		} else {
-			if (cols[i] == 'ID')
-				vals.push('CASE');		//$("#case_number_input").val() - check empty and strip chars
+			if (cols[i] == 'ID') {
+				if ($("#case_number_input").val().length > 0)
+					vals.push($("#case_number_input").val().replace(/[^a-zA-Z]/g, ""));
+				else
+					vals.push('CASE');
+			}
 			if (cols[i] == 'Neander')
 				vals.push('FALSE');
 			if (cols[i] == 'OBS')
@@ -698,7 +702,7 @@ function generate_input_file(scores) {
 	let data = vals.join(",");
 
 	// row = "primer,1,2,3,4,5,6,7,8,9,10,11,12,13,FALSE,1";
-	data = "UTHSCA_Case_29,16,15,15,10,NA,12,11,9,7,6,13,6,NA,FALSE,1";
+	//data = "UTHSCA_Case_29,16,15,15,10,NA,12,11,9,7,6,13,6,NA,FALSE,1";
 
 	//.\Rscript.exe "D:\\temp\\dental\\analysis\\analysis.R" "D:\\temp\\dental" "D:\\temp\\dental\\temp\\no-primer.csv" "D:\\temp\\dental\\temp\\no-primer-output.txt" 1
 	//.\Rscript.exe "D:\\temp\\dental\\analysis\\analysis.R" "D:\\temp\\dental" "D:\\temp\\dental\\temp\\primer.csv" "D:\\temp\\dental\\temp\\primer-output.txt" 2
@@ -739,6 +743,9 @@ function clean_temp_files() {
 
 function run_analysis() {
 	clean_temp_files();
+	$("#results-case-number").html($("#case_number_input").val());
+	$("#results-observation-date").html($("#observation_date_input").val());
+	$("#results-analyst").html($("#analyst_input").val());
 
 	let scores = prep_scores_for_analysis();
 	console.log(scores);
@@ -799,8 +806,17 @@ function run_analysis() {
 }
 
 function parse_output(text) {
+	text = text.replace("Inf", "999");
+
 	let json = JSON.parse(text);
 	console.log(json);
+
+	$("#results-mu").val(json.output.mean_corrected_age.toFixed(3));
+	$("#results-w").val(json.output.within_variance.toFixed(3));
+	$("#results-b").val(json.output.between_variance.toFixed(3));
+	$("#results-prediction").html(`${json.output.known_age.toFixed(3)} year(s)`);
+	$("#results-lower").html(json.output.known_age_lower.toFixed(3));
+	$("#results-upper").html(json.output.known_age_upper.toFixed(3));
 }
 
 function show_output_image(filename, parent) {
@@ -886,9 +902,10 @@ function calc_ci(perc, mu, w, b) {
 			mult = 2.576;
 			break;
 	}
+	mult=2;
 	return [
-		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(2),
-		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(2)
+		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3),
+		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3)
 	];
 }
 
