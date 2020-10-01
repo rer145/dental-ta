@@ -32,26 +32,31 @@ module.exports = {
 			/\.gitignore/,
 			/\.npmrc/,
 			/readme\.md/,
-			/\/build\/(.*)\.zip/
+			/\/runtime-files(\/?)/,
+		],
+		extraResource: [
+			"./runtime-files/analysis.zip",
+			"./runtime-files/R-Portable-Win.zip",
+			"./runtime-files/R-Portable-Mac.zip"
 		]
 	},
 	makers: [
-		{
-			name: '@electron-forge/maker-squirrel',
-			platforms: ['win32'],
-			config: (arch) => {
-				return {
-					name: 'dental-ta',
-					authors: 'Ron Richardson',
-					noMsi: true,
-					remoteReleases: '',
-					setupExe: `dental-ta-${package.version}-setup-${arch}.exe`,
-					setupIcon: path.resolve(__dirname, 'build', 'icon.ico'),
-					certificateFile: process.env['WINDOWS_CODESIGN_FILE'],
-					certificatePassword: process.env['WINOWS_CODESIGN_PASSWORD']
-				}
-			}
-		},
+		// {
+		// 	name: '@electron-forge/maker-squirrel',
+		// 	platforms: ['win32'],
+		// 	config: (arch) => {
+		// 		return {
+		// 			name: 'dental-ta',
+		// 			authors: 'Ron Richardson',
+		// 			noMsi: true,
+		// 			remoteReleases: '',
+		// 			setupExe: `dental-ta-${package.version}-setup-${arch}.exe`,
+		// 			setupIcon: path.resolve(__dirname, 'build', 'icon.ico'),
+		// 			certificateFile: process.env['WINDOWS_CODESIGN_FILE'],
+		// 			certificatePassword: process.env['WINOWS_CODESIGN_PASSWORD']
+		// 		}
+		// 	}
+		// },
 		{
 			name: '@electron-forge/maker-zip',
 			platforms: ['darwin', 'win32']

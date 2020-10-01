@@ -101,7 +101,10 @@ function choose_runtime_path() {
 }
 
 function setup_runtime() {
-	let src_root = path.join(__dirname, "build");
+	let src_root = path.join(__dirname, "runtime-files");
+	if (!is.development)
+		src_root = process.resourcesPath;
+
 	let dest_root = store.get("app.runtime_path", "");
 
 	if (dest_root.length === 0) {
@@ -1159,7 +1162,7 @@ function unzip_file(zip_file, dest) {
 		let z = new AdmZip(zip_file);
 		z.extractAllTo(dest);
 	} catch (err) {
-		console.error("Unable to unzip file: " + err);
+		console.error("Unable to unzip file[" + zip_file + "]: " + err);
 	}
 }
 
