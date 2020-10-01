@@ -22,11 +22,15 @@ jobs:
           echo $PACKAGE_VERSION
           echo "::set-env name=PACKAGE_VERSION::$PACKAGE_VERSION"
         shell: pwsh
+      - name: Download R-Portable-Win
+        uses: wei/curl@v1
+        with:
+          args: -LO https://ta3info.com/R-Portable-Win.zip
       - name: Package application
-        run: npm run package
+        run: npm run publish
         shell: pwsh
       - name: Upload Windows exe
         uses: actions/upload-artifact@v1
         with:
           name: exe
-          path: ./packages/dental-ta-.${{env.PACKAGE_VERSION}}-setup-win32.exe
+          path: ./out/make/zip/win32/x64/Subadult Dental Age Estimation-win32-x64-${{env.PACKAGE_VERSION}}.exe
