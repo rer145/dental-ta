@@ -1,6 +1,8 @@
 'use strict';
 
 const {shell} = require('electron');
+const Store = require('electron-store');
+const store = new Store();
 
 module.exports = (app, mainWindow, i18n) => {
 	let menu = {
