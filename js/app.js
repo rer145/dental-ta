@@ -25,6 +25,7 @@ const { generate } = require('shortid');
 //const { exec } = require('child_process');
 const execa = require('execa');
 const { param } = require('jquery');
+const { parse } = require('path');
 let i18n = getGlobal('i18n');
 
 const appName = store.get("name");
@@ -255,7 +256,7 @@ function save_settings() {
 	settings['auto_page_teeth'] = autopage;
 	store.set("settings", settings);
 
-	console.log(store.get("settings"));
+	//console.log(store.get("settings"));
 	$("#settings-modal").modal('hide');
 }
 
@@ -684,7 +685,7 @@ function generate_input_file(scores) {
 			vals.push(scores[cols[i]]);
 		} else {
 			if (cols[i] == 'ID')
-				vals.push('CASE');
+				vals.push('CASE');		//$("#case_number_input").val() - check empty and strip chars
 			if (cols[i] == 'Neander')
 				vals.push('FALSE');
 			if (cols[i] == 'OBS')
@@ -696,11 +697,14 @@ function generate_input_file(scores) {
 	let row = primer.join(",");
 	let data = vals.join(",");
 
-	data = "UTHSCA_Case_29,15,15,15,10,NA,12,11,9,7,6,13,6,NA,FALSE,1";
+	// row = "primer,1,2,3,4,5,6,7,8,9,10,11,12,13,FALSE,1";
+	data = "UTHSCA_Case_29,16,15,15,10,NA,12,11,9,7,6,13,6,NA,FALSE,1";
+
+	//.\Rscript.exe "D:\\temp\\dental\\analysis\\analysis.R" "D:\\temp\\dental" "D:\\temp\\dental\\temp\\no-primer.csv" "D:\\temp\\dental\\temp\\no-primer-output.txt" 1
+	//.\Rscript.exe "D:\\temp\\dental\\analysis\\analysis.R" "D:\\temp\\dental" "D:\\temp\\dental\\temp\\primer.csv" "D:\\temp\\dental\\temp\\primer-output.txt" 2
 
 	try {
 		let filepath = path.join(store.get("app.runtime_path"), "temp", new Date().valueOf().toString() + "-input.csv");
-		console.log(filepath);
 		//fs.writeFileSync(filepath, header + '\n' + row + '\n' + data + '\n');
 		fs.writeFileSync(filepath, header + '\n' + data + '\n');
 		return filepath;
@@ -716,7 +720,26 @@ function generate_output_file(input_file) {
 	return filepath;
 }
 
+function clean_temp_files() {
+	let temp_path = path.join(store.get("app.runtime_path"), "temp");
+	let files = [
+		path.join(temp_path, "output1.png"),
+		path.join(temp_path, "output2.png")
+	]
+
+	for (var f in files)
+	if (fs.existsSync(f)) {
+		try {
+			fs.unlinkSync(f);
+		} catch (err) {
+			console.error("Unable to delete", f);
+		}
+	}
+}
+
 function run_analysis() {
+	clean_temp_files();
+
 	let scores = prep_scores_for_analysis();
 	console.log(scores);
 
@@ -734,21 +757,36 @@ function run_analysis() {
 			path.join(runtime_path, "analysis", "analysis.R"),
 			runtime_path,
 			input_file,
-			output_file
+			output_file,
+			1
 		];
 		$.each(parameters, function(i,v) {
 			//cmd = cmd + ' "' + v + '"';
 			v = '"' + v + '"';
 		});
-		console.log(cmd);
-		console.log(parameters);
+		// console.log(cmd);
+		// console.log(parameters);
 
+		var has_error = false;
 		try {
 			execa.sync(cmd, parameters);
-			let results = fs.readFileSync(output_file).toString();
-			$("#debug-output").html(results);
-			show_output_image(path.join(runtime_path, "temp", "plot1.png"), $("#debug-images"));
 		} catch (err) {
+			console.error(err);
+			has_error = true;
+		}
+
+		try {
+			let results = fs.readFileSync(output_file).toString();
+			// if (has_error)
+			// 	$("#debug-output").css("border-color", "#ff0000");
+
+			$("#debug-output").empty().html(results);
+			parse_output(results);
+			$("#debug-images").empty();
+			show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#debug-images"));
+			show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#debug-images"));
+		}
+		catch (err) {
 			console.error(err);
 		}
 	} else {
@@ -760,11 +798,16 @@ function run_analysis() {
 	}
 }
 
+function parse_output(text) {
+	let json = JSON.parse(text);
+	console.log(json);
+}
+
 function show_output_image(filename, parent) {
 	if (fs.existsSync(filename)) {
 		var img = $("<img></img>");
 		img.attr("src", "file://" + filename + "?rand=" + (Math.random() * 99999999))
-			.addClass("img-responsive");
+			.addClass("img-fluid");
 		parent.append(img);
 	}
 }
