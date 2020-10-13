@@ -43,7 +43,7 @@
 			"set": "permanent",
 			"name": "Second Premolar",
 			"field": "P4",
-			"scoring": "multi",
+			"scoring": "single",
 			"fdi": 15,
 			"palmer": 5,
 			"alternative": ""
@@ -151,7 +151,7 @@
 			"set": "permanent",
 			"name": "Second Premolar",
 			"field": "P4",
-			"scoring": "multi",
+			"scoring": "single",
 			"fdi": 25,
 			"palmer": 5,
 			"alternative": ""
@@ -343,7 +343,7 @@
 			"set": "permanent",
 			"name": "Second Premolar",
 			"field": "P4",
-			"scoring": "multi",
+			"scoring": "single",
 			"fdi": 35,
 			"palmer": 5,
 			"alternative": ""
