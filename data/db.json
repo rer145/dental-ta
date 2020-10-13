@@ -386,7 +386,7 @@
 		},
 		{
 			"id": "A",
-			"side": "L",
+			"side": "R",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "Second Molar",
@@ -398,7 +398,7 @@
 		},
 		{
 			"id": "B",
-			"side": "L",
+			"side": "R",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "First Molar",
@@ -410,7 +410,7 @@
 		},
 		{
 			"id": "C",
-			"side": "L",
+			"side": "R",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "Canine",
@@ -422,7 +422,7 @@
 		},
 		{
 			"id": "H",
-			"side": "R",
+			"side": "L",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "Canine",
@@ -434,7 +434,7 @@
 		},
 		{
 			"id": "I",
-			"side": "R",
+			"side": "L",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "First Molar",
@@ -446,7 +446,7 @@
 		},
 		{
 			"id": "J",
-			"side": "R",
+			"side": "L",
 			"jaw": "maxillary",
 			"set": "deciduous",
 			"name": "Second Molar",

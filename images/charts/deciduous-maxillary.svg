@@ -4,10 +4,10 @@
 		<text id="lblJ" data-disabled="false" transform="matrix(1 0 0 1 326.1867 278.9355)" font-family="'Avenir-Heavy'" font-size="24px">J</text>
 		<text id="lblI" data-disabled="false" transform="matrix(1 0 0 1 308.6669 224.1667)" font-family="'Avenir-Heavy'" font-size="24px">I</text>
 		<text id="lblH" data-disabled="false" transform="matrix(1 0 0 1 280.8936 185.2723)" font-family="'Avenir-Heavy'" font-size="24px">H</text>
-		<text id="lblG" data-disabled="true" transform="matrix(1 0 0 1 256.5099 157.1388)" font-family="'Avenir-Heavy'" font-size="24px">G</text>
+		<!-- <text id="lblG" data-disabled="true" transform="matrix(1 0 0 1 256.5099 157.1388)" font-family="'Avenir-Heavy'" font-size="24px">G</text>
 		<text id="lblF" data-disabled="true" transform="matrix(1 0 0 1 230.6667 151.667)" font-family="'Avenir-Heavy'" font-size="24px">F</text>
 		<text id="lblE" data-disabled="true" transform="matrix(1 0 0 1 196.0272 151.6668)" font-family="'Avenir-Heavy'" font-size="24px">E</text>
-		<text id="lblD" data-disabled="true" transform="matrix(1 0 0 1 166.0594 157.1387)" font-family="'Avenir-Heavy'" font-size="24px">D</text>
+		<text id="lblD" data-disabled="true" transform="matrix(1 0 0 1 166.0594 157.1387)" font-family="'Avenir-Heavy'" font-size="24px">D</text> -->
 		<text id="lblC" data-disabled="false" transform="matrix(1 0 0 1 147.1964 185.2724)" font-family="'Avenir-Heavy'" font-size="24px">C</text>
 		<text id="lblB" data-disabled="false" transform="matrix(1 0 0 1 121.5838 224.1666)" font-family="'Avenir-Heavy'" font-size="24px">B</text>
 		<text id="lblA" data-disabled="false" transform="matrix(1 0 0 1 109.31 278.9357)" font-family="'Avenir-Heavy'" font-size="24px">A</text>
