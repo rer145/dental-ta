@@ -26,11 +26,13 @@ module.exports = (app, mainWindow, i18n) => {
 				label: i18n.t('menu.help-issue'),
 				click() {
 					const body = `
-						${i18n.t('menu.help-issue-text')}
+${i18n.t('menu.help-issue-text')}
 
-						---
 
-						${debugInfo()}`;
+
+---
+*Debugging Info:*
+${debugInfo()}`;
 
 					openNewGitHubIssue({
 						user: 'rer145',

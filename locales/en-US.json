@@ -14,7 +14,7 @@
 		"help-website": "Website",
 		"help-source": "Source Code",
 		"help-issue": "Report an Issue",
-		"help-issue-text": "<!-- Please describe your issue and steps to reproduce it. -->",
+		"help-issue-text": "<!-- Please describe your issue and steps to reproduce it on the line below and leave the debugging information in tact. -->",
 		"help-updates": "Check for Updates",
 		"debug": "Debug",
 		"debug-reload": "Force Reload",
@@ -134,6 +134,8 @@
 		"setup-no-folder": "Please select a folder to continue.",
 		"setup-choose-folder": "Choose",
 		"setup-complete": "Setup is Complete!",
-		"analysis-no-input-file": "There was an error generating the input file."
+		"analysis-no-input-file": "There was an error generating the input file.",
+		"installing-runtime": "Setting up the application's runtime...",
+		"running-analysis": "Running the analysis..."
 	}
 }

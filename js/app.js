@@ -100,29 +100,42 @@ function setup_runtime() {
 			}
 		});
 	} else {
-		make_directory(path.join(dest_root, "r"));
-		make_directory(path.join(dest_root, "packages"));
-		make_directory(path.join(dest_root, "analysis"));
-		make_directory(path.join(dest_root, "temp"));
+		$("#spinner p").html(i18n.t('alerts.installing-runtime'));
+		$("#spinner").show(100, function() {
+			make_directory(path.join(dest_root, "r"));
+			make_directory(path.join(dest_root, "packages"));
+			make_directory(path.join(dest_root, "analysis"));
+			make_directory(path.join(dest_root, "temp"));
 
-		let r_portable = src_root;
-		if (process.platform === "win32")
-			r_portable = path.join(r_portable, "R-Portable-Win.zip");
-		else
-			r_portable = path.join(r_portable, "R-Portable-Mac.zip");
+			let r_portable = src_root;
+			if (process.platform === "win32")
+				r_portable = path.join(r_portable, "R-Portable-Win.zip");
+			else
+				r_portable = path.join(r_portable, "R-Portable-Mac.zip");
 
-		unzip_file(r_portable, path.join(dest_root, "r"));
-		// unzip_file(path.join(src_root, "packages.zip"), path.join(dest_root, "packages"));
-		unzip_file(path.join(src_root, "analysis.zip"), path.join(dest_root, "analysis"));
+			unzip_file(r_portable, path.join(dest_root, "r"));
+			// unzip_file(path.join(src_root, "packages.zip"), path.join(dest_root, "packages"));
+			unzip_file(path.join(src_root, "analysis.zip"), path.join(dest_root, "analysis"));
 
-		Snackbar.show({
-			text: i18n.t('alerts.setup-complete'),
-			pos: 'bottom-center',
-			showAction: false,
+			Snackbar.show({
+				text: i18n.t('alerts.setup-complete'),
+				pos: 'bottom-center',
+				showAction: false,
+			});
+			store.set("settings.first_run", false);
+			$("#spinner").hide();
+			show_screen("splash");
 		});
-		store.set("settings.first_run", false);
-		show_screen("splash");
 	}
+}
+
+function show_spinner(msg) {
+	$("#spinner p").html(msg);
+	$("#spinner").show();
+}
+
+function hide_spinner() {
+	$("#spinner").hide();
 }
 
 function new_case() {
@@ -199,7 +212,6 @@ function save_case() {
 	output += '"memo":"' + $("#memo_input").val() + '",';
 	output += '"observation_date":"' + $("#observation_date_input").val() + '"}';
 	output += '}';
-	console.log(output);
 
 	if (window.current_file == "") {
 		window.current_file = dialog.showSaveDialogSync(null, {
@@ -581,7 +593,7 @@ function save_tooth_score(key, score, isddl) {
 	window.is_dirty = true;
 	display_current_file();
 
-	console.log(window.scores);
+	//console.log(window.scores);
 
 	let auto_page = store.get("settings.auto_page_teeth", false);
 	if (auto_page) {
@@ -756,7 +768,7 @@ function run_analysis() {
 	$("#results-analyst").html($("#analyst_input").val());
 
 	let scores = prep_scores_for_analysis();
-	console.log(scores);
+	//console.log(scores);
 
 	$("#results-score-table tbody").empty();
 	Object.keys(scores).forEach(function(key) {
@@ -797,29 +809,37 @@ function run_analysis() {
 
 		var has_error = false;
 		try {
-			execa.sync(cmd, parameters);
+			$("#spinner p").html(i18n.t('alerts.running-analysis'));
+			$("#spinner").show(100, function() {
+				execa.sync(cmd, parameters);
+
+				try {
+					let results = fs.readFileSync(output_file).toString();
+					// if (has_error)
+					// 	$("#debug-output").css("border-color", "#ff0000");
+
+					if (is.development) {
+						$("#debug-output").empty().html(results);
+					}
+
+					parse_output(results);
+					$("#results-images").empty();
+					show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#results-images"));
+					show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#results-images"));
+				}
+				catch (err) {
+					console.error(err);
+				}
+
+				hide_spinner();
+			});
 		} catch (err) {
 			console.error(err);
 			has_error = true;
+			hide_spinner();
 		}
 
-		try {
-			let results = fs.readFileSync(output_file).toString();
-			// if (has_error)
-			// 	$("#debug-output").css("border-color", "#ff0000");
 
-			if (is.development) {
-				$("#debug-output").empty().html(results);
-			}
-
-			parse_output(results);
-			$("#results-images").empty();
-			show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#results-images"));
-			show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#results-images"));
-		}
-		catch (err) {
-			console.error(err);
-		}
 	} else {
 		Snackbar.show({
 			text: i18n.t('alerts.analysis-no-input-file'),
@@ -833,7 +853,7 @@ function parse_output(text) {
 	text = text.replace("Inf", "999");
 
 	let json = JSON.parse(text);
-	console.log(json);
+	//console.log(json);
 
 	$("#results-mu").val(json.output.mean_corrected_age.toFixed(3));
 	$("#results-w").val(json.output.within_variance.toFixed(3));
