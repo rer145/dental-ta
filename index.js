@@ -33,7 +33,8 @@ function prep_settings() {
 			"dev_mode": true,
 			"numbering": store.get("settings.numbering", "universal"),
 			"image_preference": store.get("settings.image_preference", "mfh"),
-			"auto_page_teeth": store.get("settings.auto_page_teeth", true)
+			"auto_page_teeth": store.get("settings.auto_page_teeth", true),
+			"language": store.get("settings.language", "en-US")
 		},
 		"app": {
 			"runtime_path": store.get("app.runtime_path")

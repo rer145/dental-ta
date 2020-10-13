@@ -1062,43 +1062,13 @@ $(document).ready(function() {
 		display_current_file();
 	});
 
-	// $("body").on('load', '#tooth-chart', function(e) {
-	// 	set_scored_teeth();
-	// });
+	let saved_lang = store.get("settings.language", "en-US");
+	if (i18n.language !== saved_lang) {
+		i18n.changeLanguage(saved_lang);
+	} else {
+		relocalize();
+	}
 
-	// $("#log-score-btn").on('click', function(e) {
-	// 	e.preventDefault();
-	// 	save_tooth_score($("#tooth-score-id").val(), $("#tooth-score").val());
-	// });
-
-	// $("body").on('mouseenter', '.scoring-help-item .card', function(e) {
-	// 	$(this).addClass("bg-primary");
-	// 	console.log("in");
-	// });
-	// $("body").on('mouseleave', '.scoring-help-item .card', function(e) {
-	// 	$(this).removeClass("bg-primary");
-	// 	console.log("out");
-	// });
-
-	// $(".scoring-help-item .card").hover(
-	// 	function() {
-	// 		$(this).addClass("bg-primary");
-	// 	},
-	// 	function() {
-	// 		$(this).removeClass("bg-primary");
-	// 	}
-	// );
-
-	// $("#prev-tooth-button").on('click', function(e) {
-	// 	e.preventDefault();
-	// 	select_tooth($(this).data("index"));
-	// });
-	// $("#next-tooth-button").on('click', function(e) {
-	// 	e.preventDefault();
-	// 	select_tooth($(this).data("index"));
-	// });
-
-	relocalize();
 	init();
 });
 
@@ -1112,6 +1082,7 @@ ipcRenderer.on('show-screen', (event, arg) => {
 	show_screen(arg);
 });
 ipcRenderer.on('language-changed', (event, arg) => {
+	store.set("settings.language", arg);
 	relocalize();
 });
 ipcRenderer.on('new-case', (event, arg) => {
