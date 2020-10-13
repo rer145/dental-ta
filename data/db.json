@@ -686,6 +686,45 @@
 				"description": "Apical closure is complete",
 				"score": 14,
 				"group": "apex"
+			},
+			{
+				"id": "res14",
+				"sort_order": 1,
+				"xray": "images/single/res14-xray.jpg",
+				"image": "images/single/res14.png",
+				"svg": "images/single/svg/res14.png",
+				"display": "Res 1/4",
+				"text": "Res 1/4",
+				"description": "Resorption of apical quarter of the root",
+				"score": 15,
+				"group": "deciduous",
+				"set": "deciduous"
+			},
+			{
+				"id": "res12",
+				"sort_order": 1,
+				"xray": "images/single/res12-xray.jpg",
+				"image": "images/single/res12.png",
+				"svg": "images/single/svg/res12.png",
+				"display": "Res 1/2",
+				"text": "Res 1/2",
+				"description": "Resorption of half the root",
+				"score": 16,
+				"group": "deciduous",
+				"set": "deciduous"
+			},
+			{
+				"id": "res34",
+				"sort_order": 1,
+				"xray": "images/single/res34-xray.jpg",
+				"image": "images/single/res34.png",
+				"svg": "images/single/svg/res34.png",
+				"display": "Res 3/4",
+				"text": "Res 3/4",
+				"description": "Resorption of three quarters of the root",
+				"score": 17,
+				"group": "deciduous",
+				"set": "deciduous"
 			}
 		],
 		"multi": [
@@ -856,6 +895,45 @@
 				"description": "Apical closure is complete",
 				"score": 14,
 				"group": "apex"
+			},
+			{
+				"id": "res14",
+				"sort_order": 1,
+				"xray": "images/multi/res14-xray.jpg",
+				"image": "images/multi/res14.png",
+				"svg": "images/multi/svg/res14.png",
+				"display": "Res 1/4",
+				"text": "Res 1/4",
+				"description": "Resorption of apical quarter of the root",
+				"score": 15,
+				"group": "deciduous",
+				"set": "deciduous"
+			},
+			{
+				"id": "res12",
+				"sort_order": 1,
+				"xray": "images/multi/res12-xray.jpg",
+				"image": "images/multi/res12.png",
+				"svg": "images/multi/svg/res12.png",
+				"display": "Res 1/2",
+				"text": "Res 1/2",
+				"description": "Resorption of half of the root",
+				"score": 16,
+				"group": "deciduous",
+				"set": "deciduous"
+			},
+			{
+				"id": "res34",
+				"sort_order": 1,
+				"xray": "images/multi/res34-xray.jpg",
+				"image": "images/multi/res34.png",
+				"svg": "images/multi/svg/res34.png",
+				"display": "Res 3/4",
+				"text": "Res 3/4",
+				"description": "Resorption of three quarters of the root",
+				"score": 17,
+				"group": "deciduous",
+				"set": "deciduous"
 			}
 		]
 	}

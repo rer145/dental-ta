@@ -410,66 +410,44 @@ function select_tooth(id) {
 			let groups = [...new Set(scoring.map(item => item.group))];
 
 			for (let i = 0; i < groups.length; i++) {
-				let group_heading = $("<div></div>").addClass("col-12").append(
-					$("<h5></h5>").addClass("pb-4").html(title_case(groups[i]))
-				);
-				$("#tooth-scoring-help").append(group_heading);
-
-				let group_opt = $("<optgroup></optgroup").attr("label", title_case(groups[i]));
-
 				let items = scoring.filter(function(item) {
 					return item.group == groups[i];
 				});
 
-				for (let j = 0; j < items.length; j++) {
-					group_opt.append(`<option value="${items[j].score}">${items[j].score} - ${items[j].text}</option>`);
-
-					let html = `
-						<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item card mb-3" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}">
-							<div class="row no-gutters">
-								<div class="col-md-3 bg-white text-center">
-									<img src="${items[j].image}" width="125" height="125" />
-								</div>
-								<div class="col-md-6">
-									<div class="card-body">
-										<h5 class="card-title">${items[j].display}</h5>
-										<p class="card-text">
-											${items[j].description}<br />
-											Score: ${items[j].score}<br />
-											<button type="button" class="btn btn-sm btn-primary btn-select-score stretched-link" data-tooth-id="${tooth.field}" data-tooth-score="${items[j].score}">Select</button>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3 bg-white text-center">
-									<img src="${items[j].xray}" width="125" height="125" />
-								</div>
-							</div>
-						</div>
-					`;
-
-					let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
-					let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
-					let img = img_preference == "mfh" ? items[j].image : items[j].xray;
-
-					html = `
-						<div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-							<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
-								<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
-								<img class="mx-auto d-block" src="${img}" width="75" height="75" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
-							</div>
-						</div>
-					`;
-
-					$("#tooth-score").append(group_opt);
-					$("#tooth-scoring-help").append(html);
+				// check if items are restricted to a certain set
+				let item_len = items.length;
+				while (item_len--) {
+					if (items[item_len].hasOwnProperty("set")) {
+						if (items[item_len].set !== window.current_tooth.set) {
+							items.splice(item_len, 1);
+						}
+					}
 				}
 
-				//$("#tooth-scoring-help").append(row);
-			}
+				if (items.length > 0) {
+					let group_heading = $("<div></div>").addClass("col-12").append(
+						$("<h5></h5>").addClass("pb-4").html(title_case(groups[i]))
+					);
+					$("#tooth-scoring-help").append(group_heading);
 
-			// $("#tooth-scoring-help").empty().append(
-			// 	$("#molar-scoring-help div").clone()
-			// )
+					for (let j = 0; j < items.length; j++) {
+						let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
+						let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
+						let img = img_preference == "mfh" ? items[j].image : items[j].xray;
+
+						let html = `
+							<div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+								<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
+									<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
+									<img class="mx-auto d-block" src="${img}" width="75" height="75" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
+								</div>
+							</div>
+						`;
+
+						$("#tooth-scoring-help").append(html);
+					}
+				}
+			}
 
 			let has_score = false;
 			let score = "NA";
