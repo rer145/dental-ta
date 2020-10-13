@@ -1,22 +1,22 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 350 450 350" enable-background="new 0 350 450 350" xml:space="preserve">
 	<g class="toothLabels">
-		<text id="lbl32" data-disabled="false" transform="matrix(1 0 0 1 97.9767 402.1409)" font-family="'Avenir-Heavy'" font-size="21px">32</text>
-		<text id="lbl31" data-disabled="false" transform="matrix(1 0 0 1 94.7426 449.1693)" font-family="'Avenir-Heavy'" font-size="21px">31</text>
-		<text id="lbl30" data-disabled="false" transform="matrix(1 0 0 1 106.0002 495.5433)" font-family="'Avenir-Heavy'" font-size="21px">30</text>
-		<text id="lbl29" data-disabled="false" transform="matrix(1 0 0 1 118.0002 538.667)" font-family="'Avenir-Heavy'" font-size="21px">29</text>
-		<text id="lbl28" data-disabled="false" transform="matrix(0.9999 -1.456241e-02 1.456241e-02 0.9999 136.4086 573.5098)" font-family="'Avenir-Heavy'" font-size="21px">28</text>
-		<text id="lbl27" data-disabled="false" transform="matrix(1 0 0 1 157.3335 603.8164)" font-family="'Avenir-Heavy'" font-size="17px">27</text>
-		<text id="lbl26" data-disabled="false" transform="matrix(1 0 0 1 179.3335 623.8164)" font-family="'Avenir-Heavy'" font-size="18px">26</text>
-		<text id="lbl25" data-disabled="false" transform="matrix(1 0 0 1 204.6669 628.483)" font-family="'Avenir-Heavy'" font-size="18px">25</text>
-		<text id="lbl24" data-disabled="false" transform="matrix(1 0 0 1 231.3335 628.1497)" font-family="'Avenir-Heavy'" font-size="18px">24</text>
-		<text id="lbl23" data-disabled="false" transform="matrix(1 0 0 1 256.3335 619.1497)" font-family="'Avenir-Heavy'" font-size="17px">23</text>
-		<text id="lbl22" data-disabled="false" transform="matrix(1 0 0 1 276.3335 602.483)" font-family="'Avenir-Heavy'" font-size="18px">22</text>
-		<text id="lbl21" data-disabled="false" transform="matrix(1 0 0 1 286.6669 573.1497)" font-family="'Avenir-Heavy'" font-size="21px">21</text>
-		<text id="lbl20" data-disabled="false" transform="matrix(1 0 0 1 303.6327 538.667)" font-family="'Avenir-Heavy'" font-size="21px">20</text>
-		<text id="lbl19" data-disabled="false" transform="matrix(1 0 0 1 322.983 495.5432)" font-family="'Avenir-Heavy'" font-size="21px">19</text>
-		<text id="lbl18" data-disabled="false" transform="matrix(1 0 0 1 325.1251 449.1686)" font-family="'Avenir-Heavy'" font-size="21px">18</text>
-		<text id="lbl17" data-disabled="false" transform="matrix(1 0 0 1 324.0004 402.1405)" font-family="'Avenir-Heavy'" font-size="21px">17</text>
+		<text id="lbl32" data-key="32" data-disabled="false" transform="matrix(1 0 0 1 97.9767 402.1409)" font-family="'Avenir-Heavy'" font-size="21px">32</text>
+		<text id="lbl31" data-key="31" data-disabled="false" transform="matrix(1 0 0 1 94.7426 449.1693)" font-family="'Avenir-Heavy'" font-size="21px">31</text>
+		<text id="lbl30" data-key="30" data-disabled="false" transform="matrix(1 0 0 1 106.0002 495.5433)" font-family="'Avenir-Heavy'" font-size="21px">30</text>
+		<text id="lbl29" data-key="29" data-disabled="false" transform="matrix(1 0 0 1 118.0002 538.667)" font-family="'Avenir-Heavy'" font-size="21px">29</text>
+		<text id="lbl28" data-key="28" data-disabled="false" transform="matrix(0.9999 -1.456241e-02 1.456241e-02 0.9999 136.4086 573.5098)" font-family="'Avenir-Heavy'" font-size="21px">28</text>
+		<text id="lbl27" data-key="27" data-disabled="false" transform="matrix(1 0 0 1 157.3335 603.8164)" font-family="'Avenir-Heavy'" font-size="17px">27</text>
+		<text id="lbl26" data-key="26" data-disabled="false" transform="matrix(1 0 0 1 179.3335 623.8164)" font-family="'Avenir-Heavy'" font-size="18px">26</text>
+		<text id="lbl25" data-key="25" data-disabled="false" transform="matrix(1 0 0 1 204.6669 628.483)" font-family="'Avenir-Heavy'" font-size="18px">25</text>
+		<text id="lbl24" data-key="24" data-disabled="false" transform="matrix(1 0 0 1 231.3335 628.1497)" font-family="'Avenir-Heavy'" font-size="18px">24</text>
+		<text id="lbl23" data-key="23" data-disabled="false" transform="matrix(1 0 0 1 256.3335 619.1497)" font-family="'Avenir-Heavy'" font-size="17px">23</text>
+		<text id="lbl22" data-key="22" data-disabled="false" transform="matrix(1 0 0 1 276.3335 602.483)" font-family="'Avenir-Heavy'" font-size="18px">22</text>
+		<text id="lbl21" data-key="21" data-disabled="false" transform="matrix(1 0 0 1 286.6669 573.1497)" font-family="'Avenir-Heavy'" font-size="21px">21</text>
+		<text id="lbl20" data-key="20" data-disabled="false" transform="matrix(1 0 0 1 303.6327 538.667)" font-family="'Avenir-Heavy'" font-size="21px">20</text>
+		<text id="lbl19" data-key="19" data-disabled="false" transform="matrix(1 0 0 1 322.983 495.5432)" font-family="'Avenir-Heavy'" font-size="21px">19</text>
+		<text id="lbl18" data-key="18" data-disabled="false" transform="matrix(1 0 0 1 325.1251 449.1686)" font-family="'Avenir-Heavy'" font-size="21px">18</text>
+		<text id="lbl17" data-key="17" data-disabled="false" transform="matrix(1 0 0 1 324.0004 402.1405)" font-family="'Avenir-Heavy'" font-size="21px">17</text>
 	</g>
 	<g class="spots">
 		<polygon id="Tooth32" fill="#FFFFFF" data-key="32" data-disabled="false" points="66.7,369.7 59,370.3 51,373.7 43.7,384.3 42.3,392 38.7,406 41,415.3 44.3,420.3

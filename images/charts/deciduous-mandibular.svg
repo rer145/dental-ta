@@ -1,16 +1,16 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 350 450 350" enable-background="new 0 350 450 350" xml:space="preserve">
 	<g class="toothLabels">
-		<text id="lblT" data-disabled="false" transform="matrix(1 0 0 1 109.31 423.6409)" font-family="'Avenir-Heavy'" font-size="24px">T</text>
-		<text id="lblS" data-disabled="false" transform="matrix(1 0 0 1 126.7426 490.0023)" font-family="'Avenir-Heavy'" font-size="24px">S</text>
-		<text id="lblR" data-disabled="false" transform="matrix(1 0 0 1 146.5064 533.043)" font-family="'Avenir-Heavy'" font-size="24px">R</text>
-		<!-- <text id="lblQ" data-disabled="true" transform="matrix(1 0 0 1 168.0594 560.1663)" font-family="'Avenir-Heavy'" font-size="21px">Q</text>
-		<text id="lblP" data-disabled="true" transform="matrix(1 0 0 1 201.0274 564.6503)" font-family="'Avenir-Heavy'" font-size="21px">P</text>
-		<text id="lblO" data-disabled="true" transform="matrix(1 0 0 1 229.0002 564.6497)" font-family="'Avenir-Heavy'" font-size="21px">O</text>
-		<text id="lblN" data-disabled="true" transform="matrix(1 0 0 1 261.966 560.167)" font-family="'Avenir-Heavy'" font-size="21px">N</text> -->
-		<text id="lblM" data-disabled="false" transform="matrix(1 0 0 1 274.6497 533.0432)" font-family="'Avenir-Heavy'" font-size="24px">M</text>
-		<text id="lblL" data-disabled="false" transform="matrix(1 0 0 1 301.4584 490.002)" font-family="'Avenir-Heavy'" font-size="24px">L</text>
-		<text id="lblK" data-disabled="false" transform="matrix(1 0 0 1 318.6671 423.6405)" font-family="'Avenir-Heavy'" font-size="24px">K</text>
+		<text id="lblT" data-key="T" data-disabled="false" transform="matrix(1 0 0 1 109.31 423.6409)" font-family="'Avenir-Heavy'" font-size="24px">T</text>
+		<text id="lblS" data-key="S" data-disabled="false" transform="matrix(1 0 0 1 126.7426 490.0023)" font-family="'Avenir-Heavy'" font-size="24px">S</text>
+		<text id="lblR" data-key="R" data-disabled="false" transform="matrix(1 0 0 1 146.5064 533.043)" font-family="'Avenir-Heavy'" font-size="24px">R</text>
+		<!-- <text id="lblQ" data-key="17" data-disabled="true" transform="matrix(1 0 0 1 168.0594 560.1663)" font-family="'Avenir-Heavy'" font-size="21px">Q</text>
+		<text id="lblP" data-key="17" data-disabled="true" transform="matrix(1 0 0 1 201.0274 564.6503)" font-family="'Avenir-Heavy'" font-size="21px">P</text>
+		<text id="lblO" data-key="17" data-disabled="true" transform="matrix(1 0 0 1 229.0002 564.6497)" font-family="'Avenir-Heavy'" font-size="21px">O</text>
+		<text id="lblN" data-key="17" data-disabled="true" transform="matrix(1 0 0 1 261.966 560.167)" font-family="'Avenir-Heavy'" font-size="21px">N</text> -->
+		<text id="lblM" data-key="M" data-disabled="false" transform="matrix(1 0 0 1 274.6497 533.0432)" font-family="'Avenir-Heavy'" font-size="24px">M</text>
+		<text id="lblL" data-key="L" data-disabled="false" transform="matrix(1 0 0 1 301.4584 490.002)" font-family="'Avenir-Heavy'" font-size="24px">L</text>
+		<text id="lblK" data-key="K" data-disabled="false" transform="matrix(1 0 0 1 318.6671 423.6405)" font-family="'Avenir-Heavy'" font-size="24px">K</text>
 	</g>
 	<g class="spots">
 		<polygon id="ToothT" fill="#FFFFFF" data-key="T" data-disabled="false" points="65.7,373.5 74,375.2 82,380.8 86.3,384.8 90.3,390.2 92.7,395.8 93,404.8 93,416.8

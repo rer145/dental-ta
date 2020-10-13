@@ -1013,7 +1013,7 @@ $(document).ready(function() {
 
 	$("body").on('click', 'text[data-disabled="false"]', function(e) {
 		e.preventDefault();
-		select_tooth($(this).html());
+		select_tooth($(this).data('key'));
 	});
 	$("body").on('click', '.spots polygon[data-disabled="false"]', function(e) {
 		e.preventDefault();
