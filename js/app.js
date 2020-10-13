@@ -3,10 +3,8 @@ window.$ = window.jQuery = require('jquery');
 window.Bootstrap = require('bootstrap');
 window.Popper = require('popper.js');
 
-//const moment = require('moment');
 const Snackbar = require('node-snackbar');
 const bmd = require('bootstrap-material-design');
-//const bmdtp = require('bootstrap-material-datetimepicker');
 
 const {ipcRenderer} = require('electron');
 const {dialog, getGlobal} = require('electron').remote;
@@ -18,14 +16,8 @@ const AdmZip = require('adm-zip');
 const Store = require('electron-store');
 const store = new Store();
 
-//const Chart = require('chart.js');
-
 const locI18next = require('loc-i18next');
-const { generate } = require('shortid');
-//const { exec } = require('child_process');
 const execa = require('execa');
-const { param } = require('jquery');
-const { parse } = require('path');
 let i18n = getGlobal('i18n');
 
 const appName = store.get("name");
@@ -35,17 +27,6 @@ window.current_file = "";
 window.is_dirty = false;
 window.current_tooth = {};
 window.current_tooth_index = -1;
-
-// window.chartColors = {
-// 	red: 'rgb(255, 99, 132)',
-// 	orange: 'rgb(255, 159, 64)',
-// 	yellow: 'rgb(255, 205, 86)',
-// 	green: 'rgb(75, 192, 192)',
-// 	blue: 'rgb(54, 162, 235)',
-// 	purple: 'rgb(153, 102, 255)',
-// 	grey: 'rgb(201, 203, 207)'
-// };
-
 
 function init() {
 	$("#app-name").html(appName);
@@ -781,6 +762,19 @@ function run_analysis() {
 	let scores = prep_scores_for_analysis();
 	console.log(scores);
 
+	$("#results-score-table tbody").empty();
+	Object.keys(scores).forEach(function(key) {
+		if (scores.hasOwnProperty(key)) {
+			let row = $("<tr></tr>");
+			let cell_code = $("<td></td>").html(`${key}`);
+			let cell_value = $("<td></td>").html(`${scores[key]}`);
+			row
+				.append(cell_code)
+				.append(cell_value);
+			$("#results-score-table tbody").append(row);
+		}
+	});
+
 	let input_file = generate_input_file(scores);
 	let output_file = generate_output_file(input_file);
 	if (input_file.length > 0) {
@@ -818,11 +812,14 @@ function run_analysis() {
 			// if (has_error)
 			// 	$("#debug-output").css("border-color", "#ff0000");
 
-			$("#debug-output").empty().html(results);
+			if (is.development) {
+				$("#debug-output").empty().html(results);
+			}
+
 			parse_output(results);
-			$("#debug-images").empty();
-			show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#debug-images"));
-			show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#debug-images"));
+			$("#results-images").empty();
+			show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#results-images"));
+			show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#results-images"));
 		}
 		catch (err) {
 			console.error(err);

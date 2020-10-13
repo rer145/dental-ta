@@ -87,7 +87,12 @@
 		"predicted": "Predicted: ",
 		"percentage": "Prediction %",
 		"lower": "Lower: ",
-		"upper": "Upper: "
+		"upper": "Upper: ",
+		"scores": {
+			"title": "Scored Traits",
+			"code": "Code",
+			"value": "Value"
+		}
 	},
 	"dialog": {
 		"open": {
