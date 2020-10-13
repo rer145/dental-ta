@@ -137,6 +137,7 @@ function new_case() {
 		window.is_dirty = true;
 		reset_case_info();
 		reset_scores();
+		reset_results();
 		clear_tooth_selection();
 
 		display_current_file();
@@ -282,6 +283,23 @@ function reset_scores() {
 	window.scores = {};
 	populate_review();
 	set_scored_teeth();
+}
+
+function reset_results() {
+	$("#results-score-table tbody").empty();
+
+	if (is.development) {
+		$("#debug-output").empty();
+	}
+
+	$("#results-mu").val("");
+	$("#results-w").val("");
+	$("#results-b").val("");
+	$("#results-prediction").html("");
+	$("#results-lower").html("");
+	$("#results-upper").html("");
+
+	$("#results-images").empty();
 }
 
 function reset_score(id) {
@@ -1115,11 +1133,9 @@ function relocalize() {
 ipcRenderer.on('show-screen', (event, arg) => {
 	show_screen(arg);
 });
-
 ipcRenderer.on('language-changed', (event, arg) => {
 	relocalize();
 });
-
 ipcRenderer.on('new-case', (event, arg) => {
 	new_case();
 });
