@@ -262,8 +262,32 @@ function save_settings() {
 	settings['auto_page_teeth'] = autopage;
 	store.set("settings", settings);
 
+	update_chart_numbering(settings['numbering']);
+	update_scoring_images(settings['image_preference']);
+
 	//console.log(store.get("settings"));
 	$("#settings-modal").modal('hide');
+}
+
+function update_chart_numbering(numbering) {
+	//console.log(numbering);
+	for (let i = 0; i < window.appdb.teeth.length; i++) {
+		if (numbering.toLowerCase() === "universal")
+			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].id);
+		if (numbering.toLowerCase() === "fdi")
+			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].fdi);
+		if (numbering.toLowerCase() === "palmer")
+			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].palmer);
+	}
+}
+
+function update_scoring_images(images) {
+	if (!is_json_empty(window.current_tooth)) {
+		$(".tooth-scoring-help-item img").each(function(idx) {
+			let score = find_tooth_score_by_score(window.current_tooth.scoring, $(this).attr("data-tooth-score"));
+			$(this).attr("src", images === "mfh" ? score.image : score.xray);
+		});
+	}
 }
 
 function reset_case_info() {
@@ -432,7 +456,7 @@ function select_tooth(id) {
 						<div class="col-sm-6 col-md-4 col-lg-3 mb-3">
 							<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
 								<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
-								<img class="mx-auto d-block" src="${img}" width="75" height="75" />
+								<img class="mx-auto d-block" src="${img}" width="75" height="75" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
 							</div>
 						</div>
 					`;
@@ -876,6 +900,7 @@ function show_tooth_chart(obj, id, jaw) {
 	$("#tc-" + id + "-maxillary").show();
 	$("#tc-" + id + "-mandibular").show();
 
+	update_chart_numbering(store.get("settings.numbering"));
 	set_scored_teeth();
 }
 
@@ -1218,4 +1243,8 @@ function side_shrink(s) {
 		return "R";
 	if (s.toLowerCase() === "left")
 		return "L";
+}
+
+function is_json_empty(j) {
+	return Object.keys(j).length === 0 && j.constructor === Object;
 }
