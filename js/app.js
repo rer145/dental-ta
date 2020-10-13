@@ -816,6 +816,8 @@ function run_analysis() {
 
 					if (is.development) {
 						$("#debug-output").empty().html(results);
+					} else {
+						$("#debug-output").hide();
 					}
 
 					parse_output(results);
