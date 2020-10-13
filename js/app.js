@@ -190,7 +190,9 @@ function open_case() {
 					$("#case_number_input").val(json['properties']['case_number']);
 					$("#observation_date_input").val(json['properties']['observation_date']);
 					$("#analyst_input").val(json['properties']['analyst']);
+					$("#memo_input").val(json['properties']['memo']);
 					$("input").trigger('change');
+					$("textarea").trigger('change');
 
 					// populate window.scores
 					window.scores = json['scores'];
@@ -212,6 +214,7 @@ function save_case() {
 	let output = '{"scores":' + JSON.stringify(window.scores) + ',';
 	output += '"properties":{"case_number":"' + $("#case_number_input").val() + '",';
 	output += '"analyst":"' + $("#analyst_input").val() + '",';
+	output += '"memo":"' + $("#memo_input").val() + '",';
 	output += '"observation_date":"' + $("#observation_date_input").val() + '"}';
 	output += '}';
 	console.log(output);
@@ -267,6 +270,7 @@ function reset_case_info() {
 	$("#case_number_input").val("");
 	$("#observation_date_input").val("");
 	$("#analyst_input").val("");
+	$("#memo_input").val("");
 }
 
 function reset_scores() {
@@ -657,9 +661,9 @@ function populate_review() {
 	for (let i = 0; i < review_scores.length; i++) {
 		let row = $("<tr></tr>");
 		let cell_numbering = $("<td></td>").html(`${review_scores[i].tooth[numbering]}`);
-		let cell_set = $("<td></td>").html(`${review_scores[i].tooth.set}`);
-		let cell_jaw = $("<td></td>").html(`${review_scores[i].tooth.jaw}`);
-		let cell_side = $("<td></td>").html(`${review_scores[i].tooth.side}`);
+		let cell_set = $("<td></td>").html(`${title_case(review_scores[i].tooth.set)}`);
+		let cell_jaw = $("<td></td>").html(`${swap_jaw_name(review_scores[i].tooth.jaw)}`);
+		let cell_side = $("<td></td>").html(`${side_expand(review_scores[i].tooth.side)}`);
 		let cell_tooth = $("<td></td>").html(`${review_scores[i].tooth.name}`);
 		let cell_score = $("<td></td>").addClass("text-right").html(`${review_scores[i].score.display} (${review_scores[i].display})`);
 		let cell_remove = $("<td></td>").html(`<a href="#" class="btn-clear-score text-danger" data-tooth-id="${review_scores[i].tooth.id}">${i18n.t("review.remove")}</a>`)
@@ -1028,6 +1032,18 @@ $(document).ready(function() {
 		$("#results-upper").html(ci[1]);
 	});
 
+	$("#tab-pane-case-info input").on('change', function(e) {
+		e.preventDefault();
+		window.is_dirty = true;
+		display_current_file();
+	});
+
+	$("#tab-pane-case-info textarea").on('change', function(e) {
+		e.preventDefault();
+		window.is_dirty = true;
+		display_current_file();
+	});
+
 	// $("body").on('load', '#tooth-chart', function(e) {
 	// 	set_scored_teeth();
 	// });
@@ -1172,4 +1188,34 @@ function enable_button(id) {
 
 function disable_button(id) {
 	$("#" + id).attr("disabled", "disabled").addClass("disabled");
+}
+
+function title_case(s) {
+	var words = s.split(" ");
+	for (let i = 0; i < words.length; i++) {
+		words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+	}
+	return words.join(" ");
+}
+
+function swap_jaw_name(j) {
+	if (j.toLowerCase() === "maxillary")
+		return "Maxilla";
+	if (j.toLowerCase() == "mandibular")
+		return "Mandible";
+	return j;
+}
+
+function side_expand(s) {
+	if (s.toLowerCase() === "r")
+		return "Right";
+	if (s.toLowerCase() === "l")
+		return "Left";
+}
+
+function side_shrink(s) {
+	if (s.toLowerCase() === "right")
+		return "R";
+	if (s.toLowerCase() === "left")
+		return "L";
 }
