@@ -11,7 +11,6 @@ const {dialog, getGlobal} = require('electron').remote;
 const {is} = require('electron-util');
 const path = require('path');
 const fs = require('fs');
-const AdmZip = require('adm-zip');
 
 const Store = require('electron-store');
 const store = new Store();
@@ -27,6 +26,30 @@ window.current_file = "";
 window.is_dirty = false;
 window.current_tooth = {};
 window.current_tooth_index = -1;
+
+let setup_worker = new Worker(path.join(__dirname, 'js/workers/setup.js'));
+setup_worker.onmessage = function(e) {
+	$("#spinner").hide();
+
+	if (e.data) {
+		if (e.data[0]) {
+			Snackbar.show({
+				text: i18n.t('alerts.setup-complete'),
+				pos: 'bottom-center',
+				showAction: false,
+			});
+			store.set("settings.first_run", false);
+			show_screen("splash");
+		} else {
+			Snackbar.show({
+				text: e.data[1],
+				pos: 'bottom-center',
+				showAction: false,
+			});
+		}
+	}
+}
+
 
 function init() {
 	$("#app-name").html(appName);
@@ -102,36 +125,9 @@ function setup_runtime() {
 	} else {
 		$("#spinner p").html(i18n.t('alerts.installing-runtime'));
 		$("#spinner").show(100, function() {
-			make_directory(path.join(dest_root, "r"));
-			make_directory(path.join(dest_root, "packages"));
-			make_directory(path.join(dest_root, "analysis"));
-			make_directory(path.join(dest_root, "temp"));
-
-			let r_portable = src_root;
-			if (process.platform === "win32")
-				r_portable = path.join(r_portable, "R-Portable-Win.zip");
-			else
-				r_portable = path.join(r_portable, "R-Portable-Mac.zip");
-
-			unzip_file(r_portable, path.join(dest_root, "r"));
-			// unzip_file(path.join(src_root, "packages.zip"), path.join(dest_root, "packages"));
-			unzip_file(path.join(src_root, "analysis.zip"), path.join(dest_root, "analysis"));
-
-			Snackbar.show({
-				text: i18n.t('alerts.setup-complete'),
-				pos: 'bottom-center',
-				showAction: false,
-			});
-			store.set("settings.first_run", false);
-			$("#spinner").hide();
-			show_screen("splash");
+			setup_worker.postMessage([src_root, dest_root, process.platform]);
 		});
 	}
-}
-
-function show_spinner(msg) {
-	$("#spinner p").html(msg);
-	$("#spinner").show();
 }
 
 function hide_spinner() {
@@ -1132,15 +1128,7 @@ ipcRenderer.on('setup', (event, arg) => {
 
 
 
-function make_directory(dir) {
-	if (!fs.existsSync(dir)){
-		try {
-			fs.mkdirSync(dir);
-		} catch (err) {
-			console.error("Unable to create directory: " + err);
-		}
-	}
-}
+
 
 function empty_directory(dir) {
 	if (!fs.existsSync(dir)){
@@ -1178,15 +1166,6 @@ function save_file(file_path, file_contents) {
 		}
 		console.log("File saved");
 	});
-}
-
-function unzip_file(zip_file, dest) {
-	try {
-		let z = new AdmZip(zip_file);
-		z.extractAllTo(dest);
-	} catch (err) {
-		console.error("Unable to unzip file[" + zip_file + "]: " + err);
-	}
 }
 
 function enable_button(id) {
