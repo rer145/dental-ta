@@ -116,7 +116,8 @@
 			"title": "Tooth Numbering System",
 			"universal": "Universal",
 			"fdi": "FDI",
-			"palmer": "Palmer"
+			"palmer": "Palmer",
+			"field": "Analysis Fields"
 		},
 		"imgpref": {
 			"title": "Scoring Images",

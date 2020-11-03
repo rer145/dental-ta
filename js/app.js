@@ -268,6 +268,8 @@ function update_chart_numbering(numbering) {
 			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].fdi);
 		if (numbering.toLowerCase() === "palmer")
 			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].palmer);
+		if (numbering.toLowerCase() === "field")
+			$(".toothLabels text#lbl" + window.appdb.teeth[i].id).text(window.appdb.teeth[i].field);
 	}
 }
 
@@ -803,13 +805,14 @@ function run_analysis() {
 		// console.log(cmd);
 		// console.log(parameters);
 
-		var has_error = false;
+		let has_error = false;
+		let err_message = "";
 		try {
 			$("#spinner p").html(i18n.t('alerts.running-analysis'));
 			$("#spinner").show(100, function() {
-				execa.sync(cmd, parameters);
-
 				try {
+					execa.sync(cmd, parameters);
+
 					let results = fs.readFileSync(output_file).toString();
 					// if (has_error)
 					// 	$("#debug-output").css("border-color", "#ff0000");
@@ -827,6 +830,15 @@ function run_analysis() {
 				}
 				catch (err) {
 					console.error(err);
+					has_error = true;
+					err_message = err;
+
+					$("#tab-review-info").tab('show');
+					Snackbar.show({
+						text: err_message,
+						pos: 'bottom-center',
+						showAction: false
+					});
 				}
 
 				hide_spinner();
@@ -834,10 +846,17 @@ function run_analysis() {
 		} catch (err) {
 			console.error(err);
 			has_error = true;
+			err_message = err;
+
+			$("#tab-review-info").tab('show');
+			Snackbar.show({
+				text: err_message,
+				pos: 'bottom-center',
+				showAction: false
+			});
+
 			hide_spinner();
 		}
-
-
 	} else {
 		Snackbar.show({
 			text: i18n.t('alerts.analysis-no-input-file'),
