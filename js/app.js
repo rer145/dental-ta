@@ -964,10 +964,23 @@ function calc_ci(perc, mu, w, b) {
 			mult = 2.576;
 			break;
 	}
-	mult=2;
+
+	let lower = Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3);
+	let upper = Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3);
+
+	console.group("CI Calculation");
+	console.log("perc", perc);
+	console.log("mu", mu);
+	console.log("w", w);
+	console.log("b", b);
+	console.log("mult", mult);
+	console.log("lower", lower);
+	console.log("upper", upper);
+	console.groupEnd();
+
 	return [
-		Math.exp(Number(mu) - (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3),
-		Math.exp(Number(mu) + (mult * Math.pow((Number(w) + Number(b)), 0.5)) - 0.75).toFixed(3)
+		lower,
+		upper
 	];
 }
 
