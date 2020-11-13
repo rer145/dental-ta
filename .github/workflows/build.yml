@@ -23,9 +23,10 @@ jobs:
           echo "::set-env name=PACKAGE_VERSION::$PACKAGE_VERSION"
         shell: pwsh
       - name: Download R-Portable-Win
-        uses: wei/curl@v1
+        uses: suisei-cn/actions-download-file@v1
         with:
-          args: -LO https://ta3info.com/R-Portable-Win.zip
+          url: "https://ta3info.com/R-Portable-Win.zip"
+          target: runtime-files/
       - name: Package application
         run: npm run publish
         shell: pwsh
