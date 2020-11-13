@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-windows:
-    name: Build Windows binary (exe)
+    name: Build Windows binary (zip)
     runs-on: windows-latest
     timeout-minutes: 60
 
@@ -16,12 +16,6 @@ jobs:
       - uses: actions/setup-node@v1.2.0
         with:
           node-version: '12.x'
-      - name: Get version from package.json
-        run: |
-          $PACKAGE_VERSION=$(node -p -e "require('./package.json').version")
-          echo $PACKAGE_VERSION
-          echo "::set-env name=PACKAGE_VERSION::$PACKAGE_VERSION"
-        shell: pwsh
       - name: Download R-Portable-Win
         uses: suisei-cn/actions-download-file@v1
         with:
@@ -34,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: exe
-          path: ./out/make/zip/win32/x64/Subadult Dental Age Estimation-win32-x64-${{env.PACKAGE_VERSION}}.zip
+          path: ./out/make/zip/win32/x64/Subadult Dental Age Estimation-win32-x64-*.zip
