@@ -704,7 +704,7 @@ function generate_input_file(scores) {
 		} else {
 			if (cols[i] == 'ID') {
 				if ($("#case_number_input").val().length > 0)
-					vals.push($("#case_number_input").val().replace(/[^a-zA-Z]/g, ""));
+					vals.push($("#case_number_input").val().replace(/[,]/g, ""));
 				else
 					vals.push('CASE');
 			}
