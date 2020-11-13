@@ -34,4 +34,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: exe
-          path: ./out/make/zip/win32/x64/Subadult Dental Age Estimation-win32-x64-${{env.PACKAGE_VERSION}}.exe
+          path: ./out/make/zip/win32/x64/Subadult Dental Age Estimation-win32-x64-${{env.PACKAGE_VERSION}}.zip
