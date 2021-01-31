@@ -436,10 +436,10 @@ function select_tooth(id) {
 				}
 
 				if (items.length > 0) {
-					let group_heading = $("<div></div>").addClass("col-12").append(
-						$("<h5></h5>").addClass("pb-4").html(title_case(groups[i]))
-					);
-					$("#tooth-scoring-help").append(group_heading);
+					// let group_heading = $("<div></div>").addClass("col-12").append(
+					// 	$("<h5></h5>").addClass("pb-4").html(title_case(groups[i]))
+					// );
+					// $("#tooth-scoring-help").append(group_heading);
 
 					for (let j = 0; j < items.length; j++) {
 						let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
