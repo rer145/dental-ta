@@ -446,10 +446,10 @@ function select_tooth(id) {
 						let img = img_preference == "mfh" ? items[j].image : items[j].xray;
 
 						let html = `
-							<div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+							<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2">
 								<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
 									<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
-									<img class="mx-auto d-block" src="${img}" width="75" height="75" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
+									<img class="mx-auto d-block" src="${img}" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
 								</div>
 							</div>
 						`;
