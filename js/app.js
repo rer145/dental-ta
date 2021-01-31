@@ -278,6 +278,7 @@ function update_scoring_images(images) {
 		$(".tooth-scoring-help-item img").each(function(idx) {
 			let score = find_tooth_score_by_score(window.current_tooth.scoring, $(this).attr("data-tooth-score"));
 			$(this).attr("src", images === "mfh" ? score.image : score.xray);
+			$(this).data("alt-src", images === "mfh" ? score.xray : score.image);
 		});
 	}
 }
@@ -445,12 +446,13 @@ function select_tooth(id) {
 						let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
 						let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
 						let img = img_preference == "mfh" ? items[j].image : items[j].xray;
+						let img_alt = img_preference == "mfh" ? items[j].xray : items[j].image;
 
 						let html = `
 							<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2">
 								<div id="tooth-scoring-help-item-${items[j].score}" class="tooth-scoring-help-item" data-tooth-id="${tooth.id}" data-tooth-score="${items[j].score}" data-toggle="tooltip" data-html="true" title="${text}">
 									<h6 class="d-block bg-secondary text-white p-2">${items[j].display}</h6>
-									<img class="mx-auto d-block" src="${img}" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" />
+									<img class="mx-auto d-block" src="${img}" data-scoring-id="${items[j].id}" data-tooth-score="${items[j].score}" data-alt-src="${img_alt}" />
 								</div>
 							</div>
 						`;
@@ -487,6 +489,7 @@ function show_tooth_score_details(tooth_id, tooth_score) {
 	let score = find_tooth_score_by_score(tooth.scoring, tooth_score);
 
 	if (tooth != undefined && score != undefined) {
+
 		let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
 		$("#tooth-score-text").html(text);
 	}
@@ -494,6 +497,12 @@ function show_tooth_score_details(tooth_id, tooth_score) {
 
 function hide_tooth_score_details() {
 	$("#tooth-score-text").empty();
+}
+
+function swap_tooth_score_image(img_obj) {
+	let original = $(img_obj).attr('src');
+	let alt = $(img_obj).data('alt-src');
+	$(img_obj).attr('src', alt).data('alt-src', original);
 }
 
 function set_tooth_paging() {
@@ -1081,6 +1090,11 @@ $(document).ready(function() {
 		e.preventDefault();
 		//show_tooth_score_details($(this).data("tooth-id"), $(this).data("tooth-score"));
 		$(this).tooltip('show');
+		swap_tooth_score_image($(this).find('img'));
+	});
+	$("body").on('mouseleave', '.tooth-scoring-help-item', function(e) {
+		e.preventDefault();
+		swap_tooth_score_image($(this).find('img'));
 	});
 	$("#tooth-score").on('change', function(e) {
 		e.preventDefault();
