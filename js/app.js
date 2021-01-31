@@ -409,8 +409,9 @@ function select_tooth(id) {
 			window.current_tooth = tooth;
 			set_tooth_paging();
 
+			let tooth_jaw_side = `${tooth.jaw} / ${tooth.side == "R" ? "right" : "left"}`;
 			$("#tooth-name").html(tooth.name);
-			$("#tooth-jawside").html(`${tooth.jaw} / ${tooth.side == "R" ? "right" : "left"}`);
+			$("#tooth-jawside").html(title_case(tooth_jaw_side));
 			$("#tooth-score-id").val(tooth.id);
 
 			let scoring = window.appdb.scoring[tooth.scoring];
