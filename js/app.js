@@ -444,7 +444,7 @@ function select_tooth(id) {
 
 					for (let j = 0; j < items.length; j++) {
 						let score = find_tooth_score_by_score(tooth.scoring, items[j].score);
-						let text = `<strong>${score.display}</strong> (value: ${score.score}): ${score.description}`;
+						let text = `${score.description}`;
 						let img = img_preference == "mfh" ? items[j].image : items[j].xray;
 						let img_alt = img_preference == "mfh" ? items[j].xray : items[j].image;
 
