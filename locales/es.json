@@ -5,7 +5,8 @@
 		"file-new": "Nuevo",
 		"file-language": "Idioma",
 		"help": "Ayuda",
-		"help-website": "Sitio Web",
+		"help-website-tsu": "TSU Sitio Web",
+		"help-website-msu": "MSU Sitio Web",
 		"help-source": "Código Fuente",
 		"help-issue": "Reportar un Problema",
 		"help-issue-text": "<!-- Describe tu problema y los pasos para reproducirlo. -->",
@@ -27,5 +28,9 @@
 		"review": "Revisión",
 		"results": "Resultados"
 	},
-	"default-file-name": "intitulado.dta"
+	"default-file-name": "intitulado.dta",
+	"confirmation": {
+		"btn-yes": "Si",
+		"btn-no": "No"
+	}
 }

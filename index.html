@@ -232,9 +232,6 @@
 												<p>
 													<button class="analyze-button btn btn-outline-success active" data-i18n="review.results-button"></button>
 												</p>
-												<p>
-													<button class="reset-button btn btn-outline-danger" data-i18n="review.clear-button"></button>
-												</p>
 											</div>
 										</div>
 									</div>
@@ -270,6 +267,14 @@
 												<p>
 													<strong data-i18n="results.lower"></strong><span id="results-lower"></span><br />
 													<strong data-i18n="results.upper"></strong><span id="results-upper"></span><br />
+												</p>
+											</div>
+										</div>
+										<div class="card mb-2">
+											<div class="card-body">
+												<p class="text-center">
+													<button class="reset-button btn btn-outline-danger" data-i18n="results.clear-button"></button>
+													<button class="reset-all-button btn btn-outline-danger" data-i18n="results.clear-all-button"></button>
 												</p>
 											</div>
 										</div>
@@ -388,6 +393,24 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" id="btn-save-settings">Save Settings</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="confirmation-modal" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 id="confirmation-header"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="confirmation-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="confirmation-btn-yes"></button>
+						<button type="button" class="btn btn-secondary" id="confirmation-btn-no" data-dismiss="modal"></button>
 					</div>
 				</div>
 			</div>

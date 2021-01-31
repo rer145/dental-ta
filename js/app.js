@@ -1033,8 +1033,31 @@ $(document).ready(function() {
 		run_analysis();
 	});
 	$(".reset-button").on('click', function(e) {
-		$("#tab-case-info").tab('show');
-		reset_scores();
+		$("#confirmation-header").html(i18n.t('confirmation.reset.header'));
+		$("#confirmation-body").html(`<p>${i18n.t('confirmation.reset.body')}</p>`);
+		$("#confirmation-btn-no").html(i18n.t('confirmation.btn-no'));
+		$("#confirmation-btn-yes")
+			.html(i18n.t('confirmation.btn-yes'))
+			.on('click', function() {
+				$("#tab-case-info").tab('show');
+				reset_scores();
+				$("#confirmation-modal").modal('hide');
+			});
+
+		$("#confirmation-modal").modal('show');
+	});
+	$(".reset-all-button").on('click', function(e) {
+		$("#confirmation-header").html(i18n.t('confirmation.reset-all.header'));
+		$("#confirmation-body").html(`<p>${i18n.t('confirmation.reset-all.body')}</p>`);
+		$("#confirmation-btn-no").html(i18n.t('confirmation.btn-no'));
+		$("#confirmation-btn-yes")
+			.html(i18n.t('confirmation.btn-yes'))
+			.on('click', function() {
+				$("#tab-case-info").tab('show');
+				new_case();
+				$("#confirmation-modal").modal('hide');
+			});
+		$("#confirmation-modal").modal('show');
 	});
 	$("body").on('click', '.btn-clear-score', function(e) {
 		e.preventDefault();
