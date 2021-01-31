@@ -1,7 +1,8 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, dialog, ipcMain} = require('electron');
 const shortid = require('shortid');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 
 const Store = require('electron-store');
 const store = new Store();
@@ -97,4 +98,33 @@ i18n.on('languageChanged', (lng) => {
 	global.i18n = i18n;
 	menu.buildMenu(app, win, i18n);
 	win.webContents.send('language-changed', lng);
+});
+
+ipcMain.on('pdf-export', event => {
+	const pdfPath = dialog.showSaveDialogSync({
+		properties: ['openfile'],
+		title: i18n.t('dialog.save-pdf.title'),
+		buttonLabel: i18n.t('dialog.save-pdf.button'),
+		filters: [
+			{ name: i18n.t('dialog.save-pdf.filter'), extensions: ['pdf'] }
+		]
+	});
+
+	if (pdfPath != null && pdfPath.length > 0) {
+		//const pdfWin = BrowserWindow.fromWebContents(event.sender);
+		win.webContents.printToPDF({}).then(data => {
+			fs.writeFile(pdfPath, data, err => {
+				if (err) {
+					return console.error(err.message);
+				}
+				win.webContents.send('pdf-export-complete', pdfPath);
+			});
+		})
+		.catch(err => {
+			console.error(err.message);
+			win.webContents.send('pdf-export-error');
+		});
+	} else {
+		win.webContents.send('pdf-export-error');
+	}
 });

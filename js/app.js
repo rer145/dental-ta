@@ -7,7 +7,7 @@ const Snackbar = require('node-snackbar');
 const bmd = require('bootstrap-material-design');
 
 const {ipcRenderer} = require('electron');
-const {dialog, getGlobal} = require('electron').remote;
+const {dialog, getGlobal, shell} = require('electron').remote;
 const {is} = require('electron-util');
 const path = require('path');
 const fs = require('fs');
@@ -882,12 +882,35 @@ function parse_output(text) {
 	let json = JSON.parse(text);
 	//console.log(json);
 
-	$("#results-mu").val(json.output.mean_corrected_age.toFixed(3));
-	$("#results-w").val(json.output.within_variance.toFixed(3));
-	$("#results-b").val(json.output.between_variance.toFixed(3));
+	let mu = json.output.mean_corrected_age.toFixed(3);
+	let w = json.output.within_variance.toFixed(3);
+	let b = json.output.between_variance.toFixed(3);
+
+	$("#results-mu").val(mu);
+	$("#results-w").val(w);
+	$("#results-b").val(b);
 	$("#results-prediction").html(`${json.output.known_age.toFixed(3)} year(s)`);
 	$("#results-lower").html(json.output.known_age_lower.toFixed(3));
 	$("#results-upper").html(json.output.known_age_upper.toFixed(3));
+
+	$("#results-prediction-table tbody").empty();
+	$("#results-prediction-table tbody").append(add_prediction_row(0, mu, w, b));
+	$("#results-prediction-table tbody").append(add_prediction_row(90, mu, w, b));
+	$("#results-prediction-table tbody").append(add_prediction_row(95, mu, w, b));
+	$("#results-prediction-table tbody").append(add_prediction_row(99, mu, w, b));
+}
+
+function add_prediction_row(perc, mu, w, b) {
+	let ci = calc_ci(perc, mu, w, b);
+	let row = $("<tr></tr>");
+	let cell_code = $("<td></td>").html(`${perc == 0 ? 'Default' : perc}`);
+	let cell_value = $("<td></td>").html(`${ci[0]}`);
+	let cell_value2 = $("<td></td>").html(`${ci[1]}`);
+	row
+		.append(cell_code)
+		.append(cell_value)
+		.append(cell_value2);
+	return row;
 }
 
 function show_output_image(filename, parent) {
@@ -987,6 +1010,22 @@ function calc_ci(perc, mu, w, b) {
 	];
 }
 
+function export_to_pdf() {
+	var today = new Date();
+	var date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	var dateTime = date + ' ' + time;
+
+	$("#results-export-on").html(dateTime);
+
+	// Snackbar.show({
+	// 	text: i18n.t('alerts.export.pending'),
+	// 	pos: 'bottom-center',
+	// 	showAction: false,
+	// });
+
+	ipcRenderer.send('pdf-export');
+}
 
 
 
@@ -1058,6 +1097,10 @@ $(document).ready(function() {
 				$("#confirmation-modal").modal('hide');
 			});
 		$("#confirmation-modal").modal('show');
+	});
+	$(".export-pdf-button").on('click', function(e) {
+		e.preventDefault();
+		export_to_pdf();
 	});
 	$("body").on('click', '.btn-clear-score', function(e) {
 		e.preventDefault();
@@ -1159,6 +1202,8 @@ function relocalize() {
 	localize('body');
 }
 
+
+
 ipcRenderer.on('show-screen', (event, arg) => {
 	show_screen(arg);
 });
@@ -1182,6 +1227,26 @@ ipcRenderer.on('setup', (event, arg) => {
 	run_setup();
 });
 
+
+ipcRenderer.on('pdf-export-error', (event, arg) => {
+	console.log("pdf error");
+	Snackbar.show({
+		text: i18n.t('alerts.export.error'),
+		pos: 'bottom-center',
+		showAction: false,
+	});
+});
+
+ipcRenderer.on('pdf-export-complete', (event, arg) => {
+	console.log("pdf complete");
+	shell.openExternal('file://' + arg);
+
+	Snackbar.show({
+		text: i18n.t('alerts.export.complete'),
+		pos: 'bottom-center',
+		showAction: false
+	});
+});
 
 
 

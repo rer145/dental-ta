@@ -93,8 +93,12 @@
 			"code": "Code",
 			"value": "Value"
 		},
+		"bounds": {
+			"title": "CI Bounds"
+		},
 		"clear-button": "Clear Current Scores",
-		"clear-all-button": "Clear All Information"
+		"clear-all-button": "Clear All Information",
+		"export-pdf-button": "Export"
 	},
 	"dialog": {
 		"open": {
@@ -110,6 +114,11 @@
 		"folder": {
 			"title": "Open Folder",
 			"button": "Choose Folder"
+		},
+		"save-pdf": {
+			"title": "Save Dental TA PDF Export",
+			"button": "Save PDF File",
+			"filter": "PDF File"
 		}
 	},
 	"default-file-name": "untitled.dta",
@@ -139,7 +148,13 @@
 		"setup-complete": "Setup is Complete!",
 		"analysis-no-input-file": "There was an error generating the input file.",
 		"installing-runtime": "Setting up the application's runtime...",
-		"running-analysis": "Running the analysis..."
+		"running-analysis": "Running the analysis...",
+		"export": {
+			"pending": "Please wait while the PDF file is being exported.",
+			"error": "There was an issue exporting the PDF file. Please select a folder and provide a name for the file.",
+			"complete": "The PDF file has been exported successfully.",
+			"view": "View PDF"
+		}
 	},
 	"confirmation": {
 		"btn-yes": "Yes",

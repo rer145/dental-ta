@@ -245,17 +245,19 @@
 									<div class="col-sm-4">
 										<div class="card mb-2">
 											<div class="card-body">
+												<button class="export-pdf-button btn btn-outline-success active float-right d-print-none" data-i18n="results.export-pdf-button"></button>
 												<h2 data-i18n="results.title"></h2>
 												<div class="d-none d-print-block">
 													<p>
 														<strong data-i18n="results.case"></strong><span id="results-case-number"></span><br />
 														<strong data-i18n="results.date"></strong> <span id="results-observation-date"></span><br />
 														<strong data-i18n="results.analyst"></strong> <span id="results-analyst"></span><br />
+														<span id="results-export-on"></span><br />
 													</p>
 													<hr />
 												</div>
 												<h5 data-i18n="results.predicted"></h5><h5 id="results-prediction" class="font-weight-bold"></h5>
-												<div class="form-group">
+												<div class="form-group d-print-none">
 													<label for="prediction-perc" data-i18n="results.percentage"></label>
 													<select id="prediction-perc" class="form-control form-control-lg">
 														<option value="0">Default</option>
@@ -264,13 +266,26 @@
 														<option value="99">99%</option>
 													</select>
 												</div>
-												<p>
+												<p class="d-print-none">
 													<strong data-i18n="results.lower"></strong><span id="results-lower"></span><br />
 													<strong data-i18n="results.upper"></strong><span id="results-upper"></span><br />
 												</p>
+												<div class="d-none d-print-block">
+													<h2 data-i18n="results.bounds.title"></h2>
+													<table id="results-prediction-table" class="table table-striped table-hover">
+														<thead class="thead-dark">
+															<tr>
+																<th>%</th>
+																<th data-i18n="results.lower"></th>
+																<th data-i18n="results.upper"></th>
+															</tr>
+														</thead>
+														<tbody></tbody>
+													</table>
+												</div>
 											</div>
 										</div>
-										<div class="card mb-2">
+										<div class="card mb-2 d-print-none">
 											<div class="card-body">
 												<p class="text-center">
 													<button class="reset-button btn btn-outline-danger" data-i18n="results.clear-button"></button>
@@ -296,7 +311,7 @@
 									<div class="col-sm-8">
 										<div class="card">
 											<div class="card-body">
-												<pre id="debug-output" style="padding: 5px; border:2px solid #000; background-color: #ddd;"></pre>
+												<pre id="debug-output" style="display: none; padding: 5px; border:2px solid #000; background-color: #ddd;"></pre>
 												<div id="results-images"></div>
 											</div>
 										</div>
