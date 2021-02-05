@@ -27,6 +27,8 @@ window.is_dirty = false;
 window.current_tooth = {};
 window.current_tooth_index = -1;
 
+let isScoringTabActive = false;
+
 let setup_worker = new Worker(path.join(__dirname, 'js/workers/setup.js'));
 setup_worker.onmessage = function(e) {
 	$("#spinner").hide();
@@ -605,6 +607,12 @@ function save_tooth_score(key, score, isddl) {
 
 	let auto_page = store.get("settings.auto_page_teeth", false);
 	if (auto_page) {
+		goto_next_tooth();
+	}
+}
+
+function goto_next_tooth() {
+	if (window.current_tooth.set) {
 		if (window.current_tooth.set === "permanent") {
 			if (window.current_tooth.id+1 < 33) {
 				// advance to next tooth
@@ -633,6 +641,41 @@ function save_tooth_score(key, score, isddl) {
 				// back to deciduous tooth A (or loop to permanent?)
 				show_tooth_chart(null, "deciduous", "maxillary");
 				select_tooth("A");
+			}
+		}
+	}
+}
+
+function goto_prev_tooth() {
+	if (window.current_tooth.set) {
+		if (window.current_tooth.set === "permanent") {
+			if (window.current_tooth.id-1 > 0) {
+				// advance to next tooth
+				let tooth = find_tooth(window.current_tooth.id-1);
+				show_tooth_chart(null, tooth.set, tooth.jaw);
+				select_tooth(tooth.id);
+			} else {
+				// back to permanent tooth 33 (or loop to deciduous?)
+				show_tooth_chart(null, "permanent", "maxillary");
+				select_tooth(32);
+			}
+		} else {
+			let min_char = "A".charCodeAt(0);
+			let max_char = "T".charCodeAt(0);
+
+			let prev_char = window.current_tooth.id.charCodeAt(0)-1;
+			if (prev_char >= min_char && prev_char <= max_char) {
+				if (window.current_tooth.id == 'H')
+					prev_char = 'C'.charCodeAt(0);
+				if (window.current_tooth.id == 'R')
+					prev_char = 'M'.charCodeAt(0);
+
+				let tooth = find_tooth(String.fromCharCode(prev_char));
+				show_tooth_chart(null, tooth.set, tooth.jaw);
+				select_tooth(tooth.id);
+			} else {
+				show_tooth_chart(null, "deciduous", "maxillary");
+				select_tooth("T");
 			}
 		}
 	}
@@ -1116,8 +1159,11 @@ $(document).ready(function() {
 		// e.target // newly activated tab
 		// e.relatedTarget // previous active tab
 
+		isScoringTabActive = false;
+
 		switch (e.target.id) {
 			case "tab-scoring-info":
+				isScoringTabActive = true;
 				break;
 			case "tab-case-info":
 				break;
@@ -1185,6 +1231,20 @@ $(document).ready(function() {
 		window.is_dirty = true;
 		display_current_file();
 	});
+
+
+	$("body").on('keydown', function(e) {
+		if (isScoringTabActive) {
+			if (e.which == 37 || e.which == 39) {
+				e.preventDefault();
+				if (e.which == 37)
+					goto_prev_tooth();
+				else
+					goto_next_tooth();
+			}
+		}
+	});
+
 
 	let saved_lang = store.get("settings.language", "en-US");
 	if (i18n.language !== saved_lang) {
