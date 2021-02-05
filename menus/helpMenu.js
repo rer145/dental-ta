@@ -16,7 +16,7 @@ module.exports = (app, mainWindow, i18n) => {
 		submenu: [
 			openUrlMenuItem({
 				label: i18n.t('menu.help-website'),
-				url: 'http://www.psu.edu'
+				url: 'https://tada.wp.txstate.edu/'
 			}),
 			openUrlMenuItem({
 				label: i18n.t('menu.help-source'),
