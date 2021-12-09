@@ -3,7 +3,12 @@
 		"mac-quit": "Dejar",
 		"file": "Expediente",
 		"file-new": "Nuevo",
+		"file-open": "Abrir",
+		"file-save": "Guardar",
 		"file-language": "Idioma",
+		"file-settings": "Configuración",
+		"file-setup": "Re-ejecutar Configuración",
+		"file-quit": "Salir",
 		"help": "Ayuda",
 		"help-website-tsu": "TSU Sitio Web",
 		"help-website-msu": "MSU Sitio Web",
@@ -18,15 +23,65 @@
 		"debug-delappdata": "Eliminar Datos de la Aplicación",
 		"debug-delsettings": "Eliminar Configuraciones"
 	},
+	"header": {
+		"new": "Nuevo",
+		"open": "Abrir",
+		"save": "Guardar"
+	},
 	"splash": {
 		"title": "Estimación de edad dental subadult",
-		"subtitle": "Nuevos Enfoques para la Estimación de la edad Juvenil en Medicina Forense: Aplicación de Análisis de Transición a través de Shackelford et al. Método para una Muestra Subadulta Moderna Diversa"
+		"subtitle": "Nuevos Enfoques para la Estimación de la edad Juvenil en Medicina Forense: Aplicación de Análisis de Transición a través de Shackelford et al. Método para una Muestra Subadulta Moderna Diversa",
+		"new": "Nuevo Caso",
+		"open": "Abrir Caso"
 	},
 	"tabs": {
 		"case": "Información del Caso",
 		"scoring": "Puntuación",
 		"review": "Revisión",
-		"results": "Resultados"
+		"results": "Resultados",
+		"file": "Expediente"
+	},
+	"caseinfo": {
+		"number-label": "# del Caso",
+		"number-text": "Un identificador unico para los datos anotados.",
+		"date-label": "Fecha de Observacion",
+		"analyst-label": "Analista",
+		"analyst-text": "Un identificador para el/la analista conduciendo la puntuacion.",
+		"memo-label": "Memo",
+		"memo-text": "Notas e informacion adicional sobre el caso.",
+		"scoring-button": "Continuar a puntuacion &raquo;"
+	},
+	"scoring": {
+		"permanent": "Denticion Permanente",
+		"deciduous": "Denticion Decidua",
+		"case-button": "&laquo; Llenar Info del Caso",
+		"review-button": "Revisar y Analizar &raquo;",
+		"select-tooth": "Haga clic en un diente en la grafica para analizar y ver informacion"
+	},
+	"review": {
+		"title": "Puntuacion Actual",
+		"set": "Set",
+		"jaw": "Heuso",
+		"side": "Lado",
+		"tooth": "Diente",
+		"score": "Puntuacion",
+		"remove": "remover",
+		"results-button": "Calcular Resultados"
+	},
+	"results": {
+		"title": "Resultado de Analisis",
+		"case": "# del Caso",
+		"date": "Fecha de Observacion",
+		"analyst": "Analista",
+		"predicted": "Previsto: ",
+		"percentage": "% de Prediccion",
+		"lower": "Inferior: ",
+		"upper": "Superior: ",
+		"scores": {
+			"title": "Rasgos Puntuados",
+			"code": "Codigo",
+			"value": "Valor"
+		}
 	},
 	"default-file-name": "intitulado.dta",
 	"confirmation": {
