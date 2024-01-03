@@ -38,7 +38,7 @@ module.exports = (app, mainWindow, i18n) => {
 						}
 					},
 					{
-						label: 'Spanish',
+						label: 'Español',
 						type: 'radio',
 						checked: i18n.language === 'es',
 						click: () => {

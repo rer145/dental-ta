@@ -64,10 +64,14 @@ function init() {
 	$("#tc-deciduous-maxillary").load("images/charts/deciduous-maxillary.svg");
 	$("#tc-deciduous-mandibular").load("images/charts/deciduous-mandibular.svg");
 
-	window.appdb = JSON.parse(fs.readFileSync(path.join(__dirname, "data/db.json")).toString());
+	load_database(i18n.language);
 	reset_scores();
 
 	show_screen('splash');
+}
+
+function load_database(lang) {
+	window.appdb = JSON.parse(fs.readFileSync(path.join(__dirname, `data/db.${lang}.json`)).toString());
 }
 
 function run_setup() {
@@ -84,8 +88,8 @@ function run_setup() {
 function choose_runtime_path() {
 	let folder = dialog.showOpenDialogSync({
 		properties: ['openDirectory', 'createDirectory', 'promptToCreate'],
-		title: i18n.t('dialog.folder.title'),
-		buttonLabel : i18n.t('dialog.folder.title'),
+		// title: i18n.t('dialog.folder.title'),
+		// buttonLabel : i18n.t('dialog.folder.title'),
 	});
 
 	if (folder && folder.length == 1) {
@@ -162,8 +166,8 @@ function open_case() {
 	} else {
 		let files = dialog.showOpenDialogSync({
 			properties: ['openfile'],
-			title: i18n.t('dialog.open.title'),
-			buttonLabel: i18n.t('dialog.open.button'),
+			// title: i18n.t('dialog.open.title'),
+			// buttonLabel: i18n.t('dialog.open.button'),
 			filters: [
 				{ name: i18n.t('dialog.open.filter'), extensions: ['dta'] }
 			]
@@ -213,8 +217,8 @@ function save_case() {
 
 	if (window.current_file == "") {
 		window.current_file = dialog.showSaveDialogSync(null, {
-			title: i18n.t('dialog.save.title'),
-			buttonLabel: i18n.t('dialog.save.button'),
+			// title: i18n.t('dialog.save.title'),
+			// buttonLabel: i18n.t('dialog.save.button'),
 			filters: [
 				{ name: i18n.t('dialog.save.filter'), extensions: ['dta'] }
 			]
@@ -412,7 +416,8 @@ function select_tooth(id) {
 			window.current_tooth = tooth;
 			set_tooth_paging();
 
-			let tooth_jaw_side = `${tooth.jaw} / ${tooth.side == "R" ? "right" : "left"}`;
+			let jaw_i18n = `technical.${tooth.jaw}`;
+			let tooth_jaw_side = `${i18n.t(jaw_i18n)} / ${side_expand(tooth.side)}`;
 			$("#tooth-name").html(tooth.name);
 			$("#tooth-jawside").html(title_case(tooth_jaw_side));
 			$("#tooth-score-id").val(tooth.id);
@@ -723,9 +728,11 @@ function populate_review() {
 	review_scores.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0));
 
 	for (let i = 0; i < review_scores.length; i++) {
+		let i18n_set = `technical.${review_scores[i].tooth.set}`;
+
 		let row = $("<tr></tr>");
 		let cell_numbering = $("<td></td>").html(`${review_scores[i].tooth[numbering]}`);
-		let cell_set = $("<td></td>").html(`${title_case(review_scores[i].tooth.set)}`);
+		let cell_set = $("<td></td>").html(`${title_case(i18n.t(i18n_set))}`);
 		let cell_jaw = $("<td></td>").html(`${swap_jaw_name(review_scores[i].tooth.jaw)}`);
 		let cell_side = $("<td></td>").html(`${side_expand(review_scores[i].tooth.side)}`);
 		let cell_tooth = $("<td></td>").html(`${review_scores[i].tooth.name}`);
@@ -807,6 +814,7 @@ function clean_temp_files() {
 		try {
 			fs.unlinkSync(f);
 		} catch (err) {
+			console.err(err);
 			console.error("Unable to delete", f);
 		}
 	}
@@ -867,6 +875,7 @@ function run_analysis() {
 					execa.sync(cmd, parameters);
 
 					let results = fs.readFileSync(output_file).toString();
+					console.log(results);
 					// if (has_error)
 					// 	$("#debug-output").css("border-color", "#ff0000");
 
@@ -932,7 +941,7 @@ function parse_output(text) {
 	$("#results-mu").val(mu);
 	$("#results-w").val(w);
 	$("#results-b").val(b);
-	$("#results-prediction").html(`${json.output.known_age.toFixed(3)} year(s)`);
+	$("#results-prediction").html(`${json.output.known_age.toFixed(3)} ${i18n.t('results.year')}(s)`);
 	$("#results-lower").html(json.output.known_age_lower.toFixed(3));
 	$("#results-upper").html(json.output.known_age_upper.toFixed(3));
 
@@ -946,7 +955,7 @@ function parse_output(text) {
 function add_prediction_row(perc, mu, w, b) {
 	let ci = calc_ci(perc, mu, w, b);
 	let row = $("<tr></tr>");
-	let cell_code = $("<td></td>").html(`${perc == 0 ? 'Default' : perc}`);
+	let cell_code = $("<td></td>").html(`${perc == 0 ? i18n.t('results.default') : perc}`);
 	let cell_value = $("<td></td>").html(`${ci[0]}`);
 	let cell_value2 = $("<td></td>").html(`${ci[1]}`);
 	row
@@ -1260,6 +1269,7 @@ function relocalize() {
 	i18n = getGlobal('i18n');
 	const localize = locI18next.init(i18n);
 	localize('body');
+	load_database(i18n.language);
 }
 
 
@@ -1376,17 +1386,17 @@ function title_case(s) {
 
 function swap_jaw_name(j) {
 	if (j.toLowerCase() === "maxillary")
-		return "Maxilla";
+		return i18n.t('technical.maxillary');
 	if (j.toLowerCase() == "mandibular")
-		return "Mandible";
+		return i18n.t('technical.mandibular');
 	return j;
 }
 
 function side_expand(s) {
 	if (s.toLowerCase() === "r")
-		return "Right";
+		return i18n.t('technical.right');
 	if (s.toLowerCase() === "l")
-		return "Left";
+		return i18n.t('technical.left');
 }
 
 function side_shrink(s) {

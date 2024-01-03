@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const AdmZip = require('adm-zip');
 
+// const {getGlobal} = require('electron');
+// let i18n = getGlobal('i18n');
 
 let source_root = "";
 let destination_root = "";

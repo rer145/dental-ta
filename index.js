@@ -103,8 +103,8 @@ i18n.on('languageChanged', (lng) => {
 ipcMain.on('pdf-export', event => {
 	const pdfPath = dialog.showSaveDialogSync({
 		properties: ['openfile'],
-		title: i18n.t('dialog.save-pdf.title'),
-		buttonLabel: i18n.t('dialog.save-pdf.button'),
+		// title: i18n.t('dialog.save-pdf.title'),
+		// buttonLabel: i18n.t('dialog.save-pdf.button'),
 		filters: [
 			{ name: i18n.t('dialog.save-pdf.filter'), extensions: ['pdf'] }
 		]

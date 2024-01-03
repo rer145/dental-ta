@@ -1,5 +1,13 @@
 {
-	"title": "Subadult Dental Age Estimation",
+	"title": "Subadult Dental Age Estimation (TADental)",
+	"technical": {
+		"right": "Right",
+		"left": "Left",
+		"maxillary": "Maxillary",
+		"mandibular": "Mandibular",
+		"permanent": "Permanent",
+		"deciduous": "Deciduous"
+	},
 	"menu": {
 		"mac-quit": "Quit",
 		"file": "File",
@@ -35,7 +43,9 @@
 		"choose-text": "Click the button below to choose a folder on your machine for the application runtime and analysis files to be stored.",
 		"choose-button": "Choose a Folder",
 		"current-path": "Current Location: ",
-		"setup-button": "Setup Application Runtime &raquo;"
+		"setup-button": "Setup Application Runtime &raquo;",
+		"param-missing": "One or more required setup parameters is missing.",
+		"spinner": "Setting up the application..."
 	},
 	"splash": {
 		"title": "Subadult Dental Age Estimation",
@@ -86,6 +96,7 @@
 		"date": "Observation Date",
 		"analyst": "Analyst",
 		"predicted": "Predicted: ",
+		"year": "year",
 		"percentage": "Prediction %",
 		"lower": "Lower: ",
 		"upper": "Upper: ",
@@ -94,6 +105,7 @@
 			"code": "Code",
 			"value": "Value"
 		},
+		"default": "Default",
 		"bounds": {
 			"title": "CI Bounds"
 		},
@@ -103,27 +115,28 @@
 	},
 	"dialog": {
 		"open": {
-			"title": "Open Dental TA File",
+			"title": "Open TADental File",
 			"button": "Open DTA File",
-			"filter": "Dental TA"
+			"filter": "TADental"
 		},
 		"save": {
-			"title": "Save Dental TA File",
+			"title": "Save TADental File",
 			"button": "Save DTA File",
-			"filter": "Dental TA"
+			"filter": "TADental"
 		},
 		"folder": {
 			"title": "Open Folder",
 			"button": "Choose Folder"
 		},
 		"save-pdf": {
-			"title": "Save Dental TA PDF Export",
+			"title": "Save TADental PDF Export",
 			"button": "Save PDF File",
 			"filter": "PDF File"
 		}
 	},
 	"default-file-name": "untitled.dta",
 	"settings": {
+		"title": "Settings",
 		"numbering": {
 			"title": "Tooth Numbering System",
 			"universal": "Universal",

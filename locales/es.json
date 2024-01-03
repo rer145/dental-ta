@@ -1,10 +1,25 @@
 {
+	"title": "Estimación de edad dental subadult (TADental)",
+	"technical": {
+		"right": "Derecha",
+		"left": "Izquierda",
+		"maxillary": "Maxilar",
+		"mandibular": "Mandibular",
+		"permanent": "Permanente",
+		"deciduous": "Decidua"
+	},
 	"menu": {
 		"mac-quit": "Dejar",
 		"file": "Expediente",
 		"file-new": "Nuevo",
+		"file-open": "Abrir",
+		"file-save": "Guardar",
 		"file-language": "Idioma",
+		"file-settings": "Configuración",
+		"file-setup": "Re-ejecutar Configuración",
+		"file-quit": "Salir",
 		"help": "Ayuda",
+		"help-website": "Sitio Web",
 		"help-website-tsu": "TSU Sitio Web",
 		"help-website-msu": "MSU Sitio Web",
 		"help-source": "Código Fuente",
@@ -18,19 +33,149 @@
 		"debug-delappdata": "Eliminar Datos de la Aplicación",
 		"debug-delsettings": "Eliminar Configuraciones"
 	},
+	"header": {
+		"new": "Nuevo",
+		"open": "Abrir",
+		"save": "Guardar"
+	},
+	"setup": {
+		"alert": "Para comenzar a utilizar este programa para análisis, se debe configurar lo siguiente.",
+		"choose-text": "Haga clic en el botón a continuación para elegir una carpeta en su máquina para almacenar los archivos de análisis y tiempo de ejecución de la aplicación.",
+		"choose-button": "Elija una carpeta",
+		"current-path": "Ubicación actual: ",
+		"setup-button": "Configurar el tiempo de ejecución de la aplicación &raquo;",
+		"param-missing": "Faltan uno o más parámetros de configuración necesarios.",
+		"spinner": "Configurando la aplicación..."
+	},
 	"splash": {
 		"title": "Estimación de edad dental subadult",
-		"subtitle": "Nuevos Enfoques para la Estimación de la edad Juvenil en Medicina Forense: Aplicación de Análisis de Transición a través de Shackelford et al. Método para una Muestra Subadulta Moderna Diversa"
+		"subtitle": "Nuevos Enfoques para la Estimación de la edad Juvenil en Medicina Forense: Aplicación de Análisis de Transición a través de Shackelford et al. Método para una Muestra Subadulta Moderna Diversa",
+		"new": "Nuevo Caso",
+		"open": "Abrir Caso"
 	},
 	"tabs": {
 		"case": "Información del Caso",
 		"scoring": "Puntuación",
 		"review": "Revisión",
-		"results": "Resultados"
+		"results": "Resultados",
+		"file": "Expediente: "
+	},
+	"caseinfo": {
+		"number-label": "# del Caso",
+		"number-text": "Un identificador único para los datos anotados.",
+		"date-label": "Fecha de Observación",
+		"analyst-label": "Analista",
+		"analyst-text": "Un identificador para el/la analista conduciendo la puntuación.",
+		"memo-text": "Notas e información adicional sobre el caso.",
+		"scoring-button": "Continuar a Puntuación &raquo;"
+	},
+	"scoring": {
+		"permanent": "Dentición Permanente",
+		"deciduous": "Dentición Decidua",
+		"case-button": "&laquo; Llenar Info del Caso",
+		"review-button": "Revisar y Analizar &raquo;",
+		"select-tooth": "Haga clic en un diente en la gráfica para analizar y ver información",
+		"score": "Puntuación"
+	},
+	"review": {
+		"title": "Puntuación Actual",
+		"jaw": "Hueso",
+		"side": "Lado",
+		"tooth": "Diente",
+		"score": "Puntuación",
+		"remove": "remover",
+		"results-button": "Calcular Resultados"
+	},
+	"results": {
+		"title": "Resultados de Análisis",
+		"case": "# del Caso",
+		"date": "Fecha de Observación",
+		"analyst": "Analista",
+		"predicted": "Previsto: ",
+		"year": "año",
+		"percentage": "% de Predicción",
+		"lower": "Inferior: ",
+		"upper": "Superior: ",
+		"scores": {
+			"title": "Rasgos Puntuados",
+			"code": "Código",
+			"value": "Valor"
+		},
+		"default": "Defecto",
+		"bounds": {
+			"title": "Límites de CI"
+		},
+		"clear-button": "Remover Puntuación Actual",
+		"clear-all-button": "Remover Toda Informació",
+		"export-pdf-button": "Exportar"
+	},
+	"dialog": {
+		"open": {
+			"title": "Abrir TADental expediente",
+			"button": "Abrir DTA Expediente",
+			"filter": "TADental"
+		},
+		"save": {
+			"title": "Guardar TADental expediente",
+			"button": "Guardar DTA Expediente",
+			"filter": "TADental"
+		},
+		"folder": {
+			"title": "Abrir Folder",
+			"button": "Elegir la carpeta"
+		},
+		"save-pdf": {
+			"title": "Guardar TADental PDF Exportar",
+			"button": "Guardar PDF Expediente",
+			"filter": "PDF Expediente"
+		}
 	},
 	"default-file-name": "intitulado.dta",
+	"settings": {
+		"title": "Ajustes",
+		"numbering": {
+			"title": "Sistema de Numeración de Dientes",
+			"universal": "Universal",
+			"fdi": "FDI",
+			"palmer": "Palmer",
+			"field": "Analysis Fields"
+		},
+		"imgpref": {
+			"title": "Imágenes de Puntuación",
+			"mfh": "Moorrees, Fanning and Hunt (MFH)",
+			"xray": "X-Ray"
+		},
+		"autopage": {
+			"title": "Puntuación de Avance Automático",
+			"disable": "Desactivar",
+			"enable": "Permitir",
+			"text": "Al habilitar esta opción, se avanzará automáticamente al siguiente diente una vez que se establezca una puntuación."
+		}
+	},
+	"alerts": {
+		"setup-no-folder": "Seleccione una carpeta para continuar.",
+		"setup-choose-folder": "Elegir",
+		"setup-complete": "La configuración está completa!",
+		"analysis-no-input-file": "Se produjo un error al generar el archivo de entrada.",
+		"installing-runtime": "Configurar el tiempo de ejecución de la aplicación...",
+		"running-analysis": "Ejecutando el análisis...",
+		"export": {
+			"pending": "Espere mientras se exporta el archivo PDF..",
+			"error": "Hubo un problema al exportar el archivo PDF. Seleccione una carpeta y proporcione un nombre para el archivo.",
+			"complete": "El archivo PDF se ha exportado correctamente.",
+			"view": "Ver PDF"
+		}
+	},
 	"confirmation": {
 		"btn-yes": "Si",
-		"btn-no": "No"
+		"btn-no": "No",
+		"reset": {
+			"header": "¿Remover Puntuación Actual?",
+			"body": "¡Advertencia! Estás a punto de borrar todas las puntuaciones actuales. ¿Quieres continuar?"
+		},
+		"reset-all": {
+			"header": "¿Remover Toda Informació?",
+			"body": "¡Advertencia! Está a punto de borrar toda la información, incluidas las puntuaciones actuales y la información del caso. ¿Quieres continuar?"
+		}
 	}
 }
