@@ -789,6 +789,7 @@ function generate_input_file(scores) {
 		let filepath = path.join(store.get("app.runtime_path"), "temp", new Date().valueOf().toString() + "-input.csv");
 		//fs.writeFileSync(filepath, header + '\n' + row + '\n' + data + '\n');
 		fs.writeFileSync(filepath, header + '\n' + data + '\n');
+		console.log(header + '\n' + data + '\n');
 		return filepath;
 	} catch (err) {
 		console.error(err);
@@ -857,14 +858,18 @@ function run_analysis() {
 			runtime_path,
 			input_file,
 			output_file,
-			1
+			1,
+			i18n.language,
+			$("#case_number_input").val().length > 0
+				? $("#case_number_input").val().replace(/[,]/g, "")
+				: 'CASE'
 		];
 		$.each(parameters, function(i,v) {
 			//cmd = cmd + ' "' + v + '"';
 			v = '"' + v + '"';
 		});
 		// console.log(cmd);
-		// console.log(parameters);
+		console.log(parameters);
 
 		let has_error = false;
 		let err_message = "";
@@ -1079,6 +1084,18 @@ function export_to_pdf() {
 	ipcRenderer.send('pdf-export');
 }
 
+function validate_case_info() {
+	if ($("#case_number_input").val().trim().length == 0) {
+		Snackbar.show({
+			text: i18n.t('alerts.case-info-missing-case-number'),
+			pos: 'bottom-center',
+			showAction: false,
+		});
+		return false;
+	}
+
+	return true;
+}
 
 
 $(document).ready(function() {
@@ -1114,14 +1131,20 @@ $(document).ready(function() {
 		$("#tab-case-info").tab('show');
 	});
 	$(".scoring-button").on('click', function(e) {
-		$("#tab-scoring-info").tab('show');
+		e.preventDefault();
+		if (validate_case_info()) {
+			$("#tab-scoring-info").tab('show');
+		}
 	});
 	$(".review-button").on('click', function(e) {
 		$("#tab-review-info").tab('show');
 	});
 	$(".analyze-button").on('click', function(e) {
-		$("#tab-results-info").tab('show');
-		run_analysis();
+		e.preventDefault();
+		if (validate_case_info()) {
+			$("#tab-results-info").tab('show');
+			run_analysis();
+		}
 	});
 	$(".reset-button").on('click', function(e) {
 		$("#confirmation-header").html(i18n.t('confirmation.reset.header'));

@@ -563,7 +563,7 @@
 				"svg": "images/single/svg/coc.png",
 				"display": "C<sub>OC</sub>",
 				"text": "Coc",
-				"description": "El contorno de la cúspide mineralizado esta completo",
+				"description": "El contorno de la cúspide mineralizado está completo",
 				"score": 3,
 				"group": "crown"
 			},
@@ -575,7 +575,7 @@
 				"svg": "images/single/svg/cr12.png",
 				"display": "Cr 1/2",
 				"text": "Cr 1/2",
-				"description": "1/2 de la mineralización de la corona estimada esta completa",
+				"description": "1/2 de la mineralización de la corona estimada está completa",
 				"score": 4,
 				"group": "crown"
 			},
@@ -587,7 +587,7 @@
 				"svg": "images/single/svg/cr34.png",
 				"display": "Cr 3/4",
 				"text": "Cr 3/4",
-				"description": "3/4 de la mineralización de la corona estimada esta complete",
+				"description": "3/4 de la mineralización de la corona estimada está completa",
 				"score": 5,
 				"group": "crown"
 			},
@@ -599,7 +599,7 @@
 				"svg": "images/single/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
 				"text": "CrC",
-				"description": "Mineralización de la corona esta complete, pero la formación de la raíz no ha comenzado",
+				"description": "Mineralización de la corona está completa, pero la formación de la raíz no ha comenzado",
 				"score": 6,
 				"group": "crown"
 			},
@@ -623,7 +623,7 @@
 				"svg": "images/single/svg/r14.png",
 				"display": "R 1/4",
 				"text": "R 1/4",
-				"description": "1/4 de la formación de la raíz estimada esta completa",
+				"description": "1/4 de la formación de la raíz estimada está completa",
 				"score": 9,
 				"group": "root"
 			},
@@ -635,7 +635,7 @@
 				"svg": "images/single/svg/r12.png",
 				"display": "R 1/2",
 				"text": "R 1/2",
-				"description": "1/2 de la formación de la raíz estimada esta completa",
+				"description": "1/2 de la formación de la raíz estimada está completa",
 				"score": 10,
 				"group": "root"
 			},
@@ -647,7 +647,7 @@
 				"svg": "images/single/svg/r34.png",
 				"display": "R 3/4",
 				"text": "R 3/4",
-				"description": "3/4 de la formación de la raíz estimada esta complete",
+				"description": "3/4 de la formación de la raíz estimada está completa",
 				"score": 11,
 				"group": "root"
 			},
@@ -659,7 +659,7 @@
 				"svg": "images/single/svg/rc.png",
 				"display": "R<sub>C</sub>",
 				"text": "Rc",
-				"description": "Longitud de la raíz esta complete; Ápex permanece en forma de embudo",
+				"description": "Longitud de la raíz está completa; Ápex permanece en forma de embudo",
 				"score": 12,
 				"group": "root"
 			},
@@ -683,7 +683,7 @@
 				"svg": "images/single/svg/ac.png",
 				"display": "A<sub>C</sub>",
 				"text": "Ac",
-				"description": "El cierre apical esta completo",
+				"description": "El cierre apical está completo",
 				"score": 14,
 				"group": "apex"
 			},
@@ -760,7 +760,7 @@
 				"svg": "images/multi/svg/coc.png",
 				"display": "C<sub>OC</sub>",
 				"text": "Coc",
-				"description": "El contorno de la cúspide mineralizado esta completo",
+				"description": "El contorno de la cúspide mineralizado está completo",
 				"score": 3,
 				"group": "crown"
 			},
@@ -772,7 +772,7 @@
 				"svg": "images/multi/svg/cr12.png",
 				"display": "Cr 1/2",
 				"text": "Cr 1/2",
-				"description": "1/2 de la mineralización de la corona estimada esta completa ",
+				"description": "1/2 de la mineralización de la corona estimada está completa ",
 				"score": 4,
 				"group": "crown"
 			},
@@ -784,7 +784,7 @@
 				"svg": "images/multi/svg/cr34.png",
 				"display": "Cr 3/4",
 				"text": "Cr 3/4",
-				"description": "3/4 de la mineralización de la corona estimada esta complete",
+				"description": "3/4 de la mineralización de la corona estimada está completa",
 				"score": 5,
 				"group": "crown"
 			},
@@ -796,7 +796,7 @@
 				"svg": "images/multi/svg/crc.png",
 				"display": "Cr<sub>C</sub>",
 				"text": "Cc",
-				"description": "Mineralización de la corona esta complete, pero la formación de la raíz no ha comenzado",
+				"description": "Mineralización de la corona está completa, pero la formación de la raíz no ha comenzado",
 				"score": 6,
 				"group": "crown"
 			},
@@ -832,7 +832,7 @@
 				"svg": "images/multi/svg/r14.png",
 				"display": "R 1/4",
 				"text": "R 1/4",
-				"description": "1/4 de la formación de la raíz estimada esta completa",
+				"description": "1/4 de la formación de la raíz estimada está completa",
 				"score": 9,
 				"group": "root"
 			},
@@ -844,7 +844,7 @@
 				"svg": "images/multi/svg/r12.png",
 				"display": "R 1/2",
 				"text": "R 1/2",
-				"description": "1/2 de la formación de la raíz estimada esta completa",
+				"description": "1/2 de la formación de la raíz estimada está completa",
 				"score": 10,
 				"group": "root"
 			},
@@ -856,7 +856,7 @@
 				"svg": "images/multi/svg/r34.png",
 				"display": "R 3/4",
 				"text": "R 3/4",
-				"description": "3/4 de la formación de la raíz estimada esta complete",
+				"description": "3/4 de la formación de la raíz estimada está completa",
 				"score": 11,
 				"group": "root"
 			},
@@ -868,7 +868,7 @@
 				"svg": "images/multi/svg/rc.png",
 				"display": "R<sub>C</sub>",
 				"text": "Rc",
-				"description": "Longitud de la raíz esta complete; Ápex permanece en forma de embudo",
+				"description": "Longitud de la raíz está completa; Ápex permanece en forma de embudo",
 				"score": 12,
 				"group": "root"
 			},
@@ -892,7 +892,7 @@
 				"svg": "images/multi/svg/ac.png",
 				"display": "A<sub>C</sub>",
 				"text": "Ac",
-				"description": "El cierre apical esta completo",
+				"description": "El cierre apical está completo",
 				"score": 14,
 				"group": "apex"
 			},

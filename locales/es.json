@@ -103,7 +103,7 @@
 		},
 		"default": "Defecto",
 		"bounds": {
-			"title": "Límites de CI"
+			"title": "Limites del intervalo"
 		},
 		"clear-button": "Remover Puntuación Actual",
 		"clear-all-button": "Remover Toda Informació",
@@ -156,6 +156,7 @@
 		"setup-no-folder": "Seleccione una carpeta para continuar.",
 		"setup-choose-folder": "Elegir",
 		"setup-complete": "La configuración está completa!",
+		"case-info-missing-case-number": "Ingrese un número de caso para continuar.",
 		"analysis-no-input-file": "Se produjo un error al generar el archivo de entrada.",
 		"installing-runtime": "Configurar el tiempo de ejecución de la aplicación...",
 		"running-analysis": "Ejecutando el análisis...",

@@ -1,0 +1,12 @@
+{
+	"output": {
+		"scores": [[SCORES]],
+		"mean_corrected_age": [[MEAN_CORRECTED_AGE]],
+		"within_variance": [[WITHIN_VARIANCE]],
+		"between_variance": [[BETWEEN_VARIANCE]],
+		"known_age": [[KNOWN_AGE_VAL]],
+		"known_age_lower": [[KNOWN_AGE_LOWER]],
+		"known_age_upper": [[KNOWN_AGE_UPPER]]
+	}
+}
+

@@ -160,6 +160,7 @@
 		"setup-no-folder": "Please select a folder to continue.",
 		"setup-choose-folder": "Choose",
 		"setup-complete": "Setup is Complete!",
+		"case-info-missing-case-number": "Please enter a Case # to continue.",
 		"analysis-no-input-file": "There was an error generating the input file.",
 		"installing-runtime": "Setting up the application's runtime...",
 		"running-analysis": "Running the analysis...",
