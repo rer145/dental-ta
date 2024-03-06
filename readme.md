@@ -12,5 +12,5 @@ Once tested and ready for deploy:
 - Draft a new release on GitHub
 	- Title = X.Y.Z
 	- Add release notes, link to issues
-	- Upload/Attach zip file from `out/make/zip` folder
+	- Upload/Attach zip file from `out/make/zip/win32/x64` folder
 - Publish release

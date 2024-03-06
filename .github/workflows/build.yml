@@ -3,7 +3,7 @@ name: Binaries build
 on:
   push:
     tags:
-      - v*
+      - IGNORE-v*
 
 jobs:
   build-windows:
