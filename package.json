@@ -1,7 +1,7 @@
 {
 	"name": "dental-ta",
 	"productName": "Subadult Dental Age Estimation",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Subadult Dental age estimation",
 	"main": "index.js",
 	"scripts": {
@@ -51,6 +51,7 @@
 		"moment": "^2.28.0",
 		"node-snackbar": "^0.1.16",
 		"popper.js": "^1.16.1",
+		"rimraf": "^3.0.2",
 		"shortid": "^2.2.15"
 	}
 }

@@ -297,6 +297,7 @@ function reset_case_info() {
 }
 
 function reset_scores() {
+	localStorage.removeItem("results");
 	window.scores = {};
 	populate_review();
 	set_scored_teeth();
@@ -890,9 +891,11 @@ function run_analysis() {
 						$("#debug-output").hide();
 					}
 
+					localStorage.removeItem("results");
 					parse_output(results);
+
 					$("#results-images").empty();
-					show_output_image(path.join(runtime_path, "temp", "output1.png"), $("#results-images"));
+					show_output_image(path.join(runtime_path, "temp", `output1_${$("#prediction-perc").val()}.png`), $("#results-images"));
 					show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#results-images"));
 				}
 				catch (err) {
@@ -938,6 +941,7 @@ function parse_output(text) {
 
 	let json = JSON.parse(text);
 	//console.log(json);
+	localStorage.setItem("results", JSON.stringify(json.output));
 
 	let mu = json.output.mean_corrected_age.toFixed(3);
 	let w = json.output.within_variance.toFixed(3);
@@ -947,11 +951,11 @@ function parse_output(text) {
 	$("#results-w").val(w);
 	$("#results-b").val(b);
 	$("#results-prediction").html(`${json.output.known_age.toFixed(3)} ${i18n.t('results.year')}(s)`);
-	$("#results-lower").html(json.output.known_age_lower.toFixed(3));
-	$("#results-upper").html(json.output.known_age_upper.toFixed(3));
+	$("#results-lower").html(json.output.known_age_lower_95.toFixed(3));
+	$("#results-upper").html(json.output.known_age_upper_95.toFixed(3));
 
 	$("#results-prediction-table tbody").empty();
-	$("#results-prediction-table tbody").append(add_prediction_row(0, mu, w, b));
+	// $("#results-prediction-table tbody").append(add_prediction_row(0, mu, w, b));
 	$("#results-prediction-table tbody").append(add_prediction_row(90, mu, w, b));
 	$("#results-prediction-table tbody").append(add_prediction_row(95, mu, w, b));
 	$("#results-prediction-table tbody").append(add_prediction_row(99, mu, w, b));
@@ -1247,9 +1251,26 @@ $(document).ready(function() {
 
 	$("#prediction-perc").on('change', function(e) {
 		e.preventDefault();
-		let ci = calc_ci($("#prediction-perc").val(), $("#results-mu").val(), $("#results-w").val(), $("#results-b").val());
+
+		// let ci = calc_ci($("#prediction-perc").val(), $("#results-mu").val(), $("#results-w").val(), $("#results-b").val());
+		// $("#results-lower").html(ci[0]);
+		// $("#results-upper").html(ci[1]);
+
+		let results = JSON.parse(localStorage.getItem("results"));
+
+		let ci = [
+			results[`known_age_lower_${$("#prediction-perc").val()}`].toFixed(3),
+			results[`known_age_upper_${$("#prediction-perc").val()}`].toFixed(3)
+		];
+
 		$("#results-lower").html(ci[0]);
 		$("#results-upper").html(ci[1]);
+
+		$("#results-images").empty();
+
+		let runtime_path = store.get("app.runtime_path");
+		show_output_image(path.join(runtime_path, "temp", `output1_${$("#prediction-perc").val()}.png`), $("#results-images"));
+		show_output_image(path.join(runtime_path, "temp", "output2.png"), $("#results-images"));
 	});
 
 	$("#tab-pane-case-info input").on('change', function(e) {

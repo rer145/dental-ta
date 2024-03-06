@@ -9,8 +9,13 @@ case_name<-trim(args[6]) 	# name of the case
 
 source(paste(runtime_dir, "\\analysis\\functions.r", sep=""))
 
-output_image1<-file.path(runtime_dir, "temp", "output1.png")
+output_image1_90<-file.path(runtime_dir, "temp", "output1_90.png")
+#output_image2_90<-file.path(runtime_dir, "temp", "output2_90.png")
 output_image2<-file.path(runtime_dir, "temp", "output2.png")
+output_image1_95<-file.path(runtime_dir, "temp", "output1_95.png")
+#output_image2_95<-file.path(runtime_dir, "temp", "output2_95.png")
+output_image1_99<-file.path(runtime_dir, "temp", "output1_99.png")
+#output_image2_99<-file.path(runtime_dir, "temp", "output2_99.png")
 
 output_text<-readLines(file.path(runtime_dir, "analysis", "output-schema.txt"))
 

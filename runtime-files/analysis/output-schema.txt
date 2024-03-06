@@ -5,8 +5,12 @@
 		"within_variance": [[WITHIN_VARIANCE]],
 		"between_variance": [[BETWEEN_VARIANCE]],
 		"known_age": [[KNOWN_AGE_VAL]],
-		"known_age_lower": [[KNOWN_AGE_LOWER]],
-		"known_age_upper": [[KNOWN_AGE_UPPER]]
+		"known_age_lower_90": [[KNOWN_AGE_LOWER_90]],
+		"known_age_upper_90": [[KNOWN_AGE_UPPER_90]],
+		"known_age_lower_95": [[KNOWN_AGE_LOWER_95]],
+		"known_age_upper_95": [[KNOWN_AGE_UPPER_95]],
+		"known_age_lower_99": [[KNOWN_AGE_LOWER_99]],
+		"known_age_upper_99": [[KNOWN_AGE_UPPER_99]]
 	}
 }
 

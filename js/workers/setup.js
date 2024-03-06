@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const AdmZip = require('adm-zip');
+const rimraf = require('rimraf');
 
 // const {getGlobal} = require('electron');
 // let i18n = getGlobal('i18n');
@@ -34,10 +35,10 @@ function run_setup() {
 	let success = true;
 
 	try {
-		make_directory(path.join(destination_root, "r"));
-		make_directory(path.join(destination_root, "packages"));
-		make_directory(path.join(destination_root, "analysis"));
-		make_directory(path.join(destination_root, "temp"));
+		make_directory(path.join(destination_root, "r"), false);
+		make_directory(path.join(destination_root, "packages"), true);
+		make_directory(path.join(destination_root, "analysis"), true);
+		make_directory(path.join(destination_root, "temp"), false);
 	}
 	catch (err) {
 		output = `Error in making directories: ${err}`;
@@ -61,7 +62,12 @@ function run_setup() {
 	return [success, output];
 }
 
-function make_directory(dir) {
+function make_directory(dir, startFresh) {
+	if (fs.existsSync(dir) && startFresh) {
+		//fs.rmSync(dir, { recursive: true, force: true });
+		rimraf.sync(dir);
+	}
+
 	if (!fs.existsSync(dir)){
 		try {
 			fs.mkdirSync(dir);

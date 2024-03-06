@@ -99,56 +99,32 @@ do.get.age <- function (id=1,lo=0.75,hi=25.75,left=0,right=25,def.int=0.1,
     top=max(prob)
     top=max(top,dnorm(mu,mu,sqrt(within)))
 
-	png(filename=output_image1, width = 1400, height = 1200, res = 300, pointsize = 7)
 
-	x_label <- 'Age (years)'
-	y_label <- 'Density'
+	do.generate.plot1(output_image1_90, 1.645, lang,
+		id, age, prob, left, right, top, case_name, anote,
+		put.points, put.L, put.R, mu, within, def.int, between, Known.age)
+	do.generate.plot1(output_image1_95, 1.960, lang,
+		id, age, prob, left, right, top, case_name, anote,
+		put.points, put.L, put.R, mu, within, def.int, between, Known.age)
+	do.generate.plot1(output_image1_99, 2.576, lang,
+		id, age, prob, left, right, top, case_name, anote,
+		put.points, put.L, put.R, mu, within, def.int, between, Known.age)
 
-	if (lang == 'es') {
-		x_label <- 'Edad (anos)'
-		y_label <- 'Densidad'
-	}
-
-
-    if(!is.na(id)){
-        plot(exp(age)-.75,prob,type='l',xlim=c(left,right),ylim=c(0,top),lwd=2,
-             xlab=x_label,ylab=y_label,main=paste(case_name,anote),axes=F)}
-    else
-    {
-        plot(exp(age)-.75,prob,type='l',xlim=c(left,right),ylim=c(0,top),lwd=2,
-             xlab=x_label,ylab=y_label,main=lab,axes=F)}
-
-    box()
-    axis(1)
-    if(put.points==T){
-        age=log(seq(put.L,put.R,.05)+0.75)
-        points(exp(age)-.75,dnorm(age,mu,sqrt(within)),pch=19)
-    }
-    else {lines(exp(age)-.75,dnorm(age,mu,sqrt(within)),lwd=2,lty=2)}
-    age=log(seq(0,25,def.int)+0.75)
-    if(!is.na(between)) lines(exp(age)-.75,dnorm(age,mu,sqrt(within+between)),lwd=2,lty=2)
-    if(!is.na(Known.age)) lines(rep(Known.age,2),c(0,1000),lwd=2)
-    print(noquote(paste('Mean natural log conception-corrected age = ',mu)))
-    abline(v=exp(mu)-0.75)
-    text(exp(mu)-0.75,top-0.15,round(exp(mu)-0.75,3),pos=4,cex=0.75)
-    abline(v=exp(mu-(1.96*(within+between)^0.5))-0.75,lty=2,col='red')
-    if(is.na(between)) abline(v=exp(mu-(1.96*(2*within)^0.5))-0.75,lty=2,col='blue')
-    text(exp(mu-(1.96*(within+between)^0.5))-0.75,top-0.5,round(exp(mu-(1.96*(within+between)^0.5))-0.75,3),pos=2,cex=0.75)
-    if(is.na(between)) text(exp(mu-(1.96*(2*within)^0.5))-0.75,top-0.5,round(exp(mu-(1.96*(2*within)^0.5))-0.75,3),pos=2,cex=0.75)
-    abline(v=exp(mu+(1.96*(within+between)^0.5))-0.75,lty=2,col='red')
-    if(is.na(between)) abline(v=exp(mu+(1.96*(2*within)^0.5))-0.75,lty=2,col='blue')
-    text(exp(mu+(1.96*(within+between)^0.5))-0.75,top-0.5,round(exp(mu+(1.96*(within+between)^0.5))-0.75,3),pos=4,cex=0.75)
-    if(is.na(between)) text(exp(mu+(1.96*(2*within)^0.5))-0.75,top-0.5,round(exp(mu+(1.96*(2*within)^0.5))-0.75,3),pos=4,cex=0.75)
-
-	dev.off()
 
 	age_val<-exp(mu)-0.75
-  	age_lower<-exp(mu-(2*(within+between)^0.5))-0.75
-  	age_upper<-exp(mu+(2*(within+between)^0.5))-0.75
+  	#age_lower<-exp(mu-(2*(within+between)^0.5))-0.75
+  	#age_upper<-exp(mu+(2*(within+between)^0.5))-0.75
 
 	output_text<-gsub("[[KNOWN_AGE_VAL]]", age_val, output_text, fixed=TRUE)
-    output_text<-gsub("[[KNOWN_AGE_LOWER]]", age_lower, output_text, fixed=TRUE)
-    output_text<-gsub("[[KNOWN_AGE_UPPER]]", age_upper, output_text, fixed=TRUE)
+
+    output_text<-gsub("[[KNOWN_AGE_LOWER_90]]", exp(mu-(1.645*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
+    output_text<-gsub("[[KNOWN_AGE_UPPER_90]]", exp(mu+(1.645*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
+
+	output_text<-gsub("[[KNOWN_AGE_LOWER_95]]", exp(mu-(1.960*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
+    output_text<-gsub("[[KNOWN_AGE_UPPER_95]]", exp(mu+(1.960*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
+
+	output_text<-gsub("[[KNOWN_AGE_LOWER_99]]", exp(mu-(2.576*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
+    output_text<-gsub("[[KNOWN_AGE_UPPER_99]]", exp(mu+(2.576*(within+between)^0.5))-0.75, output_text, fixed=TRUE)
 
 	output_text<-gsub("[[MEAN_CORRECTED_AGE]]", mu, output_text, fixed=TRUE)
 	output_text<-gsub("[[WITHIN_VARIANCE]]", within, output_text, fixed=TRUE)
@@ -211,6 +187,55 @@ do.get.age <- function (id=1,lo=0.75,hi=25.75,left=0,right=25,def.int=0.1,
 
     if(is.na(between)) return(list(lab=lab,mu=mu,within=within,between=between,p.seq=NA))
     return(list(lab=lab,mu=mu,within=within,between=between,p.seq=obj/nu))
+}
+
+
+do.generate.plot1<-function(img_filename, mult, lang,
+	id, age, prob, left, right, top, case_name, anote,
+	put.points, put.L, put.R, mu, within, def.int, between, Known.age)
+{
+	png(filename=img_filename, width = 1400, height = 1200, res = 300, pointsize = 7)
+
+	x_label <- 'Age (years)'
+	y_label <- 'Density'
+
+	if (lang == 'es') {
+		x_label <- 'Edad (anos)'
+		y_label <- 'Densidad'
+	}
+
+
+    if(!is.na(id)){
+        plot(exp(age)-.75,prob,type='l',xlim=c(left,right),ylim=c(0,top),lwd=2,
+             xlab=x_label,ylab=y_label,main=paste(case_name,anote),axes=F)}
+    else
+    {
+        plot(exp(age)-.75,prob,type='l',xlim=c(left,right),ylim=c(0,top),lwd=2,
+             xlab=x_label,ylab=y_label,main=lab,axes=F)}
+
+    box()
+    axis(1)
+    if(put.points==T){
+        age=log(seq(put.L,put.R,.05)+0.75)
+        points(exp(age)-.75,dnorm(age,mu,sqrt(within)),pch=19)
+    }
+    else {lines(exp(age)-.75,dnorm(age,mu,sqrt(within)),lwd=2,lty=2)}
+    age=log(seq(0,25,def.int)+0.75)
+    if(!is.na(between)) lines(exp(age)-.75,dnorm(age,mu,sqrt(within+between)),lwd=2,lty=2)
+    if(!is.na(Known.age)) lines(rep(Known.age,2),c(0,1000),lwd=2)
+    print(noquote(paste('Mean natural log conception-corrected age = ',mu)))
+    abline(v=exp(mu)-0.75)
+    text(exp(mu)-0.75,top-0.15,round(exp(mu)-0.75,3),pos=4,cex=0.75)
+    abline(v=exp(mu-(mult*(within+between)^0.5))-0.75,lty=2,col='red')
+    if(is.na(between)) abline(v=exp(mu-(mult*(2*within)^0.5))-0.75,lty=2,col='blue')
+    text(exp(mu-(mult*(within+between)^0.5))-0.75,top-0.5,round(exp(mu-(mult*(within+between)^0.5))-0.75,3),pos=2,cex=0.75)
+    if(is.na(between)) text(exp(mu-(mult*(2*within)^0.5))-0.75,top-0.5,round(exp(mu-(mult*(2*within)^0.5))-0.75,3),pos=2,cex=0.75)
+    abline(v=exp(mu+(mult*(within+between)^0.5))-0.75,lty=2,col='red')
+    if(is.na(between)) abline(v=exp(mu+(mult*(2*within)^0.5))-0.75,lty=2,col='blue')
+    text(exp(mu+(mult*(within+between)^0.5))-0.75,top-0.5,round(exp(mu+(mult*(within+between)^0.5))-0.75,3),pos=4,cex=0.75)
+    if(is.na(between)) text(exp(mu+(mult*(2*within)^0.5))-0.75,top-0.5,round(exp(mu+(mult*(2*within)^0.5))-0.75,3),pos=4,cex=0.75)
+
+	dev.off()
 }
 
 
