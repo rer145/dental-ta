@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Age Analysis - JavaScript Example</title>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    
+    <!-- Our JavaScript modules -->
+    <script src="dentalAnalysis.js"></script>
+    <script src="dentalVisualization.js"></script>
+    <script src="dataLoader.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .input-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .tooth-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tooth-input {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tooth-input label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        
+        .tooth-input input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button.secondary {
+            background-color: #008CBA;
+        }
+        
+        button.secondary:hover {
+            background-color: #007399;
+        }
+        
+        .results-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .result-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .result-item h4 {
+            margin: 0 0 5px 0;
+            color: #555;
+        }
+        
+        .result-item .value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+        }
+        
+        .data-source {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        
+        .tooth-labels {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dental Age Analysis Tool</h1>
+        
+        <div class="data-source">
+            <strong>Note:</strong> This example uses simulated data. In production, you would load actual MFH2, MUS, and obj matrices from the .RData file.
+        </div>
+        
+        <div class="input-section">
+            <h2>Input Tooth Scores</h2>
+            <p>Enter tooth formation scores (2-17) or leave blank for missing teeth:</p>
+            
+            <div class="tooth-inputs">
+                <div class="tooth-input">
+                    <label for="tooth1">c (deciduous canine)</label>
+                    <input type="number" id="tooth1" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth2">m1 (1st deciduous molar)</label>
+                    <input type="number" id="tooth2" min="2" max="17" value="15">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth3">m2 (2nd deciduous molar)</label>
+                    <input type="number" id="tooth3" min="2" max="17" value="14">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth4">UI1 (Upper I1)</label>
+                    <input type="number" id="tooth4" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth5">UI2 (Upper I2)</label>
+                    <input type="number" id="tooth5" min="2" max="17" value="5">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth6">LI1 (Lower I1)</label>
+                    <input type="number" id="tooth6" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth7">LI2 (Lower I2)</label>
+                    <input type="number" id="tooth7" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth8">C (Permanent canine)</label>
+                    <input type="number" id="tooth8" min="2" max="17" value="9">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth9">P3 (1st premolar)</label>
+                    <input type="number" id="tooth9" min="2" max="17" value="6">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth10">P4 (2nd premolar)</label>
+                    <input type="number" id="tooth10" min="2" max="17" value="5">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth11">M1 (1st molar)</label>
+                    <input type="number" id="tooth11" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth12">M2 (2nd molar)</label>
+                    <input type="number" id="tooth12" min="2" max="17" placeholder="NA">
+                </div>
+                <div class="tooth-input">
+                    <label for="tooth13">M3 (3rd molar)</label>
+                    <input type="number" id="tooth13" min="2" max="17" placeholder="NA">
+                </div>
+            </div>
+            
+            <div class="tooth-labels">
+                Score meanings: 2=CI (Cusp initiation), 3=COC (Coalescence of cusps), 4=CUO (Cusp outline complete), 
+                5=I1/2 (Crown 1/2 complete), 6=CRC (Crown 3/4 complete), 7=RI (Root initiation), 8=CLI (Cleft initiation), 
+                9=RC (Root 1/4), 10=R1/2, 11=R3/4, 12=RC (Root complete), 13=A1/2, 14=AC, 15=EWJ, 16=CE
+            </div>
+            
+            <div>
+                <button onclick="runAnalysis()">Run Analysis</button>
+                <button onclick="clearInputs()" class="secondary">Clear All</button>
+                <button onclick="loadSampleData()" class="secondary">Load Sample Data</button>
+            </div>
+        </div>
+        
+        <div id="results" class="results-section">
+            <h2>Analysis Results</h2>
+            
+            <div class="results-grid">
+                <div class="result-item">
+                    <h4>Estimated Age</h4>
+                    <div class="value" id="estimatedAge">-</div>
+                </div>
+                <div class="result-item">
+                    <h4>Age Range (95% CI)</h4>
+                    <div class="value" id="ageRange">-</div>
+                </div>
+                <div class="result-item">
+                    <h4>Within-tooth Variance</h4>
+                    <div class="value" id="withinVariance">-</div>
+                </div>
+                <div class="result-item">
+                    <h4>Between-tooth Variance</h4>
+                    <div class="value" id="betweenVariance">-</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="ageDistributionChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="teethFormationChart"></canvas>
+            </div>
+            
+            <div>
+                <button onclick="exportResults()">Export Results as JSON</button>
+                <button onclick="exportCharts()" class="secondary">Export Charts as Images</button>
+            </div>
+            
+            <h3>Raw Results</h3>
+            <pre id="rawResults"></pre>
+        </div>
+    </div>
+
+    <script>
+        // Initialize global variables
+        let dentalAnalysis;
+        let visualization;
+        let dataLoader;
+        let currentResults;
+        
+        // Initialize on page load
+        window.onload = function() {
+            // Create sample data (in production, this would be loaded from .RData file)
+            const sampleData = createSampleData();
+            
+            // Initialize modules
+            dataLoader = new DataLoader();
+            dentalAnalysis = new DentalAnalysis(sampleData.MFH2, sampleData.MUS, sampleData.obj);
+            visualization = new DentalVisualization();
+        };
+        
+        // Create sample data structure
+        function createSampleData() {
+            // This is a simplified version - actual data would come from .RData file
+            const stages = 17;
+            const teeth = 13;
+            
+            const MFH2 = [];
+            const MUS = [];
+            const obj = [];
+            
+            // Generate sample data with realistic patterns
+            for (let i = 0; i < stages; i++) {
+                MFH2[i] = [];
+                MUS[i] = [];
+                obj[i] = [];
+                
+                for (let j = 0; j < teeth; j++) {
+                    // Simulate tooth formation progression
+                    MFH2[i][j] = Math.log(0.75 + i * 1.5 + j * 0.1 + Math.random() * 0.5);
+                    MUS[i][j] = MFH2[i][j] + Math.random() * 0.1;
+                    obj[i][j] = 0.95 + Math.random() * 0.05;
+                }
+            }
+            
+            return { MFH2, MUS, obj };
+        }
+        
+        // Run analysis
+        function runAnalysis() {
+            // Get tooth scores from inputs
+            const teeth = [];
+            for (let i = 1; i <= 13; i++) {
+                const input = document.getElementById(`tooth${i}`);
+                const value = input.value.trim();
+                teeth.push(value === '' ? null : parseInt(value));
+            }
+            
+            try {
+                // Run analysis
+                currentResults = dentalAnalysis.getAge({
+                    teeth: teeth,
+                    id: 1,
+                    lab: 'Sample Analysis'
+                });
+                
+                // Display results
+                displayResults(currentResults);
+                
+                // Show results section
+                document.getElementById('results').style.display = 'block';
+                
+                // Scroll to results
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                alert('Error running analysis: ' + error.message);
+                console.error(error);
+            }
+        }
+        
+        // Display results
+        function displayResults(results) {
+            // Update summary values
+            document.getElementById('estimatedAge').textContent = 
+                results.knownAge.toFixed(2) + ' years';
+            document.getElementById('ageRange').textContent = 
+                results.knownAgeLower.toFixed(2) + ' - ' + results.knownAgeUpper.toFixed(2) + ' years';
+            document.getElementById('withinVariance').textContent = 
+                results.withinVariance.toFixed(4);
+            document.getElementById('betweenVariance').textContent = 
+                isNaN(results.betweenVariance) ? 'NA' : results.betweenVariance.toFixed(4);
+            
+            // Create charts
+            visualization.createAgeDistributionChart('ageDistributionChart', results, {
+                title: 'Age Probability Distribution',
+                left: 0,
+                right: 25
+            });
+            
+            // Create teeth formation data
+            const plotData = dentalAnalysis.plotTeeth({
+                teeth: results.scores.map(s => s === -1 ? null : s)
+            });
+            
+            visualization.createTeethFormationChart('teethFormationChart', plotData, {
+                title: 'Tooth Formation Timeline'
+            });
+            
+            // Display raw results
+            const exportData = dataLoader.exportResults(results);
+            document.getElementById('rawResults').textContent = 
+                JSON.stringify(exportData, null, 2);
+        }
+        
+        // Clear all inputs
+        function clearInputs() {
+            for (let i = 1; i <= 13; i++) {
+                document.getElementById(`tooth${i}`).value = '';
+            }
+            document.getElementById('results').style.display = 'none';
+        }
+        
+        // Load sample data
+        function loadSampleData() {
+            // Example data from the R code
+            const sampleTeeth = [null, 15, 14, null, 5, null, null, 9, 6, 5, null, null, null];
+            
+            for (let i = 0; i < sampleTeeth.length; i++) {
+                const input = document.getElementById(`tooth${i + 1}`);
+                input.value = sampleTeeth[i] === null ? '' : sampleTeeth[i];
+            }
+        }
+        
+        // Export results as JSON
+        function exportResults() {
+            if (!currentResults) {
+                alert('No results to export. Please run analysis first.');
+                return;
+            }
+            
+            const exportData = dataLoader.exportResults(currentResults);
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'dental_analysis_results.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // Export charts as images
+        function exportCharts() {
+            visualization.exportChart('ageDistributionChart', 'age_distribution.png');
+            setTimeout(() => {
+                visualization.exportChart('teethFormationChart', 'teeth_formation.png');
+            }, 100);
+        }
+    </script>
+</body>
+</html>
